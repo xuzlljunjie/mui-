@@ -1,0 +1,284 @@
+{
+  "index.html": {
+    "resources": [
+      "model/service/pand-main.html",
+      "model/order/order-main.html",
+      "images/pand/pand.icon",
+      "js/app.js",
+      "js/jquery.min.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/icons-extra.css",
+      "js/config.js"
+    ],
+    "refer": [
+      "model/order/order-main.html",
+      "model/service/pand-main.html",
+      "model/user/my-main.html",
+      "model/order/chatmain.html",
+      "model/messagepage/select.html",
+      "model/messagepage/friends.html",
+      "model/guide.html"
+    ]
+  },
+  "model/order/order-main.html": {
+    "refer": [
+      "model/order/orderdetails/orderdetails.html",
+      "model/order/orderdetails/usercomment.html",
+      "model/order/orderdetails/chat.html",
+      "model/order/orderdetails/buydetails.html",
+      "model/login/login.html"
+    ],
+    "resources": []
+  },
+  "model/user/my-main.html": {
+    "resources": [
+      "images/pand/0@@3x.png",
+      "images/pand/$4ý@3x.png",
+      "images/pand/ý\u0006@3x.png",
+      "images/pand/ýn@3x.png",
+      "images/pand/\u0011ý6ý@3x.png",
+      "images/pand/\u0011ýýU@3x.png",
+      "images/pand/Tý\r@3x.png",
+      "images/pand/\u0011ýýý@3x.png"
+    ],
+    "refer": [
+      "model/user/Service/service.html",
+      "model/user/Address/address.html",
+      "model/user/Integral/integral.html",
+      "model/user/Entering/entering.html",
+      "model/user/AccountManager/AccountManager.html",
+      "model/user/Collection/collection.html",
+      "model/user/myorder/myorder.html",
+      "model/shop/myshop.html",
+      "model/login/login.html",
+      "model/user/Footprint/footprint .html",
+      "index.html",
+      "model/user/Check/auditfailure.html"
+    ]
+  },
+  "model/order/orderdetails/orderdetails.html": {
+    "refer": [
+      "model/order/orderdetails/buydetails.html",
+      "model/order/orderdetails/chat.html",
+      "model/order/orderdetails/CommentDetails.html",
+      "model/login/login.html",
+      "model/shop/shopfordetails.html",
+      "model/order/message/message_talk_info.html"
+    ],
+    "resources": []
+  },
+  "model/user/Address/address.html": {
+    "refer": [
+      "model/user/my-main.html",
+      "model/user/Address/Newaddress.html",
+      "model/user/Address/Editaddress.html"
+    ],
+    "resources": []
+  },
+  "model/user/Entering/entering.html": {
+    "refer": [
+      "model/user/my-main.html",
+      "model/user/Verification/verification.html",
+      "model/shop/myshop.html",
+      "model/user/Verification/verificationverification.html"
+    ],
+    "resources": []
+  },
+  "model/user/Address/Newaddress.html": {
+    "refer": [
+      "model/user/Address/address.html",
+      "model/user/Address/Newaddress.html"
+    ],
+    "resources": [
+      "css/mui.min.css",
+      "css/mui.picker.min.css"
+    ]
+  },
+  "model/user/Collection/collection.html": {
+    "refer": [
+      "model/user/my-main.html"
+    ],
+    "resources": []
+  },
+  "model/service/pand-main.html": {
+    "refer": [
+      "model/service/seach/seachmain.html",
+      "model/service/seach/seachlist.html",
+      "model/shop/shopfordetails.html",
+      "model/service/seach/seachaddress.html"
+    ],
+    "resources": []
+  },
+  "model/login/login.html": {
+    "refer": [
+      "model/login/login.html",
+      "model/user/my-main.html",
+      "model/service/pand-main.html",
+      "index.html",
+      "model/order/orderdetails/chat.html",
+      "model/registered/registered.html"
+    ],
+    "resources": []
+  },
+  "model/user/AccountManager/AccountManager.html": {
+    "resources": [
+      "images/pand/$4ý@3x.png"
+    ],
+    "refer": [
+      "index.html",
+      "model/login/login.html"
+    ]
+  },
+  "model/shop/myshop.html": {
+    "resources": [
+      "images/pand/$4ý@3x.png",
+      "images/pand/$4ý@3x.png"
+    ],
+    "refer": [
+      "model/shop/publish.html",
+      "model/shop/setupshop.html",
+      "model/shop/billmanagement.html",
+      "model/shop/giveamark.html",
+      "model/shop/authentication.html",
+      "model/shop/sellorder.html"
+    ]
+  },
+  "model/user/Verification/verification.html": {
+    "refer": [
+      "model/user/Verification/verification.html",
+      "model/user/Verification/xieyi.html",
+      "model/user/Check/succeed.html"
+    ],
+    "resources": []
+  },
+  "model/user/Check/succeed.html": {
+    "refer": [
+      "index.html"
+    ],
+    "resources": []
+  },
+  "model/user/Verification/verificationverification.html": {
+    "refer": [
+      "model/user/Check/succeed.html"
+    ],
+    "resources": []
+  },
+  "model/user/Check/auditfailure.html": {
+    "refer": [
+      "model/user/Verification/verification.html",
+      "model/user/Check/succeed.html"
+    ],
+    "resources": []
+  },
+  "model/service/seach/seachmain.html": {
+    "refer": [
+      "model/service/seach/seachlist.html"
+    ],
+    "resources": []
+  },
+  "model/service/seach/seachlist.html": {
+    "refer": [
+      "model/order/orderdetails/orderdetails.html"
+    ],
+    "resources": []
+  },
+  "model/order/orderdetails/buydetails.html": {
+    "refer": [
+      "model/order/orderdetails/orderover.html",
+      "model/user/Address/Editaddress.html",
+      "model/user/Address/Newaddress.html"
+    ],
+    "resources": []
+  },
+  "model/shop/publish.html": {
+    "resources": [
+      "images/pand/$4ý@3x.png"
+    ],
+    "refer": [
+      "model/shop/publishingservice.html",
+      "model/shop/billmanagement.html"
+    ]
+  },
+  "model/order/orderdetails/orderover.html": {
+    "refer": [
+      "model/order/orderdetails/chat.html",
+      "model/order/message/message_talk_info.html"
+    ],
+    "resources": []
+  },
+  "model/shop/setupshop.html": {
+    "resources": [
+      "images/pand/$4ý@3x.png"
+    ],
+    "refer": []
+  },
+  "model/shop/publishingservice.html": {
+    "refer": [
+      "model/shop/pushsuccess.html"
+    ],
+    "resources": []
+  },
+  "model/shop/shopfordetails.html": {
+    "resources": [
+      "images/pand/$4ý@3x.png"
+    ],
+    "refer": [
+      "model/order/orderdetails/orderdetails.html",
+      "model/order/orderdetails/chat.html"
+    ]
+  },
+  "model/shop/sellorder.html": {
+    "refer": [
+      "model/shop/sellcomment.html",
+      "model/shop/face.html"
+    ],
+    "resources": []
+  },
+  "model/user/Address/Editaddress.html": {
+    "refer": [
+      "model/user/Address/address.html"
+    ],
+    "resources": []
+  },
+  "model/registered/registered.html": {
+    "refer": [
+      "model/user/Verification/verification.html",
+      "model/user/Verification/xieyi.html",
+      "model/registered/registered.html",
+      "model/registered/setpassord.html"
+    ]
+  },
+  "model/registered/setpassord.html": {
+    "refer": [
+      "index.html"
+    ]
+  },
+  "model/shop/face.html": {
+    "refer": [
+      "model/shop/facecom.html"
+    ]
+  },
+  "model/order/orderdetails/chat.html": {
+    "resources": [
+      "messagecss/mui.imageviewer.css"
+    ]
+  },
+  "model/messagepage/friends.html": {
+    "refer": [
+      "model/messagepage/message/message_talk_info.html"
+    ]
+  },
+  "model/order/chatmain.html": {
+    "refer": [
+      "model/order/message/system_message.html",
+      "model/order/message/message_talk_info.html",
+      "model/order/message/system.html"
+    ]
+  },
+  "model/service/seach/seachaddress.html": {
+    "refer": [
+      "index.html"
+    ]
+  }
+}

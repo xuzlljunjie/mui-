@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+				<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style>
+		.mui-content{background: #ffffff;padding: 0px 20px;}
+			#addres {
+				width:100%;
+				text-align: center;
+			}
+			#addres button{
+				width:80%;
+				height: 40px;
+				text-align: center;
+				margin-top: 20px;
+				background: linear-gradient(to left,#FF9849 ,#FF413A );
+				border-radius: 50px; 
+				color: #ffffff;
+				border: 0;
+			}
+			.uploadface{
+				background: url("../../images/pand/uploadface.png")no-repeat;
+				width:335px;
+				height: 185px;
+				background-size: cover;
+				margin: auto;
+				position: relative;
+			}
+			.uploadtitle{
+				text-align: center;
+				padding: 20px 0px;
+				font-size: 15px;
+			}
+			.uploadface i {
+			    position: absolute;
+			    z-index: 1;
+			    left: 50px;
+			    top: 30px;
+			    width: 233px;
+			    height: 80px;
+			    background:rgb(255 244 241);
+			    border-top:2px solid #FF413A;
+			    animation: scanmove 2.5s ease-in-out infinite;
+			}
+			@keyframes scanmove{
+			    0%{
+			        transform:translate(0,0px);
+			    }
+			    50%{
+			        transform:translate(0,84px);
+			    }
+			    100%{
+			        transform:translate(0,0px);
+			    }
+			}
+			#faceimg{
+				width: 180px;
+			    height: 180px;
+			    border-radius: 50%;
+			    position: absolute;
+			    left: 70px;
+			    top: 15px;
+			}
+			.border-line{
+				height: 1px;
+				background: #EAEAEA;
+				margin: 20px auto;
+			}
+			.facenote h1{font-size: 12px;color: #666666;font-weight: normal;}
+			.facenote ul{padding:0px;}
+			.facenote ul li{list-style-type:none;font-size: 12px;color: #333333;}
+	</style>
+	<body>
+			<header class="mui-bar mui-bar-nav">
+				<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+				<h1 class="mui-title">人脸识别</h1>
+			</header>
+		   <div class="mui-content" id="facelist">
+		   	  <div class="uploadtitle">人脸识别扫描</div>
+		   	   <div class="uploadface">
+		   	   	<i></i>
+		   	   	<img id="faceimg" :src="pathimgurl" />
+		   	   </div>
+		   	   <div class="border-line"></div>
+		   	   <div class="facenote">
+		   	   	 <h1>注意事项：</h1>
+		   	   	 <ul>
+		   	   	 	<li>1、请确认由您本人完成此操作</li>
+		   	   	 	<li>2、请将脸放在指定范围内</li>
+		   	   	 	<li>3、请保持正对手机、光线充足</li>
+		   	   	 	<li>4、请保持良好的网络环境</li>
+		   	   	 </ul>
+		   	   </div>
+			   <div id="addres">
+				    <button id="Detection"  @click="startmute()">开始检测</button>
+			   </div> 
+		   </div>
+	</body>
+	<script src="../../js/mui.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/vue.min.js"></script>
+	<script type="text/javascript" src="../../js/config.js" ></script>
+	<script type="text/javascript" src="../../js/app.js" ></script>
+	<script type="text/javascript">
+		mui.init({
+	        swipeBack:true //启用右滑关闭功能
+	    });
+	    var vm = new Vue({
+	          el: '#facelist',
+	          data: {
+		        pathimgurl:"",  //拍照人脸
+		        orderid:"",  //订单id
+	          },
+			  mounted: function () {
+			        var _this = this;
+			      	this.$nextTick(function() {
+			      	mui.plusReady(function(){
+			            _this.InitMain();
+			         })
+			      }) 
+				},
+	          methods: {
+		        //开始检测
+		        startmute:function(){
+		        	var _this = this;
+		        	mui.openWindow({
+						url: "facecom.html",
+						id: "facecom.html",
+						extras: {
+			                pathimgurl: _this.pathimgurl,
+			                orderid:_this.orderid,
+			            }
+					})
+		        },
+		        //初始化
+	            InitMain: function() {
+	            	var _this = this;
+	            	var sData = plus.webview.currentWebview();
+                    _this.orderid=sData.orderid;
+	            	plus.camera.getCamera().captureImage(function(e){
+			                    console.log(e);
+		                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+		                    var path = entry.toLocalURL();
+		                    compressImage(path);
+		                    }, function(e) { 
+		                        mui.toast("读取拍照文件错误：" + e.message); 
+			            }); 
+			        }); 
+			        function compressImage(path){
+            	
+								plus.zip.compressImage({
+										src:path,
+										dst:"_doc/a.jpg",
+										quality:20,
+										overwrite:true,
+									},
+									function(e) {
+										alert("Compress success!");
+										_this.pathimgurl=e.target;
+										
+									},function(error) {
+										alert("Compress error!");
+								});
+							}
+
+	            }
+	            
+	          } 
+	        });    
+	</script>
+</html>

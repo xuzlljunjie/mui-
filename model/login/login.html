@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			/* 登录 */
+			#authCode{
+				float: left;
+				width: 65%;
+			}
+			#userPassword{
+				float: left;
+				width: 65%;
+			}
+			.mui-input-group{
+				text-align: center;
+				padding: 15px;
+				padding-top: 120px;	
+			}
+			.mui-content-padded button{
+				width: 100%;
+				height: 40px;
+				color: #FFFFFF;
+				font-weight: bold;
+				border-radius: 21px;
+				border: 0px;
+				background: linear-gradient(to right,  #FF413A , #FF9849);
+				margin-top: 37px;
+			
+			}
+			 .mui-input-row input{
+				border: 0px;
+				width: 100%;
+				padding: 0;
+				font-size: 16px;
+				color: #333333;
+				margin-top: 15px;
+			   
+				}
+			.mui-input-row{
+				border-bottom: 0.5px solid #FF413A;
+				float: left;
+				width: 100%;
+				height: 5px;
+				padding-bottom:12px;
+				
+			}
+			.mui-verify{
+				height: 30px;
+				width: 30%;
+				float: right;
+			    margin-top: 17px;
+				border-radius: 15px;
+				border: 0px;
+				font-size: 14px;
+				color: #FF413A;
+				
+				background-color: #F4F4F4;
+			}
+			.mui-content-padded{margin-top: 100px;}
+			.mui-content{background: #fff;;}
+			
+			.mui-btn-primary:enabled:active{
+				color: #fff;
+                border: 1px solid #FF413A; 
+                background-color: #FF413A; 
+			}
+			#testLogin{text-align: center;margin-top: 50px;}
+			#testLogin img{width:53px;height:53px;}
+			.wechat{font-size: 12px; color: #999999;}
+			.loginopcity{opacity: 0.5;}
+			.mui-href{display: flex;margin-top: 20px;}
+			.codelogin{flex: 1;text-align: left;padding-left: 10px;color: #666666;font-size: 14px;}
+			.register{flex: 1;text-align: right;padding-right: 10px;color: #666666;font-size: 14px;}
+			.mui-input-group .mui-input-row:after{height:0px;}
+	        .mui-input-group:after{height:0px;}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">登录</h1>
+		</header>
+		<div class="mui-content" id="loginhtml">
+		 <div class="mui-input-group" v-if="logintype==1">
+		    <div class="mui-input-row">
+		    <input type="text" id="userName" @blur="animateWidth('userName','blur')" @focus="animateWidth('userName','focus')" class="mui-input-clear" placeholder="用户名">
+		    </div>
+		    <div class="mui-input-row">
+		        <input id="userPassword" @blur="animateWidth('userPassword','blur')" @focus="animateWidth('userPassword','focus')" type="password"  class="mui-input-password" placeholder="密码">
+				<button class="mui-verify">忘记密码</button>
+		    </div>
+		 </div>
+		 <div class="mui-input-group" v-if="logintype==2">
+		    <div class="mui-input-row">
+		    <input type="text" id="userPhone" @blur="animateWidth('userPhone','blur')" @focus="animateWidth('userPhone','focus')" class="mui-input-clear" placeholder="手机号">
+		    </div>
+		    <div class="mui-input-row">
+		        <input id="authCode" @blur="animateWidth('authCode','blur')" @focus="animateWidth('authCode','focus')" type="text"  class="mui-input-password" placeholder="验证码">
+				<button @click="getMesCode()" class="mui-verify" v-text="getCode"></button>
+		    </div>
+		 </div>
+		 <div class="mui-content-padded">
+		     <button v-if="logintype==2" id='login' @click="login()" class="mui-btn  mui-btn-primary">登录</button>
+		     <button v-if="logintype==1" id='login' @click="logina()" class="mui-btn  mui-btn-primary">登录</button>
+		</div>
+		<div class="mui-href" v-if="logintype==2">
+			<div @click="userhref()" class="codelogin">密码登录</div>
+			<div @click="register()"  class="register">注册</div>
+		</div>
+		<div class="mui-href" v-if="logintype==1">
+			<div @click="loginhref()" class="codelogin">验证码登录</div>
+			<div @click="register()"  class="register">注册</div>
+		</div>
+		
+		  <div class="top" id="testLogin">
+			 <img id="weixin" src="../../images/pand/weichat.png" />
+			 <div class="wechat">微信登录</div>
+	      </div>
+		</div>
+		<!--<div id="userList" class="result_list">
+			<div id="testA" class="result_item" style="text-align: center;" data-name='测试用户a'>
+				用户a
+				<hr color="#e5e5e5" size="1" />
+			</div>
+			<div id="testB" class="result_item" style="text-align: center;" data-name='测试用户b'>
+				用户b
+				<hr color="#e5e5e5" size="1" />
+			</div>
+		</div>-->
+		<script src="../../js/vue.min.js"></script>
+	    <script src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/mui.min.js" ></script>
+		<script type="text/javascript" src="../../messagejs/js/practise/config.js" ></script>
+		<script type="text/javascript" src="../../messagejs/js/practise/common.js" ></script>
+		<script type="text/javascript" src="../../messagejs/js/practise/select.js" ></script>
+		<script type="text/javascript" src="../../js/config.js" ></script>
+	    <script type="text/javascript" src="../../js/app.js" ></script>
+		<script>
+	   mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		mui.plusReady(function() {  
+			plus.oauth.getServices(function(services) {
+				auths = services;
+			}, function(e) {
+				alert("获取登录服务列表失败：" + e.message + " - " + e.code);
+			});
+		});
+		var vm = new Vue({
+	        el: '#loginhtml',
+	        data: {
+	          logintype:1,  //登录方式
+	          getCode: '获取验证码',  //获取验证码
+	          authCodetype:1,  //判断输入方式
+	        },
+			updated:function(){
+	                
+	        },
+			mounted: function () {
+			    var _this = this;
+			    this.$nextTick(function() {
+			       mui.plusReady(function(){
+			            _this.InitMain();
+			        })
+			    }) 
+		    },
+	        methods: {
+		        //获取验证码
+		        getMesCode:function(){
+		        	console.log(document.getElementById('userPhone').value)
+		        	 var param={
+		        	  	userPhone: document.getElementById('userPhone').value,
+		        	  	key:"a5b4c18cc837456092804e400b5019c9"
+		        	  }
+		        	 console.log(param)
+		        		mui.ajax({
+							url: CONFIG.basePath+ '/api/freeuser/panduser_send_authcode',
+							data: param,
+							dataType: "json",
+							type: 'post',
+							success: function(res){
+							console.log("发送成功")
+							console.log('注册状态'+res.message);
+								console.log('注册状态'+res.result);
+							}, 
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+		        	var _this = this;
+		        	_this.countDown();
+		        },
+		        //验证码计时器
+		        countDown: function () {
+				    var _this = this;
+				    var timer = null;
+				    var time = 30;
+				    timer = setInterval(function () {
+				    	_this.getCode=time;
+				      if (time >= 0) {
+				        time--;
+				      } else {
+				        _this.getCode="重新获取";
+				        clearInterval(timer);
+				      }
+				    }, 1000);
+				  },
+		        //前去注册
+		        register:function(){
+		        	mui.openWindow({
+						url: "/model/registered/registered.html",
+						id: "registered.html",
+					})
+		        },
+		        //密码登录
+		        userhref:function(){
+		        	var _this = this;
+		        	_this.logintype=1;
+		        	_this.authCodetype=1;
+		        },
+		        //验证码登录
+		        loginhref:function(){
+		        	var _this = this;
+		        	_this.logintype=2;
+		        	_this.authCodetype=1;
+		        },
+		        //登录接口
+		        login:function(){
+		        	if(!document.getElementById('userPhone').value){
+		        		mui.toast('请输入用户手机号');
+		        		return false;
+		        	}
+		        	if(!document.getElementById('authCode').value){
+		        		mui.toast('请输入用户验证码');
+		        		return false;
+		        	}
+		        		var params = {
+			                userPhone:document.getElementById('userPhone').value ,  //用户手机号
+							authCode:document.getElementById('authCode').value,  //手机验证码 
+						};
+						mui.ajax({
+							url: CONFIG.basePath+ '/api/freeuser/panduser_login',
+							async: false,
+							data: params,
+							dataType: "json",
+							type: 'post',
+							success: function(res){
+								console.log('登录状态'+JSON.stringify(res.data));
+								if(res.result==1){
+						            localStorage.setItem('userinfo',JSON.stringify(res.data.user));
+						            localStorage.setItem('token',JSON.stringify(res.data.token));
+						            app.clearpage('/index.html');
+						        }else{
+						            mui.toast(res.message);
+						        }
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+		        	
+		        	
+		        },
+		        //登录接口
+		        logina:function(){
+		        	var _this = this;
+		        	if(!document.getElementById('userName').value){
+		        		mui.toast('请输入用户名');
+		        		return false;
+		        	}
+		        	if(!document.getElementById('userPassword').value){
+		        		mui.toast('请输入用户密码');
+		        		return false;
+		        	}
+		        	var params = {
+			                userName:document.getElementById('userName').value ,  //用户手机号
+							userPassword:document.getElementById('userPassword').value,  //登录密码
+						};
+						mui.ajax({
+							url: CONFIG.basePath+ '/api/freeuser/panduser_login',
+							async: false,
+							data: params,
+							dataType: "json",
+							type: 'post',
+							success: function(res){
+								console.log('登录状态'+JSON.stringify(res.data.user));
+								if(res.result==1){
+						            localStorage.setItem('userinfo',JSON.stringify(res.data.user));
+						            localStorage.setItem('token',JSON.stringify(res.data.token));
+						            app.clearpage('/index.html');
+						        }else{
+						            mui.toast(res.message);
+						        }
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+		        },
+		        animateWidth:function(name,type){
+		        	var _this = this;
+		        	if (name == "authCode") {
+				        if (type == "blur"&&$("#authCode").val()!="") {
+				          _this.authCodetype = 2;
+				        } else {
+				          _this.authCodetype = 1;
+				          return;
+				        }
+				    }else if(name == "userPhone"){
+				    	if (type == "blur") {
+				    	  _this.fnJudgeTel($("#userPhone").val());
+				        }
+				    }else if(name == "userPassword"){
+				    	 if (type == "blur"&&$("#userPassword").val()!="") {
+				          _this.authCodetype = 2;
+				        } else {
+				          _this.authCodetype = 1;
+				          return;
+				        }
+				    }else if(name=="userName"){
+				    	if (type == "blur") {
+				    	  _this.fnJudgeTel($("#userName").val());
+				        }
+				    }
+		        },
+		        //正则判断手机号是否正确
+				  fnJudgeTel: function (tel) {
+				    var reg = /[1][3-8]+\d{9}/;
+				    if (reg.test(tel) == false) {
+				      mui.toast('请输入正确的手机号');
+				      return false
+				    }
+				  },
+		        //初始化
+                InitMain: function() {
+                	
+                },
+		    }
+	    });
+		
+		//微信登录
+		document.getElementById('weixin').addEventListener('tap',function() {
+			authLogin('weixin');
+		})
+		// 登录操作
+		function authLogin(type) {
+			var s;
+			for (var i = 0; i < auths.length; i++) {
+				if (auths[i].id == type) {
+					s = auths[i];
+					break;
+				}
+			}
+			if (!s.authResult) {
+				s.login(function(e) {
+					mui.toast("登录认证成功！");
+					authUserInfo(type);
+					
+				}, function(e) {
+					mui.toast("登录认证失败！");
+				});
+			} else {
+				mui.toast("已经登录认证！");
+			}
+		}
+		//注销
+		function authLogout() {
+			for (var i in auths) {
+				var s = auths[i];
+				if (s.authResult) {
+					s.logout(function(e) {
+						console.log("注销登录认证成功！");
+					}, function(e) {
+						console.log("注销登录认证失败！");
+					});
+				}
+			}
+		}
+		// 微信登录认证信息
+		function authUserInfo(type) {
+			var s;
+			for (var i = 0; i < auths.length; i++) {
+				if (auths[i].id == type) {
+					s = auths[i];
+					break;
+				}
+			}
+			if (!s.authResult) {
+				mui.toast("未授权登录！");
+			} else {
+				s.getUserInfo(function(e) {
+					var josnStr = JSON.stringify(s.userInfo);
+					var jsonObj = s.userInfo;
+					console.log("获取用户信息成功：" + josnStr);
+					showData(type,jsonObj);
+					authLogout();
+					
+				}, function(e) {
+					alert("获取用户信息失败：" + e.message + " - " + e.code);
+				});
+			}
+		}
+		// 第三方登录保存用户信息
+		function showData(type,data) {
+			switch (type){
+				case 'weixin':
+				    console.log(data.openid)
+					//app.pandLogin(data.openid);//微信登录
+					var params = {userWeixin:data.openid};
+			        var result ;
+			        var options = {
+			            url: CONFIG.basePath+ "/api/freeuser/panduser_login",
+			            async: false,
+			            data: params,
+			            dataType: "json",
+			            type: 'post',
+			            success: function (res) {
+			                console.log('登录信息'+res.message+','+res.result);
+			                if(res.result==1){
+			                	localStorage.setItem('userinfo',JSON.stringify(res.data.user));
+			                    localStorage.setItem('token',JSON.stringify(res.data.token));
+			                    app.clearpage('/index.html');
+			                }else{
+			                	mui.toast(res.message);
+			                }
+			               
+                           
+			            },
+			            error: function (res) {
+			                console.log(res);
+			            }
+			        };
+			        mui.ajax(options);
+					break;
+				default:
+					break;
+			}
+		}
+	</script>
+	</body>
+</html>

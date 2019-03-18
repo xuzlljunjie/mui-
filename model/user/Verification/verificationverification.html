@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>验证信息</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../css/mui.picker.min.css" />
+			
+	</head>
+	<style>
+		#mui-content{
+			background-color: #ffffff;
+		}
+		.realname{
+			width: 100%;
+			height: 44px;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		.realname input{
+			border: 0; 
+			width: 78.5%;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+		}
+		.realname span{
+			font-size: 14px;
+			color: #333333;
+		}
+		.realname img{
+			width: 5px;
+			height: 10px;
+			float: right;
+			margin-top: 17px;
+		}
+		.certificatetype{
+			width: 100%;
+			height: 44px;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		.certificatetype div{
+			border: 0;
+			width: 78.5%;
+			height: 40px;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+			float: right;
+		}
+		.certificatetype span{
+			font-size: 14px;
+			color: #333333;
+		}
+		.certificatetype img{
+			width: 5px;
+			height: 10px;
+			float: right;
+			margin-top: 17px;
+		}
+		.realnames{
+			width: 100%;
+			height: 44px;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		.realnames input{
+			border: 0;
+			width: 70%;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+		}
+		.realnames span{
+			font-size: 14px;
+			color: #333333;
+		}
+		.realnames img{
+			width: 5px;
+			height: 10px;
+			float: right;
+			margin-top: 17px;
+		}
+		.certificatetypes{
+			width: 100%;
+			height: 44px;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		.certificatetypes div{
+			border: 0;
+			width: 86%;
+			height: 40px;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+			float: right;
+		}
+		.certificatetypes span{
+			font-size: 14px;
+			color: #333333;
+		}
+		.certificatetypes img{
+			width: 5px;
+			height: 10px;
+			float: right;
+			margin-top: 17px;
+		}
+		
+		#showCityPicker3{
+			width: 100%;
+			height: 44px;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		#showCityPicker3 div{
+			border: 0;
+			width: 81%;
+			height: 40px;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+			float: right;
+		}
+		#showCityPicker3 span{
+			font-size: 14px;
+			color: #333333;
+		}
+		#showCityPicker3 img{
+			width: 5px;
+			height: 10px;
+			float: right;
+			margin-top: 17px;
+		}
+		  .imageup{ width:100px; height: 36px; line-height:36px;} 
+            .identification{
+            	width: 100%;
+            	padding: 0px 20px 0px 20px;
+            	margin-top: 25px;
+            }
+         #identificationphoto{
+         width: 160px;
+         height: 95px;
+         float: left;
+        
+         }
+         #identificationphotos{
+         	 width: 160px;
+         height: 95px;
+         float: left;
+         }
+         #identificationphotose{
+         	width: 100%;
+         	height: 185px;
+         	
+         }
+         #identificationphotosea{
+         	width: 100%;
+         	height: 185px;
+         	
+         }
+         #identificationphotoseb{
+         	width: 100%;
+         	height: 185px;
+         	
+         }
+         #agreement{
+         	margin-left: 30px;
+         	margin-top: 10px;
+         }
+         .agreementiimg{
+         	width: 13px;
+         	height: 13px;
+         }
+         #agreementsapn{
+         	font-size: 12px;
+         	color: #999999;
+         	margin-left: 20px;
+         }
+         #agreementspanh{
+         	font-size: 12px;
+         	color: #FF413A;
+         }
+         .sumbtn{text-align: center;}
+         .submitapplications{
+         	width: 80%;
+         	height:40px;
+         	line-height: 30px;
+         	border-radius:50px ;
+         	color: #ffffff;
+         	background: linear-gradient(to right,  #FF413A , #FF9849);
+         	border: 0;
+         	margin: 8px 0px;
+         }
+         .mui-checkbox input[type=checkbox]{
+         	position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    display: inline-block;
+		    width: 15px;
+		    height: 15px;
+		    border: 0;
+		    outline: 0!important;
+		    background-color: transparent;
+		    -webkit-appearance: none;
+         }
+        .mui-checkbox input[type=checkbox]:before{
+        	font-size: 17px;
+        }
+        .mui-checkbox input[type=checkbox]:checked:before{
+        	color: #FF413A;
+        }
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">验证资料</h1>
+		</header>
+		<div id="mui-content" class="mui-content">
+			<form>
+			<div class="realname">
+				<span>真实姓名</span>
+				<input id="userRealname" type="text"  />
+				<img src="../../../images/pand/more.png" />
+			</div>
+			  <div id="certificatetype" class="certificatetype">
+			  	<span>证件类型</span>
+			  	<img src="../../../images/pand/more.png" />
+			  	<div id="certificate"  class="ui-alert"  ></div>
+			  	
+			  </div>  
+			<div class="realnames">
+				<span>请输入证件号</span>
+				<input id="userCardcode" type="text"  />
+				<img src="../../../images/pand/more.png" />
+			</div>
+			<div id="sex" class="certificatetypes">
+			  	<span>性别</span>
+			  	<img src="../../../images/pand/more.png" />
+			  	<div id="sex_value"  class="ui-alert"></div>
+			  	
+			  </div> 
+			  <div id="address" class="certificatetype">
+			  	<span>选择地区</span>
+			  	<img src="../../../images/pand/more.png" />
+			  	<div id="address_value"  class="ui-alert"></div>
+			  </div>
+            <div  class="realname">
+				<span>详细地址</span>
+				<input id="userAddress" type="text"  />
+				<img src="../../../images/pand/more.png" />
+			</div>
+			<div class="identification">
+				<img id="identificationphoto"  src="../../../images/pand/identitycardpositive.png" class="imageup">
+				<img id="identificationphotos"  src="../../../images/pand/identitycardreverse.png" class="imageup">
+				<img id="identificationphotose"  src="../../../images/pand/identitycardhand.png" class="imageup">
+				<img id="identificationphotosea"  src="../../../images/pand/businesslicense.png" class="imageup">
+				<img id="identificationphotoseb"  src="../../../images/pand/qualificationproof.png" class="imageup">
+			</div>
+			<div id="agreement">
+				<div class="mui-checkbox">
+					<input type="checkbox" class="checkbox" id="0" value="" />
+			   </div>
+				<span id="agreementsapn">
+						我已阅读并同意
+					</span>
+					<span id="agreementspanh">
+						《商家入驻协议》
+					</span>
+			</div>
+		  </form>
+		     <div class="sumbtn">
+		     	<button  class="submitapplications">提交申请</button>
+		     </div>
+			  
+			</div>
+		</body>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/vue.min.js"></script>
+		<script src="../../../js/mui.js"></script>
+		<script src="../../../js/mui.picker.min.js"></script>
+		<script src="../../../js/mui.poppicker.js"></script>
+		<script type="text/javascript" src="../../../js/city.data.js"></script>
+		<script src="../../../js/app.js"></script>
+		<script src="../../../js/config.js"></script>
+		 <script type="text/javascript">
+	      mui.init({
+	        swipeBack:true //启用右滑关闭功能
+	      });
+	      new Vue({
+			el: '#app',
+			data: {
+				userHeadpng: null,//证件号正面
+                userHeadpngs: null,//证件号反面
+                userHeadpngc: null,//手持证件照
+                userHeadpngg:null, //手持营业执照正本
+                userHeadpngn:null, //证明文件
+				userRealname:"", //用户真实姓名
+				userCardtype:"", //用户证件类型
+				userCardcode:"", //证件号码
+				userSex:"",      //用户性别
+				userProvinces:"",   //用户所在省份
+				userCity:"",   //用户所在区域
+				userArea:"",  //用户所在县城
+				userAddress:"", //用户所在详细地址
+				userLat:"",   //用户服务地址纬度
+				userLng:"",   //用户服务地址经度
+				checked:false,   //是否勾选
+			},
+			mounted: function(){
+				this.$nextTick(function(){
+					var _this = this;
+					mui.plusReady(function(){
+						_this.InitPage();
+					})
+				})
+			},
+			methods: {
+				InitPage: function(){
+					var _this=this;
+					//选择证件类型
+				document.getElementById("certificatetype").addEventListener("tap", function() {
+						var picker = new mui.PopPicker();
+						picker.setData([{
+							value: "1",
+			                text: "身份证"
+						 },{
+						 	value: "2",
+			                text: "护照"
+						 },{
+						 	value: "3",
+			                text: "港澳台通行证"
+						 },{
+						 	value:"4",
+						 	text:"驾照",
+						}])
+						picker.show(function(rs) {
+//							alert(rs[0].value)
+							_this.userCardtype=rs[0].value;
+							$("#certificate").html(rs[0].text);
+						})
+				}, false);
+				//选择性别
+				document.getElementById("sex").addEventListener("tap", function() {
+						var picker = new mui.PopPicker();
+						picker.setData([{
+							value: "0",
+							text: "男"
+						}, {
+							value: "1",
+							text: "女"
+						}])
+						picker.show(function(rs) {
+							//alert(rs[0].value)
+							_this.userSex=rs[0].value;
+							$("#sex_value").html(rs[0].text);
+						})
+					}, false);
+			
+		        
+		         //选择常住地
+					document.getElementById("address").addEventListener("tap", function() {
+						var city_picker = new mui.PopPicker({
+							layer: 3
+						});
+						city_picker.setData(cityData);
+						setTimeout(function() {
+							city_picker.show(function(items) {
+								if((items[0] || {}).text == undefined) {
+									(items[0] || {}).text = "";
+								} else if((items[1] || {}).text == undefined) {
+									(items[1] || {}).text = "";
+								} else if((items[2] || {}).text == undefined) {
+									(items[2] || {}).text = "";
+								}
+								//该ID为接收城市ID字段 
+								_this.userProvinces=(items[0] || {}).value;
+								_this.userCity=(items[1] || {}).value;
+								_this.userArea=(items[2] || {}).value;
+								//alert((items[0] || {}).value)
+								$("#address_value").html((items[0] || {}).text + "&nbsp;&nbsp" + (items[1] || {}).text+"&nbsp;&nbsp" + (items[2] || {}).text);
+							});
+						}, 200);
+					}, false);
+                   
+                   //上传证件证件号正面
+					mui(".identification").on("tap", "#identificationphoto", function(e) {
+						if(mui.os.plus){
+							var a = [{
+								title: "拍照"
+							}, {
+								title: "从手机相册选择"
+							}];
+							plus.nativeUI.actionSheet({
+								title: "修改头像",
+								cancel: "取消",
+								buttons: a
+							}, function(b) {
+								switch (b.index) {
+									case 0:
+										break;
+									case 1:
+										appendByCamera();
+										break;
+									case 2:
+										appendByGallery();
+										break;
+									default:
+										break
+								}
+							})	
+						}
+						
+					});
+					 // 拍照添加文件
+			            function appendByCamera(){
+			                plus.camera.getCamera().captureImage(function(e){
+			                    console.log(e);
+			                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+			                    var path = entry.toLocalURL(); 
+			                    document.getElementById("identificationphoto").src = path; 
+			                    compressImage(path);   //上传文件路径
+			                    }, function(e) { 
+			                        mui.toast("读取拍照文件错误：" + e.message); 
+			                    }); 
+			    
+			                });    
+			            }
+			            
+			             function compressImage(path){
+            	
+								plus.zip.compressImage({
+										src:path,
+										dst:"_doc/a.jpg",
+										quality:20,
+										overwrite:true,
+									},
+									function(e) {
+										alert("Compress success!");
+										upload(e.target)
+									},function(error) {
+										alert("Compress error!");
+								});
+							}
+			            // 从相册添加文件
+			            function appendByGallery(){
+			                plus.gallery.pick(function(path){
+			                    document.getElementById("identificationphoto").src = path; 
+			                    upload(path);   //上传文件路径
+			                });
+			            }
+			            //服务端接口路径
+			            var server = CONFIG.basePath+ '/api/pand_image_upload/image_upload';
+			            // 上传文件
+			            function upload(imgurl){
+			                console.log(imgurl);
+			               var task=plus.uploader.createUpload(server,
+			                    {method:"POST"},
+			                    function(t,status){ //上传完成
+			                    	console.log(status)
+			                        if(status==200){
+			                            //alert("上传成功："+JSON.parse(t.responseText).data);
+			                            _this.userHeadpng=JSON.parse(t.responseText).data
+			                            //wt.close(); //关闭等待提示按钮
+			                        }else{
+			                            alert("上传失败："+status);
+			                            //wt.close();//关闭等待提示按钮
+			                        }
+			                    }
+			                );
+			                //添加其他参数
+			                task.addData("token",JSON.parse(localStorage.getItem('token')).accessToken);
+			                task.addData("imgModel", "1");
+			                task.addFile(imgurl,{key:"file"});
+			                task.start();
+			                
+			          }
+			            
+			            
+			            //上传证件号反面
+					mui(".identification").on("tap", "#identificationphotos", function(e) {
+						if(mui.os.plus){
+							var a = [{
+								title: "拍照"
+							}, {
+								title: "从手机相册选择"
+							}];
+							plus.nativeUI.actionSheet({
+								title: "修改头像",
+								cancel: "取消",
+								buttons: a
+							}, function(b) {
+								switch (b.index) {
+									case 0:
+										break;
+									case 1:
+										appendByCamera_1();
+										break;
+									case 2:
+										appendByGallery_1();
+										break;
+									default:
+										break
+								}
+							})	
+						}
+						
+					});
+					 // 拍照添加文件
+			            function appendByCamera_1(){
+			                plus.camera.getCamera().captureImage(function(e){
+			                    console.log(e);
+			                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+			                    var path = entry.toLocalURL(); 
+			                    document.getElementById("identificationphotos").src = path; 
+			                    compressImage_1(path);   //上传文件路径
+			                    }, function(e) { 
+			                        mui.toast("读取拍照文件错误：" + e.message); 
+			                    }); 
+			    
+			                });    
+			            }
+			             function compressImage_1(path){
+            	
+								plus.zip.compressImage({
+										src:path,
+										dst:"_doc/a.jpg",
+										quality:20,
+										overwrite:true,
+									},
+									function(e) {
+										alert("Compress success!");
+										upload_1(e.target)
+									},function(error) {
+										alert("Compress error!");
+								});
+							}
+			            // 从相册添加文件
+			            function appendByGallery_1(){
+			                plus.gallery.pick(function(path){
+			                    document.getElementById("identificationphotos").src = path; 
+			                    upload_1(path);   //上传文件路径
+			                });
+			            }
+			            //服务端接口路径
+			            var server = CONFIG.basePath+ '/api/pand_image_upload/image_upload';
+			            // 上传文件
+			            function upload_1(imgurl){
+			                console.log(imgurl);
+			               var task=plus.uploader.createUpload(server,
+			                    {method:"POST"},
+			                    function(t,status){ //上传完成
+			                    	console.log(status)
+			                        if(status==200){
+			                            //alert("上传成功："+JSON.parse(t.responseText).data);
+			                            _this.userHeadpngs=JSON.parse(t.responseText).data
+			                            //wt.close(); //关闭等待提示按钮
+			                        }else{
+			                            alert("上传失败："+status);
+			                            //wt.close();//关闭等待提示按钮
+			                        }
+			                    }
+			                );
+			                //添加其他参数
+			                task.addData("token",JSON.parse(localStorage.getItem('token')).accessToken);
+			                task.addData("imgModel", "1");
+			                task.addFile(imgurl,{key:"file"});
+			                task.start();
+			                
+			          }
+			            
+			            
+			             //上传手持证件照
+					mui(".identification").on("tap", "#identificationphotose", function(e) {
+						if(mui.os.plus){
+							var a = [{
+								title: "拍照"
+							}, {
+								title: "从手机相册选择"
+							}];
+							plus.nativeUI.actionSheet({
+								title: "修改头像",
+								cancel: "取消",
+								buttons: a
+							}, function(b) {
+								switch (b.index) {
+									case 0:
+										break;
+									case 1:
+										appendByCamera_2();
+										break;
+									case 2:
+										appendByGallery_2();
+										break;
+									default:
+										break
+								}
+							})	
+						}
+						
+					});
+					 // 拍照添加文件
+			            function appendByCamera_2(){
+			                plus.camera.getCamera().captureImage(function(e){
+			                    console.log(e);
+			                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+			                    var path = entry.toLocalURL(); 
+			                    document.getElementById("identificationphotose").src = path; 
+			                    compressImage_2(path);   //上传文件路径
+			                    }, function(e) { 
+			                        mui.toast("读取拍照文件错误：" + e.message); 
+			                    }); 
+			    
+			                });    
+			            }
+			            function compressImage_2(path){
+            	
+								plus.zip.compressImage({
+										src:path,
+										dst:"_doc/a.jpg",
+										quality:20,
+										overwrite:true,
+									},
+									function(e) {
+										alert("Compress success!");
+										upload_2(e.target)
+									},function(error) {
+										alert("Compress error!");
+								});
+							}
+			            // 从相册添加文件
+			            function appendByGallery_2(){
+			                plus.gallery.pick(function(path){
+			                    document.getElementById("identificationphotose").src = path; 
+			                    upload_2(path);   //上传文件路径
+			                });
+			            }
+			            //服务端接口路径
+			            var server = CONFIG.basePath+ '/api/pand_image_upload/image_upload';
+			            // 上传文件
+			            function upload_2(imgurl){
+			                console.log(imgurl);
+			               var task=plus.uploader.createUpload(server,
+			                    {method:"POST"},
+			                    function(t,status){ //上传完成
+			                    	console.log(status)
+			                        if(status==200){
+			                            //alert("上传成功："+JSON.parse(t.responseText).data);
+			                            _this.userHeadpngc=JSON.parse(t.responseText).data
+			                            //wt.close(); //关闭等待提示按钮
+			                        }else{
+			                            alert("上传失败："+status);
+			                            //wt.close();//关闭等待提示按钮
+			                        }
+			                    }
+			                );
+			                //添加其他参数
+			                task.addData("token",JSON.parse(localStorage.getItem('token')).accessToken);
+			                task.addData("imgModel", "1");
+			                task.addFile(imgurl,{key:"file"});
+			                task.start();
+			                
+			          }
+			            
+			            
+			             //上传营业执照
+					mui(".identification").on("tap", "#identificationphotosea", function(e) {
+						if(mui.os.plus){
+							var a = [{
+								title: "拍照"
+							}, {
+								title: "从手机相册选择"
+							}];
+							plus.nativeUI.actionSheet({
+								title: "修改头像",
+								cancel: "取消",
+								buttons: a
+							}, function(b) {
+								switch (b.index) {
+									case 0:
+										break;
+									case 1:
+										appendByCamera_3();
+										break;
+									case 2:
+										appendByGallery_3();
+										break;
+									default:
+										break
+								}
+							})	
+						}
+						
+					});
+					 // 拍照添加文件
+			            function appendByCamera_3(){
+			                plus.camera.getCamera().captureImage(function(e){
+			                    console.log(e);
+			                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+			                    var path = entry.toLocalURL(); 
+			                    document.getElementById("identificationphotosea").src = path; 
+			                    compressImage_3(path);   //上传文件路径
+			                    }, function(e) { 
+			                        mui.toast("读取拍照文件错误：" + e.message); 
+			                    }); 
+			    
+			                });    
+			            }
+			             function compressImage_3(path){
+            	
+								plus.zip.compressImage({
+										src:path,
+										dst:"_doc/a.jpg",
+										quality:20,
+										overwrite:true,
+									},
+									function(e) {
+										alert("Compress success!");
+										upload_3(e.target)
+									},function(error) {
+										alert("Compress error!");
+								});
+							}
+			            // 从相册添加文件
+			            function appendByGallery_3(){
+			                plus.gallery.pick(function(path){
+			                    document.getElementById("identificationphotosea").src = path; 
+			                    upload_3(path);   //上传文件路径
+			                });
+			            }
+			            //服务端接口路径
+			            var server = CONFIG.basePath+ '/api/pand_image_upload/image_upload';
+			            // 上传文件
+			            function upload_3(imgurl){
+			                console.log(imgurl);
+			               var task=plus.uploader.createUpload(server,
+			                    {method:"POST"},
+			                    function(t,status){ //上传完成
+			                    	console.log(status)
+			                        if(status==200){
+			                            //alert("上传成功："+JSON.parse(t.responseText).data);
+			                            _this.userHeadpngg=JSON.parse(t.responseText).data
+			                            //wt.close(); //关闭等待提示按钮
+			                        }else{
+			                            alert("上传失败："+status);
+			                            //wt.close();//关闭等待提示按钮
+			                        }
+			                    }
+			                );
+			                //添加其他参数
+			                task.addData("token",JSON.parse(localStorage.getItem('token')).accessToken);
+			                task.addData("imgModel", "1");
+			                task.addFile(imgurl,{key:"file"});
+			                task.start();
+			                
+			          }
+			            
+			            
+			            //上传证明文件
+					mui(".identification").on("tap", "#identificationphotoseb", function(e) {
+						if(mui.os.plus){
+							var a = [{
+								title: "拍照"
+							}, {
+								title: "从手机相册选择"
+							}];
+							plus.nativeUI.actionSheet({
+								title: "修改头像",
+								cancel: "取消",
+								buttons: a
+							}, function(b) {
+								switch (b.index) {
+									case 0:
+										break;
+									case 1:
+										appendByCamera_4();
+										break;
+									case 2:
+										appendByGallery_4();
+										break;
+									default:
+										break
+								}
+							})	
+						}
+						
+					});
+					 // 拍照添加文件
+			            function appendByCamera_4(){
+			                plus.camera.getCamera().captureImage(function(e){
+			                    console.log(e);
+			                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+			                    var path = entry.toLocalURL(); 
+			                    document.getElementById("identificationphotoseb").src = path; 
+			                    compressImage_4(path);   //上传文件路径
+			                    }, function(e) { 
+			                        mui.toast("读取拍照文件错误：" + e.message); 
+			                    }); 
+			    
+			                });    
+			            }
+			            function compressImage_4(path){
+            	
+								plus.zip.compressImage({
+										src:path,
+										dst:"_doc/a.jpg",
+										quality:20,
+										overwrite:true,
+									},
+									function(e) {
+										alert("Compress success!");
+										upload_4(e.target)
+									},function(error) {
+										alert("Compress error!");
+								});
+							}
+			            // 从相册添加文件
+			            function appendByGallery_4(){
+			                plus.gallery.pick(function(path){
+			                    document.getElementById("identificationphotoseb").src = path; 
+			                    upload_4(path);   //上传文件路径
+			                });
+			            }
+			            //服务端接口路径
+			            var server = CONFIG.basePath+ '/api/pand_image_upload/image_upload';
+			            // 上传文件
+			            function upload_4(imgurl){
+			                console.log(imgurl);
+			               var task=plus.uploader.createUpload(server,
+			                    {method:"POST"},
+			                    function(t,status){ //上传完成
+			                    	console.log(status)
+			                        if(status==200){
+			                            //alert("上传成功："+JSON.parse(t.responseText).data);
+			                            _this.userHeadpngn=JSON.parse(t.responseText).data
+			                            //wt.close(); //关闭等待提示按钮
+			                        }else{
+			                            alert("上传失败："+status);
+			                            //wt.close();//关闭等待提示按钮
+			                        }
+			                    }
+			                );
+			                //添加其他参数
+			                task.addData("token",JSON.parse(localStorage.getItem('token')).accessToken);
+			                task.addData("imgModel", "1");
+			                task.addFile(imgurl,{key:"file"});
+			                task.start();
+			                
+			          }
+			        // 事件绑定
+					 mui('.mui-checkbox').on('change','input',function(){
+						console.log("id = " + this.id + " status = " + this.checked);
+						if (this.checked) { 
+							_this.checked=true;
+							console.log('勾选上了')
+						} else{
+							_this.checked=false;
+							console.log('取消勾选')
+						}
+						
+					 });
+				//进入入驻协议	 
+				document.getElementById("agreementspanh").addEventListener("tap", function() {
+					mui.openWindow({
+								url: "xieyi.html",
+							    id: "xieyi.html"
+							})
+					});
+				// 提交申请
+				  mui('.sumbtn').on('tap','.submitapplications',function(){
+				  	
+				  	_this.userRealname = document.getElementById('userRealname').value; //用户姓名
+					_this.userCardcode = document.getElementById('userCardcode').value; //证件号码
+					_this.userAddress = document.getElementById('userAddress').value; //用户所在详细地址
+					var params = {
+						token: JSON.parse(localStorage.getItem('token')).accessToken, //用户token
+						id:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+						userRealname:_this.userRealname,  //用户姓名
+						userCardcode:_this.userCardcode,  //证件号码
+						userAddress:_this.userAddress,    //用户所在详细地址
+						userCardtype:_this.userCardtype,  //证件类型
+						userSex:_this.userSex,            //用户性别
+						userProvinces:_this.userProvinces,  //用户所在省份
+						userCity:_this.userCity,    //用户所在区域
+						userArea:_this.userArea,   //用户所在区域
+						userLat:localStorage.getItem('userLat'),  //用户服务地址纬度
+						userLng:localStorage.getItem('userLat'),  //用户服务地址经度
+						imagesJson:JSON.stringify([{ "type": 1, "baseStr": _this.userHeadpng }, 
+						{ "type": 2, "baseStr": _this.userHeadpngs }, 
+						{ "type": 3, "baseStr": _this.userHeadpngc },
+						{ "type": 4, "baseStr": _this.userHeadpngg },
+						{ "type": 5, "baseStr": _this.userHeadpngn }
+						])
+					};
+						if(_this.checked){
+							mui.ajax({
+								url: CONFIG.basePath+ '/api/panduser/panduser_enter_shopper',
+								async: false,
+					            data: params,
+					            dataType: "json",
+					            type: 'post',
+								beforeSend: function(){
+									plus.nativeUI.showWaiting();
+								},
+								complete: function(){
+									plus.nativeUI.closeWaiting();
+								},
+								success: function(res){
+									console.log('编辑'+JSON.stringify(res.data))
+									mui.toast('提交成功');
+									mui.openWindow({
+										url: "../Check/succeed.html",
+										id: "succeed.html"
+									})
+								},
+								error: function(xhr, type, errorThrown){
+									mui.toast('服务器响应失败');
+								}
+							});
+						}else{
+							mui.toast('请勾选协议');
+						}
+						
+				   });
+				},
+			
+			//提交申请
+			
+		  }
+		})
+    </script>
+
+</html>

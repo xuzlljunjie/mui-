@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的订单首页</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.mui-bar a {
+				color: #E02D26;
+			}
+			
+			body {
+				background: white;
+			}
+			
+			#topItem {
+				background: white;
+				border-bottom: 1px solid #EEEEEE;
+			}
+			
+			.mui-slider .mui-segmented-control.mui-scroll-wrapper {
+				height: 40px;
+			}
+			
+			.mui-slider .mui-segmented-control .mui-control-item {
+				line-height: 37px;
+			}
+			
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+				padding: 0 24px
+			}
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item {
+				
+				font-size: 14px;
+			}
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				border-bottom: 2px solid #FF413A;
+				color: #333333;
+				font-weight: bold;
+			}
+			
+			.mui-slider-group .mui-slider-item {
+				height: 0px;
+			}
+			.Box {
+				margin-bottom: 5px;
+				margin-top: 5px;
+			}
+			
+			.BoxTop {
+				height: 50px;
+				width: 100%;
+				background: white;
+			}
+			
+			.BoxTopImg {
+				width: 16px;
+			    height: 16px;
+			    float: left;
+			    margin: 16px 10px;
+			}
+			
+			.BoxTopShopName {
+				float: left;
+				line-height: 50px;
+				font-size: 13px;
+			}
+			
+			.BoxTopRightIcon {
+				line-height: 50px;
+				font-size: 16px;
+				color: black;
+				padding-left: 5px;
+			}
+			
+			.BoxTopRightStatus {
+				line-height: 50px;
+				font-size: 13px;
+				color: black;
+				padding-right: 10px;
+				color: #E02D26;
+			}
+			
+			.BoxTopRightStatus:hover {
+				color: #E02D26;
+			}
+			
+			.BoxDetails {
+				width: 100%;
+				background: #fff;
+				display: flex;
+				padding: 0px 10px;
+			}
+			
+			.BoxDetailsImg {
+				width:50px;
+				height:50px;
+				margin-top: 13px;
+                margin-right: 15px;
+			}
+			
+			.BoxDetailsCenter {
+				flex:auto;
+			}
+			
+			.BoxDetailsCenterName {
+				color: black;
+				font-size: 13px;
+				margin-top: 10px;
+				line-height: 20px;
+				max-height: 60px;
+				overflow: hidden;
+			}
+			
+			.BoxDetailsCenterDesc {
+				font-size: 13px;
+				color: #A9A9A9;
+				margin-top: 3px;
+			}
+			
+			.BoxDetailsRight {
+				float: left;
+			}
+			
+			.BoxDetailsRightMoney {
+				font-size: 13px;
+				color: black;
+				text-align: right;
+				margin-right: 10px;
+				margin-top: 10px;
+			}
+			
+			.BoxDetailsRightCount {
+				font-size: 13px;
+				color: black;
+				text-align: right;
+				margin-right: 10px;
+				color: #A9A9A9;
+			}
+			
+			.BoxPay {
+				width: 100%;
+				background: white;
+			}
+			
+			.BoxPayRight {
+				height: 40px;
+				padding-right: 10px;
+			}
+			
+			.BoxPayRightYF {
+				font-size: 13px;
+				color: black;
+				line-height: 40px;
+			}
+			
+			.BoxPayRightYF:hover {
+				color: black;
+			}
+			
+			.BoxPayRightMoney {
+				font-size: 14px;
+				color: black;
+				line-height: 40px;
+				padding-right: 5px;
+			}
+			
+			.BoxPayRightMoney:hover {
+				color: black;
+			}
+			
+			.BoxPayRightSF {
+				font-size: 13px;
+				color: black;
+				line-height: 40px;
+				padding-right: 3px;
+			}
+			
+			.BoxPayRightSF:hover {
+				color: black;
+			}
+			
+			.BoxPayRightIcon {
+				color: #E02D26;
+				font-size: 18px;
+				line-height: 40px;
+				padding-right: 5px;
+			}
+			
+			.BoxPayRightIcon:hover {
+				color: #E02D26;
+			}
+			
+			.BoxFooter {
+				width: 100%;
+				background: white;
+				height: 50px;
+				border-top: 1px solid #EFEFF4;
+			}
+			
+			.BoxFooterGoOrder {
+				margin-top: 5px;
+				margin-right: 10px;
+				float: right;
+				color: #FF413A;
+				height: 34px;
+				background: #fff;
+				width: 80px;
+				text-align: center;
+				line-height: 40px;
+				border-radius: 14px;
+				font-size: 12px;
+				border:1px solid #FF413A;
+				line-height: 34px;
+			}
+			
+			.BoxFooterCancelOrder {
+				margin-top: 5px;
+				margin-right: 10px;
+				float: right;
+				height: 34px;
+				background: white;
+				border: 1px solid #666666;
+				width: 80px;
+				text-align: center;
+				line-height: 34px;
+				border-radius: 14px;
+				font-size: 12px;
+			}
+			
+			.footer {
+				font-size: 13px;
+				height: 60px;
+				color: #A9A9A9;
+				line-height: 60px;
+				text-align: center;
+			}
+			#del{color:#666666;font-size: 20px;}
+			.noseach{background: #ffffff;padding: 100px 0px;}
+			.noimg{text-align: center;margin-bottom: 10px;}
+			.noimg img{width:175px;height:124px;}
+			.notext{text-align: center;color: #666666;font-size: 12px;}
+		</style>
+	</head>
+ 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">我的订单</h1>
+		</header>
+		<div class="mui-content" id="orderlist">
+		<div  class="mui-content mui-scroll-wrapper">
+		<div class="mui-scroll">
+			<div id="slider" class="mui-slider">
+				<div id="topItem" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll" id="top-scroll">
+						<a class='mui-control-item mui-active' @click="clickwid(0)" data-wid="0">全部</a>
+						<a class='mui-control-item' @click="clickwid(1)" data-wid="1">待服务</a>
+						<a class='mui-control-item' @click="clickwid(2)" data-wid="2">待确认</a>
+						<a class='mui-control-item' @click="clickwid(3)" data-wid="3">待评价</a>
+					</div>
+				</div>
+			</div>
+			<div id="showBox" v-show="!noorderlist"  class="mui-content-body">
+			<div class="Box" v-for="(item, index) in orderlist" >
+				<div class="BoxTop">
+					<img class="BoxTopImg" src="../../images/pand/shop.png">
+					<div  class="BoxTopShopName" v-text="item.userNickname">旋光家居专营店 </div>
+					<a  class="BoxTopRightIcon mui-icon mui-icon-arrowright" style=""></a>
+					<a class="BoxTopRightStatus mui-pull-right">
+						<em v-if="item.status==0" style="font-style:normal;">待服务</em>
+						<em v-if="item.status==3" style="font-style:normal;">已接单</em>
+						<em v-if="item.status==1" style="font-style:normal;">已关闭</em>
+						<em v-if="item.status==4" style="font-style:normal;">已完成</em>
+					    <i  id="del" v-if="item.status==1||item.status==4" class="mui-icon mui-icon-trash" @click="godetailer(item.id)"></i>
+				    </a>
+				</div>
+				<div class="BoxDetails" @click="godetail(item.serviceId)">
+					<img class="BoxDetailsImg" :src="item.shopUserHead">
+					<div class="BoxDetailsCenter">
+						<div class="BoxDetailsCenterName" v-text="item.serviceTitle"></div>
+					</div>
+					<div class="BoxDetailsRight">
+						<div class="BoxDetailsRightMoney">￥<i style="font-style: normal;" v-text="item.serviceMoney/item.serviceCount"></i></div>
+						<div style="" class="BoxDetailsRightCount">x<i style="font-style: normal;" v-text="item.serviceCount"></i></div>
+					</div>
+				</div>
+				<div class="BoxPay">
+					<div class="BoxPayRight">
+						<a class="mui-pull-right BoxPayRightMoney">￥<i style="font-style: normal;" v-text="item.serviceMoney"></i></a>
+						<a class="mui-pull-right BoxPayRightSF">共1件商品 合计:</a>
+						<a class="BoxPayRightIcon mui-icon-extra mui-icon-extra-gold mui-pull-right"></a>
+					</div>
+				</div>
+				<div class="BoxFooter" v-if="item.status==0">
+					<div @click="cancelorder(item.id)" class="BoxFooterCancelOrder">取消订单</div>
+					<div @click="gochat" class="BoxFooterCancelOrder">咨询商家</div>
+				</div>
+				<div class="BoxFooter" v-if="item.status==3">
+					<div @click="ovorder(item.id)" class="BoxFooterGoOrder">确认完成</div>
+				</div>
+				<div class="BoxFooter" v-if="item.status==4">
+					<div @click="neworder(item.serviceId)" class="BoxFooterGoOrder">再来一单</div>
+					<div @click="gopingjia(item.serviceId,item.id)" class="BoxFooterGoOrder">晒单评价</div>
+				</div>
+				<div class="BoxFooter" v-if="item.status==1">
+					<div @click="neworder(item.serviceId)" class="BoxFooterGoOrder">再来一单</div>
+				</div>
+			</div>
+			<div id="pullrefresh">
+                	
+            </div>
+	       </div>
+		  </div>
+		</div>
+	   <!--订单列表为空的时候判断-->
+       <div class="noseach" v-show="noorderlist">
+       	   <div class="noimg">
+       	   	  <img src="../../../images/pand/noseach.png" />
+       	   </div>
+       	   <p class="notext">啊哦，暂时没有相关订单哦~</p>
+       </div>
+	</div>
+	 <script src="../../../js/mui.min.js"></script>
+	 <script src="../../../js/vue.min.js"></script>
+    <script src="../../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/app.js" ></script>
+    <script type="text/javascript" src="../../../js/config.js" ></script>
+	<script type="text/javascript">
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						auto: false, //默认false.自动上拉加载一次
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				},
+				keyEventBind: {
+					backbutton: true //开启back按键监听  
+				}
+			});
+			var vm = new Vue({
+		          el: '#orderlist',
+		          data: {
+		            orderlist:[],    //订单列表
+		            page: 1,  //页码从1开始计算
+                    pageSize: 10,  //每页显示总条数 默认10
+                    loadflag:false, //代表没有更多数据加载
+                    status: "",       //订单状态
+                    noorderlist:true,   //无结果显示
+                    catchid:0,  //菜单标志
+                    token:"", //用户token
+                    pandUserId:"",  //用户id
+		          },
+				  mounted: function () {
+				        var _this = this;
+				      	this.$nextTick(function() {
+				      	mui.plusReady(function(){
+				            _this.InitMain();
+				            
+				         })
+				      }) 
+					},
+		          methods: {
+			        //订单详情
+			        godetail:function(id){
+			        	mui.openWindow({
+							url: "orderdetails/orderdetails.html",
+							id: "orderdetails.html",
+							extras: {
+				                serverid: id,
+				            }
+						})
+			        },
+			        //删除订单
+			        godetailer:function(orderid){
+			        	var _this = this;
+			        	var btnArray = ['取消', '确认'];
+					    mui.confirm('确认删除订单吗?',btnArray, function(e) {
+					        if (e.index == 0) {
+					            var param = {
+							      token: _this.token,  //用户token
+		                          orderId:orderid,   //订单id
+		                          status: 2,   //订单状态
+								};
+								mui.ajax({
+								    url: CONFIG.basePath+ '/api/pandorder/order_update',
+									async: false,
+								    data: param,
+								    dataType: "json",
+								    type: 'post',
+									beforeSend: function(){
+										plus.nativeUI.showWaiting();
+									},
+									complete: function(){
+										plus.nativeUI.closeWaiting();
+									},
+									success: function(res){
+										console.log('删除订单'+res.message)
+										if(res.result==1){
+											_this.clickwid(_this.catchid)
+										}else{
+											mui.toast(res.message);
+										}
+									},
+									error: function(xhr, type, errorThrown){
+										mui.toast('服务器响应失败');
+									}
+								});
+					        }
+					    })
+			        	
+			        },
+			         //再来一单
+			         neworder:function(serverid){
+			         	mui.openWindow({
+							url: "orderdetails/buydetails.html",
+							id: "buydetails.html",
+							extras: {
+		                      serverid: serverid,
+		                    }
+						})
+			         },
+			         //完成订单
+			        ovorder:function(orderid){
+			        	var _this = this;
+			        	var param = {
+					      token: _this.token,  //用户token
+                          orderId:orderid,   //订单id
+                          status: 4,   //订单状态
+						};
+						mui.ajax({
+						    url: CONFIG.basePath+ '/api/pandorder/order_update',
+							async: false,
+						    data: param,
+						    dataType: "json",
+						    type: 'post',
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+							success: function(res){
+								console.log('完成订单'+res.message)
+								if(res.result==1){
+									_this.clickwid(_this.catchid)
+								}else{
+									mui.toast(res.message);
+								}
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+			        },
+			        //取消订单
+			        cancelorder:function(orderid){
+			        	var _this = this;
+			        	var param = {
+					      token: _this.token,  //用户token
+                          orderId:orderid,   //订单id
+                          status: 1,   //订单状态
+						};
+						mui.ajax({
+						    url: CONFIG.basePath+ '/api/pandorder/order_update',
+							async: false,
+						    data: param,
+						    dataType: "json",
+						    type: 'post',
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+							success: function(res){
+								console.log('取消订单'+res.message)
+								
+								if(res.result==1){
+									_this.clickwid(_this.catchid)
+									mui.toast('订单取消成功');
+								}else{
+									mui.toast(res.message);
+								}
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+			        	
+			        },
+			        //咨询商家
+			        gochat:function(){
+			        	var item={
+							"name":"潘多拉客服",
+							"chatUser":"",
+							"headImg":"../../../images/pand/tou.png",
+							"lastAsk":"你好，我是商家客服想问有什么需要帮助的吗？",
+							"dataTime":"12:31",
+							"dataDay":"05-01"
+						}
+						mui.openWindow({
+							url: "orderdetails/chat.html",
+							id: "chat.html",
+							extras: {
+				                chatObj: item
+				              }
+						})
+			        },
+			        //分类查询
+			        clickwid:function(typeid){
+			        	var _this = this;
+			        	_this.orderlist=[];   //清空订单列表数据
+					    _this.page=1;      //页码从1开始
+					    _this.catchid=typeid;
+					    var param={};
+			        	if(typeid==0){
+			        		_this.status="",
+			        		 param = {
+						      token: _this.token,  //用户token
+							  pageIndex:_this.page,
+	                          pageSize:_this.pageSize,
+	                          pandUserId:_this.pandUserId,   //用户id
+	                          status: _this.status ,    //订单状态
+							};
+			        	}else if(typeid==1){
+			        		_this.status=0,
+			        		 param = {
+						      token: _this.token,  //用户token
+							  pageIndex:_this.page,
+	                          pageSize:_this.pageSize,
+	                          pandUserId:_this.pandUserId,   //用户id
+	                          status: _this.status ,    //订单状态
+							};
+			        	}else if(typeid==2){
+			        		_this.status=3,
+			        		 param = {
+						      token: _this.token,  //用户token
+							  pageIndex:_this.page,
+	                          pageSize:_this.pageSize,
+	                          pandUserId:_this.pandUserId,   //用户id
+	                          status: _this.status ,    //订单状态
+							};
+			        	}else if(typeid==3){
+			        		_this.status=4,
+			        		 param = {
+						      token: _this.token,  //用户token
+							  pageIndex:_this.page,
+	                          pageSize:_this.pageSize,
+	                          pandUserId:_this.pandUserId,   //用户id
+	                          status: _this.status ,    //订单状态
+							};
+			        	};
+			        	mui.ajax({
+						    url: CONFIG.basePath+ '/api/pandorder/order_list',
+							async: false,
+						    data: param,
+						    dataType: "json",
+						    type: 'post',
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+							success: function(res){
+								console.log('订单列表'+JSON.stringify(res.data))
+								if(res.result==1){
+									_this.orderlist=res.data;
+									if(res.data.length>=10){
+									  _this.loadflag=true;
+									  mui('#pullrefresh').pullRefresh().refresh(true);
+									}else{
+									  _this.loadflag=false;
+									}
+									if(res.data.length==0){
+										_this.noorderlist=true;
+										
+									}else{
+										_this.noorderlist=false;
+										
+									}
+								}else if(res.result == 0 && res.errorCode == 1507){
+									localStorage.setItem('userinfo',null);
+			                        localStorage.setItem('token',null);
+									mui.openWindow({
+									url: "/model/login/login.html",
+									id: "login.html",
+									});
+								}else{
+									mui.toast(res.message);
+								}
+								
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+			        },
+			        //啥单评价
+			        gopingjia:function(serverid,orderid){
+					        mui.openWindow({
+							url: "orderdetails/usercomment.html",
+							id: "usercomment.html",
+							extras: {
+		                      serverid: serverid,
+		                      orderid:orderid,
+		                    }
+						});	
+			        },
+			        //初始化
+                    InitMain: function() {
+                      var _this = this;
+                      if(!localStorage.getItem('token')){
+			        	   _this.token="";
+			        	   _this.pandUserId="";
+			        	}else{
+			        	   _this.token=JSON.parse(localStorage.getItem('token')).accessToken;
+			        	   _this.pandUserId=JSON.parse(localStorage.getItem('userinfo')).id;
+			        	}
+                      window.addEventListener('refresh', function(e){//执行刷新
+					    location.reload();
+					 });
+                      //查看全部订单
+                      var param = {
+					      token:_this.token ,  //用户token
+						  pageIndex:_this.page,
+                          pageSize:_this.pageSize,
+                          pandUserId:_this.pandUserId,   //用户id
+                          status: _this.status ,    //订单状态
+                         
+						};
+                      mui.ajax({
+							    url: CONFIG.basePath+ '/api/pandorder/order_list',
+								async: false,
+							    data: param,
+							    dataType: "json",
+							    type: 'post',
+								beforeSend: function(){
+									plus.nativeUI.showWaiting();
+								},
+								complete: function(){
+									plus.nativeUI.closeWaiting();
+								},
+								success: function(res){
+									console.log('订单列表'+JSON.stringify(res.data))
+									if(res.result==1){
+										_this.orderlist=res.data;
+										if(res.data.length>=10){
+										  _this.loadflag=true;
+										}else{
+										  _this.loadflag=false;
+										}
+										if(res.data.length==0){
+										  _this.noorderlist=true;
+										
+										}else{
+										  _this.noorderlist=false;
+											
+										}
+									}else if(res.result == 0 && res.errorCode == 1507){
+										localStorage.setItem('userinfo',"");
+			                            localStorage.setItem('token',"");
+										mui.openWindow({
+										url: "/model/login/login.html",
+										id: "login.html",
+										});
+									}else{
+										mui.toast(res.message);
+									}
+									
+								},
+								error: function(xhr, type, errorThrown){
+									mui.toast('服务器响应失败');
+								}
+							});
+                    },
+		         }
+		   });
+           
+			
+			//上拉加载更多
+			function pullupRefresh() {
+				setTimeout(function() {
+					console.log("上拉加载执行");
+					//这里面true为没有更多数据 false表示有更多数据，下次可以继续下拉。
+					if(vm.loadflag){
+					  addData();
+					  mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+					 
+					}else{
+					  mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					}
+					
+				}, 1000);
+			}
+			//获取数据
+			function addData() {
+				vm.page++;
+				var param = {
+				  token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+				  pageIndex:vm.page,
+                  pageSize:vm.pageSize,
+                  pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+                  status:vm.status ,    //订单状态
+				};
+				mui.ajax({
+					url: CONFIG.basePath+ '/api/pandorder/order_list',
+					async: false,
+					data: param,
+					dataType: "json",
+					type: 'post',
+					beforeSend: function(){
+						plus.nativeUI.showWaiting();
+					},
+					complete: function(){
+						plus.nativeUI.closeWaiting();
+					},
+				    success: function(res){
+						console.log('加载订单列表'+JSON.stringify(res.data));
+						vm.orderlist = vm.orderlist.concat(res.data);
+						if(res.data.length>=10){
+							vm.loadflag=true;
+						}else{
+							vm.loadflag=false;
+						}
+									
+					},
+					error: function(xhr, type, errorThrown){
+						mui.toast('服务器响应失败');
+					}
+				});
+			}
+		</script>
+	</body>
+ 
+</html>

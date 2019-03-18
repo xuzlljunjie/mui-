@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="UTF-8">
+		<title>立即评价</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-bar a {
+				color: #E02D26;
+			}
+			
+			.mui-bar-nav {
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}
+			
+			.mui-icon-star {
+				color: #B5B5B5;
+				font-size: 22px;
+			}
+			
+			.mui-icon-star-filled {
+				color: #E02D26;
+				font-size: 22px;
+			}
+			
+			.mui-inline {
+				font-size: 13px;
+			}
+			
+			.BoxTop {
+				height: 60px;
+				background: white;
+				border-top: 1px solid #EEEEEE;
+				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+			}
+			
+			.BoxTopImg {
+				height: 40px;
+				width: 40px;
+				margin: 10px 10px 0px 10px;
+				float: left;
+			}
+			
+			.BoxTopShopName {
+				font-size: 14px;
+				line-height: 60px;
+				max-width:150px;
+				color: #333333;
+			}
+			
+			.BoxEvaluateContent {
+				height: 120px;
+				background: #ffffff;
+				padding: 10px;
+			}
+			
+			#txt_EvaluateContent {
+				height: 100%;
+				border: none;
+				font-size: 13px;
+				margin-bottom: 0px;
+				padding: 10px;
+				background: #F7F7F7;
+			}
+			
+			#BoxUploadImg {
+				height: 130px;
+				width: 100%;
+				background: white;
+				border: 1px solid white;
+				display: flex;
+			}
+			
+			.BoxUploadDiv {
+				width: 50px;
+				height: 50px;
+				border: 1px dashed #C7C7CC;
+				margin: 10px;
+				text-align: center;
+				padding-top: 10px;
+			}
+			
+			.BoxUploadIcon {
+				font-size: 20px;
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadIcon:hover {
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadFont {
+				font-size: 13px;
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadShopScore {
+				height: 40px;
+				background: white;
+				margin-top: 8px;
+				line-height: 40px;
+			}
+			
+			.BoxUploadShopScoreIcon {
+				color: #797979;
+				padding-left: 10px;
+			}
+			
+			.BoxUploadShopScoreFont {
+				color: black;
+				font-size: 13px;
+			}
+			
+			.BoxUploadLevel {
+				background: white;
+				border: 1px solid white;
+			}
+			
+			.mui-content-padded {
+				vertical-align: bottom;
+				font-size: 13px;
+				color: #8f8f94;
+			}
+			
+			.icons {
+				margin-left: 6px;
+			}
+			
+			.BoxFooter {
+				width: 100%;
+				height: 60px;
+				background: #fff;
+				padding-top: 50px;
+			}
+			
+			#btn_Evaluate {
+				height: 45px;
+				width: 94%;
+				background: linear-gradient(to right,  #FF413A , #FF9849);
+				color: white;
+				font-size: 15px;
+				border-radius: 25px;
+				line-height: 45px;
+				text-align: center;
+				margin: 10px auto;
+			}
+			
+			.mui-icon-home:hover {
+				color: black;
+			}
+			
+			.BoxUploadShopScoreFont:hover {
+				color: black;
+			}
+			
+			.mui-icon-checkmarkempty {
+				font-size: 13px;
+				color: #979797;
+				border-radius: 50%;
+				border: 1px solid #8f8f94;
+			}
+			
+			.mui-icon-checkmarkempty:hover {
+				color: #ffffff;
+			}
+			.selectPrice {
+				font-size: 13px;
+				color: white;
+				background: #E02D26;
+				border-radius: 50%;
+				border: 1px solid white;
+				
+			}
+			.Box-con{flex: auto;}
+			.BoxItemBottomLeft {
+				width:75px;
+				color: #666666;
+				font-size: 12px;
+				line-height: 50px;
+				position: relative;
+				text-align: right;
+				padding-right: 10px;
+			}
+			
+			.chks {
+			    width: 13px;
+				height: 13px;
+				margin-left: 10px;
+				margin-top: 20px;
+				margin-right: 5px;
+				
+			}
+		
+			#servicexaingq{
+			  padding: 20px 0px;
+			  width: 100%;
+			  display: flex;
+			  background: #ffffff;
+			}
+			#servicexaingq img{
+				width: 55px;
+				height: 55px;
+				margin-left: 15px;
+			}
+			.mui-checkbox input[type=checkbox]{
+	         	position: absolute;
+			    top: 15px;
+			    left: 0px;
+			    display: inline-block;
+			    width: 15px;
+			    height: 15px;
+			    border: 0;
+			    outline: 0!important;
+			    background-color: transparent;
+			    -webkit-appearance: none;
+	         }
+	        .mui-checkbox input[type=checkbox]:before{
+	        	font-size: 17px;
+	        }
+	        .mui-checkbox input[type=checkbox]:checked:before{
+	        	color: #FF413A;
+	        }
+		</style>
+	</head>
+ 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">发表评价</h1>
+		</header>
+		<div class="mui-content" id="fabuserver">
+			<div class="Box">
+				<div class="BoxTop">
+					<div class="Box-con">
+						<img class="BoxTopImg" :src="userHeadpng">
+						<div class="BoxTopShopName mui-ellipsis" v-text="serverlist.serviceTilte"></div>
+					</div>
+					<div class="BoxItemBottomLeft">
+					   <div class="mui-checkbox">
+							<input type="checkbox" class="checkbox" id="0" value="" />
+					   </div>
+					   <span>匿名评价</span>
+				   </div>
+				</div>
+				<div class="BoxUploadLevel">
+					<div class="mui-content-padded">
+						<div class="mui-inline">技术熟练</div>
+						<div class="icons mui-inline skilledScore">
+							<i data-index="1" class="mui-icon mui-icon-star"></i>
+							<i data-index="2" class="mui-icon mui-icon-star"></i>
+							<i data-index="3" class="mui-icon mui-icon-star"></i>
+							<i data-index="4" class="mui-icon mui-icon-star"></i>
+							<i data-index="5" class="mui-icon mui-icon-star"></i>
+						</div>
+					</div>
+					<div class="mui-content-padded">
+						<div class="mui-inline">服务态度</div>
+						<div class="icons mui-inline attitudeScore">
+							<i data-index="1" class="mui-icon mui-icon-star"></i>
+							<i data-index="2" class="mui-icon mui-icon-star"></i>
+							<i data-index="3" class="mui-icon mui-icon-star"></i>
+							<i data-index="4" class="mui-icon mui-icon-star"></i>
+							<i data-index="5" class="mui-icon mui-icon-star"></i>
+						</div>
+					</div>
+					<div class="mui-content-padded">
+						<div class="mui-inline">工作效率</div>
+						<div class="icons mui-inline efficiencyScore">
+							<i data-index="1" class="mui-icon mui-icon-star"></i>
+							<i data-index="2" class="mui-icon mui-icon-star"></i>
+							<i data-index="3" class="mui-icon mui-icon-star"></i>
+							<i data-index="4" class="mui-icon mui-icon-star"></i>
+							<i data-index="5" class="mui-icon mui-icon-star"></i>
+						</div>
+					</div>
+				</div>
+				<div class="BoxEvaluateContent">
+					<textarea id="txt_EvaluateContent" class="mui-input-clear" placeholder="亲,您对这个商品满意吗?您的评价会帮助我们选择更好的产品哦~"></textarea>
+				</div>
+				<div id="servicexaingq">
+					<img v-for="(item, index) in urlArr" :src="item"/>
+					<img id="uploadimg" src="../../../images/pand/shangchuanimg.png"/>	
+			    </div>
+				<div class="BoxFooter">
+					<div id="btn_Evaluate">提交评价</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../../js/vue.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/mui.js"></script>
+		<script src="../../../js/app.js"></script>
+		<script src="../../../js/config.js"></script>
+		<script>
+			 mui.init({
+			    beforeback: function() {
+			　　　　 //获得父页面的webview
+			        var list = plus.webview.currentWebview().opener();
+			　　　　 //触发父页面的自定义事件(refresh),从而进行刷新
+			        mui.fire(list, 'refresh');
+			        //返回true,继续页面关闭逻辑
+			        return true;
+			    }
+			});
+	         var baseArray = [];  //图片传值
+			 var vm = new Vue({
+			    el: '#fabuserver',
+			    data: {
+			        urlArr: [],  //图片路径
+			        anonymous:1,   //是否匿名 0是 1否
+			        serviceId:"",  //服务id
+			        orderId: "",  //订单id  
+			        serverlist:[],  //服务列表
+			        skilledScore:"",  //技术熟练分数
+			        attitudeScore:"",  //服务态度分数
+			        efficiencyScore:"", //	工作效率分数
+			        userHeadpng:"",  //服务照片
+			    },
+			    mounted: function () {
+					var _this = this;
+					this.$nextTick(function() {
+					    mui.plusReady(function(){
+					        _this.InitMain();
+					    })
+					}) 
+				},
+			    methods: {
+				    //初始化
+	                InitMain: function() {
+	                    var _this = this;
+                         var sData = plus.webview.currentWebview();
+                         _this.serviceId=sData.serverid;
+                         _this.orderId=sData.orderid;
+                         //查看服务详情
+                        var param = {
+					       id: _this.serviceId,      //服务id
+						};
+						mui.ajax({
+						    url: CONFIG.basePath+ '/api/pandwork/service_detail',
+							async: false,
+						    data: param,
+						    dataType: "json",
+						    type: 'post',
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+							success: function(res){
+								console.log('服务详情'+JSON.stringify(res.data))
+								_this.serverlist=res.data;
+								_this.userHeadpng=res.data.issuser.userHeadpng;
+								
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+	                },
+	            }
+			});
+			//技术熟练评分
+			mui('.skilledScore').on('tap', 'i', function() {
+				var index = parseInt(this.getAttribute("data-index"));
+				var parent = this.parentNode;
+				var children = parent.children;
+				if(this.classList.contains("mui-icon-star")) {
+					for(var i = 0; i < index; i++) {
+						children[i].classList.remove('mui-icon-star');
+						children[i].classList.add('mui-icon-star-filled');
+					}
+				} else {
+					for(var i = index; i < 5; i++) {
+						children[i].classList.add('mui-icon-star')
+						children[i].classList.remove('mui-icon-star-filled')
+					}
+				}
+				vm.skilledScore=index;
+			});
+			//服务态度评分
+			mui('.attitudeScore').on('tap', 'i', function() {
+				var index = parseInt(this.getAttribute("data-index"));
+				var parent = this.parentNode;
+				var children = parent.children;
+				if(this.classList.contains("mui-icon-star")) {
+					for(var i = 0; i < index; i++) {
+						children[i].classList.remove('mui-icon-star');
+						children[i].classList.add('mui-icon-star-filled');
+					}
+				} else {
+					for(var i = index; i < 5; i++) {
+						children[i].classList.add('mui-icon-star')
+						children[i].classList.remove('mui-icon-star-filled')
+					}
+				}
+				vm.attitudeScore=index;
+			});
+			//工作效率评分
+			mui('.efficiencyScore').on('tap', 'i', function() {
+				var index = parseInt(this.getAttribute("data-index"));
+				var parent = this.parentNode;
+				var children = parent.children;
+				if(this.classList.contains("mui-icon-star")) {
+					for(var i = 0; i < index; i++) {
+						children[i].classList.remove('mui-icon-star');
+						children[i].classList.add('mui-icon-star-filled');
+					}
+				} else {
+					for(var i = index; i < 5; i++) {
+						children[i].classList.add('mui-icon-star')
+						children[i].classList.remove('mui-icon-star-filled')
+					}
+				}
+				vm.efficiencyScore=index;
+			});
+			// 事件绑定
+			 mui('.mui-checkbox').on('change','input',function(){
+				console.log("id = " + this.id + " status = " + this.checked);
+				if (this.checked) { 
+					vm.anonymous=0;
+					console.log('勾选上了')
+				} else{
+					vm.anonymous=1;
+					console.log('取消勾选')
+				}
+				
+			 });
+			 //上传本地照片
+		document.getElementById('uploadimg').addEventListener('tap', function() {
+				if(mui.os.plus) {
+					var buttonTit = [{
+						title: "拍照"
+					}, {
+						title: "从手机相册选择"
+					}];
+ 
+					plus.nativeUI.actionSheet({
+						cancel: "取消",
+						buttons: buttonTit
+					}, function(b) { /*actionSheet 按钮点击事件*/
+						switch(b.index) {
+							case 0:
+								break;
+							case 1:
+								getImage(); /*拍照*/
+								break;
+							case 2:
+								galleryImg(); /*打开相册*/
+								break;
+							default:
+								break;
+						}
+					})
+				}
+			}, false);
+			// 拍照获取图片  
+			function getImage() {
+				var c = plus.camera.getCamera();
+				c.captureImage(function(e) {
+					plus.io.resolveLocalFileSystemURL(e, function(entry) {
+						var imgSrc = entry.toLocalURL() + "?version=" + new Date().getTime(); //拿到图片路径  
+						vm.urlArr.push(imgSrc);
+					}, function(e) {
+						console.log("读取拍照文件错误：" + e.message);
+					});
+				}, function(s) {
+					console.log("error" + s);
+				}, {
+					filename: "_doc/camera/"
+				})
+			}
+ 
+			// 从相册中选择图片   
+			function galleryImg() {
+				// 从相册中选择图片  
+				vm.urlArr.length=0;  //清空照片
+				plus.gallery.pick(function(e) {
+					for(var i in e.files) {
+						var fileSrc = e.files[i];
+						vm.urlArr.push(fileSrc);
+					}
+				}, function(e) {
+					console.log("取消选择图片");
+				}, {
+					filter: "image",
+					multiple: true,
+					maximum: 4,
+					system: false,
+					onmaxed: function() {
+						plus.nativeUI.alert('最多只能选择4张图片');
+					}
+				});
+				
+			}
+			 //上传图片
+		  function upload(){
+		  	//服务端接口路径
+            var server = CONFIG.basePath+ '/api/pand_image_upload/image_upload';
+		    baseArray.length=0;
+		    for (var i = 0; i < vm.urlArr.length; i++) {
+		        var task=plus.uploader.createUpload(server,
+                    {method:"POST"},
+                    function(t,status){ //上传完成
+                    	console.log(status)
+                        if(status==200){
+                            //alert("上传成功："+JSON.parse(t.responseText).data);
+                            baseArray.push({ "baseStr": JSON.parse(t.responseText).data});
+                            //uploadserver(JSON.parse(t.responseText).data);
+                            //wt.close(); //关闭等待提示按钮
+                        }else{
+                            alert("上传失败："+status);
+                            //wt.close();//关闭等待提示按钮
+                        }
+                    }
+                );
+                //添加其他参数
+                task.addData("token",JSON.parse(localStorage.getItem('token')).accessToken);
+                task.addData("imgModel", "1");
+                task.addFile(vm.urlArr[i],{key:"file"});
+                task.start();
+		    }
+		  };  
+			//提交评价
+			document.getElementById("btn_Evaluate").addEventListener("tap", function() {
+				upload()// 调用上传图片接口
+				plus.nativeUI.confirm("确定是否提交评价", function(e) {
+                if(e.index == 0) {
+			       	var params = {
+					    token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+					    pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+					    serviceId:vm.serviceId, //服务id
+					    orderId:vm.orderId,  //订单id
+					    skilledScore:vm.skilledScore, //技术熟练分数
+					    attitudeScore:vm.attitudeScore, //服务态度分数
+					    efficiencyScore:vm.efficiencyScore, //	工作效率分数
+					    anonymous:vm.anonymous,  //是否匿名 0是 1否
+					    comment:document.getElementById('txt_EvaluateContent').value, 
+					    commentType:1,
+					    imagesJson: JSON.stringify(baseArray),  //服务照片baseStr是
+				    }; 
+				    mui.ajax({
+					    url: CONFIG.basePath+ '/api/panduser/comment_save',
+						async: false,
+					    data: params,
+					    dataType: "json",
+					    type: 'post',
+						beforeSend: function(){
+							plus.nativeUI.showWaiting();
+						},
+						complete: function(){
+							plus.nativeUI.closeWaiting();
+						},
+						success: function(res){
+							console.log('普通用户评论'+JSON.stringify(res.data))
+							if(res.result==1){
+								mui.toast('评论成功');
+							}else{
+								mui.toast(res.message);
+							}
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+					});
+                }
+            }, "提交评价成功通知", ["确定", "取消"]);
+			})
+			
+		</script>
+	</body>
+ 
+</html>

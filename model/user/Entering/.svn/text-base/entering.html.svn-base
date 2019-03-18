@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商家入驻</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			
+			
+		     img{
+		     	width: 100%;
+		     	height: 160px;
+		   
+		     }
+		  
+		    
+			.individual{
+				position:absolute;
+				right: 234px;
+				top:98px;
+				font-size: 16px;
+				color: #ffffff;
+				
+			}
+			.individuals{
+				width: 158px;
+				height: 36px;
+				position:absolute;
+				right: 172px;
+				top:149px;
+				font-size: 13px;
+				color: #ffffff;
+			}
+			.enterprise{
+				position:absolute;
+				right: 234px;
+				top:282px;
+				font-size: 16px;
+				color: #ffffff;
+			}
+			.enterprises{
+					width: 158px;
+				height: 36px;
+				position:absolute;
+				right: 172px;
+				top:329px;
+				font-size: 13px;
+				color: #ffffff;
+			}
+			#ente{
+				margin-top: 19px;
+			}
+			#indi{
+				margin-top: 12px;
+			}
+			header img{
+				width: 9px;
+				height: 18px;
+				margin-top: 12px;
+			}
+			#mui-content{
+				background-color: #ffffff;
+				padding-top: 53px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">商家入驻</h1>
+			</header>
+		<div id="mui-content" class="mui-content">
+		<div id="indi" >
+			
+			<img id="individual" src="../../../images/pand/individual.png" />
+			<span class="individual">我是个人商家</span>
+			<span class="individuals">请提供个人真实身份证明完成验证</span>
+			
+		</div>
+		<div id="ente">
+			
+			<img id="enterprise" src="../../../images/pand/enterprise.png" />
+			<span class="enterprise">我是企业商家</span>
+			<span class="enterprises">请提供企业真实材料证明完成验证</span>
+		
+		</div>
+		</div>
+	</body>
+	<script src="../../../js/mui.min.js"></script>
+	<script src="../../../js/jquery.min.js"></script>
+	<script>
+		
+    document.getElementById('indi').addEventListener('tap', function() {
+		mui.openWindow({
+			url: '../../user/Verification/verification.html', //通过URL传参
+			id: "verification.html"
+		})
+		});
+		document.getElementById('enterprise').addEventListener('tap', function() {
+		mui.openWindow({
+			url: '../../user/Verification/verificationverification.html', //通过URL传参
+			id: "verificationverification.html.html"
+		})
+		});
+	
+	</script>
+</html>

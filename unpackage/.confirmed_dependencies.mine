@@ -1,0 +1,62 @@
+{
+	"index.html": {
+		"resources": [
+			"model/user/my-main.html",
+			"images/pand/图片@3x.png",
+			"images/pand/搬运工@3x.png",
+			"images/pand/地址@3x.png",
+			"images/pand/默认头像@3x.png",
+			"images/pand/店铺@3x.png",
+			"images/pand/积分@3x.png",
+			"images/pand/设置@3x.png",
+			"images/pand/我的收藏@3x.png",
+			"images/pand/我的订单@3x.png",
+			"images/pand/联系客服@3x.png",
+			"images/pand/我的足迹@3x.png",
+			"model/service/pand-main.html"
+		],
+		"refer": [
+			"model/order/orderdetails/orderdetails.html",
+			"model/order/orderdetails.html",
+			"model/order/orderdetails/usercomment.html",
+			"model/seach/seachmain.html",
+			"model/order/order-main.html",
+			"model/service/pand-main.html",
+			"model/user/my-main.html"
+		]
+	},
+	"model/order/orderdetails/orderdetails.html": {
+		"resources": [
+			"images/pand/分享.png"
+		],
+		"refer": [
+			"model/order/orderdetails/buydetails.html",
+			"model/order/orderdetails/CommentDetails.html"
+		]
+	},
+	"model/order/orderdetails/buydetails.html": {
+		"resources": [
+			"images/pand/图片@3x.png",
+			"images/pand/店铺@3x.png"
+		],
+		"refer": [
+			"model/order/orderdetails/orderover.html"
+		]
+	},
+	"model/user/my-main.html": {
+		"resources": [
+			"images/pand/地址@3x.png",
+			"images/pand/默认头像@3x.png",
+			"images/pand/积分@3x.png",
+			"images/pand/设置@3x.png",
+			"images/pand/我的收藏@3x.png",
+			"images/pand/我的订单@3x.png",
+			"images/pand/联系客服@3x.png",
+			"images/pand/我的足迹@3x.png"
+		],
+		"refer": [
+			"model/user/Address/address.html",
+			"model/user/myorder/myorder.html"
+		]
+	}
+}

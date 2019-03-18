@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>发布管理</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../css/mui.min.css">
+	</head>
+	<style>
+		.mui-content{
+       	 background-color: #ffffff;
+        } 
+      
+	   .mui-segmented-control.mui-scroll-wrapper {
+			height: 40px;
+			
+	   }
+	   #top-scroll{
+			width: 100%;
+			display: flex;
+		}
+		#top-scroll .mui-control-item{
+			flex: 1;
+			font-size: 14px;
+			display: block;
+			color: #666666;
+		}
+		#top-scroll .mui-control-item.mui-active {
+			border-bottom: 2px solid #FF413A;
+			color: #333333;
+		}
+		.BoxDetails {
+				width: 100%;
+				background: #fff;
+				display: flex;
+				padding: 0px 10px;
+			}
+			
+			.BoxDetailsImg {
+				width:80px;
+				height:70px;
+				margin-top: 13px;
+                margin-right: 15px;
+			}
+			
+			.BoxDetailsCenter {
+				flex:auto;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+			}
+			.BoxDetailsCenterName {
+				color: black;
+				font-size: 13px;
+				margin-top: 10px;
+				line-height: 20px;
+				max-height: 60px;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+			}
+			
+			.BoxDetailsCenterDesc {
+				font-size: 13px;
+				color: #A9A9A9;
+				margin-top: 3px;
+			}
+			.mui-slider-group{
+				border-top: 5px solid #FBFBFB;
+			}
+			.Box{
+				border-bottom: 5px solid #FBFBFB;
+			}
+			#button{
+				width: 100%;
+				text-align: right;
+				padding: 10px;
+			}
+			#button button{
+				width: 65px;
+				height: 25px;
+				border-radius: 50px;
+				line-height: 12px;
+				color: #666666;
+				font-size: 12px;
+				border: 1px solid #999999;
+			}
+			.boxxinxin{margin-top: 5px;}
+			.boxpricedel{color: #FF413A;font-size: 12px;}
+			.boxpricedel span{font-size: 18px;}
+			.boxprice span{color: #999999;font-size: 10px;margin-right: 15px;}
+			.boxprice em{font-style: normal;}
+			#imgbutton{
+				position: fixed;
+				bottom: 30px;
+				left: 44%;
+				width: 50px;
+				height: 50px;
+			}
+			#div {
+				width: 0px;
+				height: 0px;
+				position: fixed;
+				top: 70%;
+				left: 50%;
+			}
+			
+			.mui-popover .mui-popover-arrow:after {
+				width: 0px;
+			}
+			.pricecon{
+				display: flex;
+				border-bottom:1px solid #DDDDDD;
+				padding-bottom: 20px;
+			}
+			.mui-popover{width:250px}
+			.pricecon img{width:80px;height:70px;margin-right: 10px;margin-left: 10px;}
+			.pricedetail{flex: auto;}
+			.pricexiugai{display: flex;margin-top: 20px;}
+			.xianjia{color:#333333;font-size:14px;}
+			.pricexj{color: #FF413A;font-size: 10px;}
+			.pricexj em{font-size: 18px;}
+			.pricexiugai span{color:#333333;font-size: 14px;margin-right: 10px;}
+			.pricexiugai span em{font-style: normal;}
+			.pricexiugai input{
+				width: 75px;
+			    background:#dedede;
+			    height: 20px;
+			    line-height: 20px;
+			    border: none;
+			    border-radius: 12px;
+			}
+			.pricebtn{display: flex;font-size: 16px;}
+			.pricecan{flex: 1;text-align: center;height:50px;line-height: 50px;color: #333333;}
+			.pricesure{flex:1;text-align: center;height:50px;line-height: 50px;color: #FF413A;}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">发布管理</h1>
+			</header>
+		<div class="mui-content" id="serverlist">
+			<div id="topItem" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<div class="mui-scroll" id="top-scroll">
+					<a class='mui-control-item mui-active'  data-wid="2">出售中</a>
+					<a class='mui-control-item'  data-wid="4">已下架</a>
+				</div>
+			</div>
+	        <div class="mui-slider-group"> 
+				<div class="mui-scroll">
+		            <div class="Box" v-for="(item, index) in serverlist">
+						<div class="BoxDetails">
+							<img class="BoxDetailsImg" :src="item.shoperInfo.shopImg">
+							<div class="BoxDetailsCenter">
+								<div class="BoxDetailsCenterName" v-text="item.serviceTilte"></div>
+								<div class="boxxinxin">
+									<p class="boxpricedel">
+										¥<span v-text="item.servicePrice">60</span>
+									</p>
+								</div>
+								<div class="boxprice">
+	                              <span>已售<em v-text="item.serviceTotal">20</em></span>
+	                              <span>浏览<em>20</em></span>
+								</div>
+							</div>
+						</div>
+						<div id="button" v-show="serviceStatus==2">
+							<button  @click="xiajia(item.id,$event)">下架</button>
+							<button  @click="gaijia(item.id,item.servicePrice,item.shoperInfo.shopImg)">改价</button>
+							<button  @click="deleted(item.id,2)">删除</button>
+						</div>
+						<div id="button" v-show="serviceStatus==4">
+							<button  @click="shanjia(item.id)">上架</button>
+							<button  @click="deleted(item.id,4)">删除</button>
+						</div>
+				   </div>
+				   <div id="pullrefresh">
+                	
+                   </div>
+	            </div> 	
+	        </div>
+	        <!--修改价格-->
+			<div id="PindanOnePopover" class="mui-popover" style="height: 170px;">
+				<div class="mui-popover-arrow"></div>
+				<div class="mui-scroll-wrapper" style="margin-top: 20px;">
+					<div class="pricecon">
+						<img :src="serverimg" />
+						<div class="pricedetail">
+							<div class="pricexianjai">
+								<span class="xianjia">现价</span>
+								<span class="pricexj">¥<em v-text="servicePrice">60</em></span>
+							</div>
+							<div class="pricexiugai">
+								<span>改价至<em>¥</em></span>
+								<input type="text" v-model="servicePrice" id="servprice" />
+							</div>
+						</div>
+					</div>
+					<div class="pricebtn">
+						<div class="pricecan">取消</div>
+						<div class="pricesure">确定</div>
+					</div>
+				</div>
+			</div>
+			<!--修改价格结束-->
+		</div>
+		<!--以下div勿删 定位使用-->
+		<div id="div"></div>
+		<img id="imgbutton" src="../../images/pand/fabu.png" />
+	</body>
+	<script src="../../js/vue.min.js"></script>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/config.js" ></script>
+	<script type="text/javascript" src="../../js/app.js" ></script>
+	<script>
+	   mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+					up: {
+						auto: false, //默认false.自动上拉加载一次
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				},
+				keyEventBind: {
+					backbutton: true //开启back按键监听  
+			}
+		}); 
+		var vm = new Vue({
+		          el: '#serverlist',
+		          data: {
+		            serverlist:[],   //服务列表数据
+		            serverid:"",  //服务id
+		            page: 1,  //页码从1开始计算
+                    pageSize: 10,  //每页显示总条数 默认10
+                    loadflag:false, //代表没有更多数据加载
+                    serviceStatus:2,   //默认查看全部
+                    serverimg:"",   //修改价格模态框图片
+                    servicePrice:"", //要修改价格的数据
+                    serverxianjaiid:"", //要修改服务id
+		          },
+				  mounted: function () {
+				        var _this = this;
+				      	this.$nextTick(function() {
+				      	mui.plusReady(function(){
+				            _this.InitMain();
+				         })
+				      }) 
+					},
+		          methods: {
+			         //下架接口函数
+			         xiajia:function(serverid,event){
+			         	var _this = this;
+			         	var params = {
+						token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+					    status:4,   //4下架 
+					    id:serverid, //服务id
+				       };
+				       mui.ajax({
+						    url: CONFIG.basePath+ '/api/pandwork/service_sold_out',
+							async: false,
+							data: params,
+							dataType: "json",
+							type: 'post',
+						    success: function(res){
+								console.log('下架数据'+JSON.stringify(res.data));
+								mui.toast(res.message);
+								trattap(2); //调用切换函数
+								
+							},
+							error: function(xhr, type, errorThrown){
+							   mui.toast('服务器响应失败');
+						    }
+					    });
+					     
+			         },
+			        //改价接口函数
+			        gaijia:function(serverid,servicePrice,serverimg){
+			        	var _this = this;
+			        	_this.serverxianjaiid=serverid;
+			        	_this.servicePrice=servicePrice;
+			        	_this.serverimg=serverimg;
+			        	 mui("#PindanOnePopover").popover('toggle', document.getElementById("div"));
+			        },
+			        //删除接口函数
+			        deleted:function(serverid,status){
+			        	var params = {
+							token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+						    status:5,   //2上架 
+						    id:serverid, //服务id
+				        };
+				        mui.ajax({
+						    url: CONFIG.basePath+ '/api/pandwork/service_sold_out',
+							async: false,
+							data: params,
+							dataType: "json",
+							type: 'post',
+						    success: function(res){
+								console.log('上架数据'+JSON.stringify(res.data));
+								mui.toast(res.message);
+								if(status==2){
+									trattap(2); //调用切换函数
+								}else{
+									trattap(4); //调用切换函数
+								}
+							},
+							error: function(xhr, type, errorThrown){
+							   mui.toast('服务器响应失败');
+						    }
+					    });
+			        },
+			        //上架接口函数
+			        shanjia:function(serverid){
+			        	var params = {
+						token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+					    status:2,   //2上架 
+					    id:serverid, //服务id
+				       };
+				       mui.ajax({
+						    url: CONFIG.basePath+ '/api/pandwork/service_sold_out',
+							async: false,
+							data: params,
+							dataType: "json",
+							type: 'post',
+						    success: function(res){
+								console.log('上架数据'+JSON.stringify(res.data));
+								mui.toast(res.message);
+								trattap(4); //调用切换函数
+								
+							},
+							error: function(xhr, type, errorThrown){
+							   mui.toast('服务器响应失败');
+						    }
+					    });
+			        },
+			        //初始化
+                    InitMain: function() {
+                    	var _this = this;
+                    	var param = {
+					      pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,  //用户id
+						  pageIndex:_this.page,    //页码从1开始
+                          pageSize:_this.pageSize,  //每页的数量
+                          serviceStatus:_this.serviceStatus,   //出售中查看
+						};
+						mui.ajax({
+						    url: CONFIG.basePath+ '/api/pandwork/pand_service_list',
+							async: false,
+						    data: param,
+						    dataType: "json",
+						    type: 'post',
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+							success: function(res){
+								console.log('出售中数据列表'+JSON.stringify(res.data));
+								_this.serverlist=res.data;
+								if(res.data.length>=10){
+								  _this.loadflag=true;
+								}else{
+								  _this.loadflag=false;
+								}
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+                    }
+			      },
+		});
+		//添加宝贝
+		 document.getElementById("imgbutton").addEventListener("tap", function() {
+            mui.openWindow({
+				url: "publishingservice.html",
+				id: "publishingservice.html"
+		    })
+		 });
+		//修改价格取消事件
+		mui(".pricebtn").on("tap", ".pricecan", function(e) {
+			mui("#PindanOnePopover").popover('toggle', document.getElementById("div"));
+		});
+		//修改价格确定事件
+		mui(".pricebtn").on("tap", ".pricesure", function(e) {
+			var params = {
+				token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+			    id:vm.serverxianjaiid, //要修改服务id
+			    servicePrice:document.getElementById("servprice").value, //要修改的服务价格
+		       };
+		       mui.ajax({
+				    url: CONFIG.basePath+ '/api/pandwork/service_update_price',
+					async: false,
+					data: params,
+					dataType: "json",
+					type: 'post',
+				    success: function(res){
+						console.log('修改价格数据'+JSON.stringify(res.data));
+						mui.toast(res.message);
+						trattap(2); //调用切换函数
+						mui("#PindanOnePopover").popover('toggle', document.getElementById("div"));
+					},
+					error: function(xhr, type, errorThrown){
+					   mui.toast('服务器响应失败');
+				    }
+			    });
+			
+		});
+		//查询分类
+	   mui(".mui-scroll").on("tap", ".mui-control-item", function(e) {
+				var targetTab = this.getAttribute('data-wid');
+				trattap(targetTab); //调用切换函数
+		});
+		//切换选项
+		function trattap(targetTab){
+			  vm.serverlist=[];
+		      vm.page=1;
+			  vm.serviceStatus=targetTab;
+			   var param = {
+			      pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,  //用户id
+				  pageIndex:vm.page,
+		          pageSize:vm.pageSize,
+		          serviceStatus:vm.serviceStatus,
+				};
+				mui.ajax({
+					    url: CONFIG.basePath+ '/api/pandwork/pand_service_list',
+						async: false,
+					    data: param,
+					    dataType: "json",
+					    type: 'post',
+						beforeSend: function(){
+							plus.nativeUI.showWaiting();
+						},
+						complete: function(){
+							plus.nativeUI.closeWaiting();
+						},
+						success: function(res){
+							console.log('下架列表'+JSON.stringify(res.data))
+							vm.serverlist=res.data;
+							if(res.data.length>=10){
+							  vm.loadflag=true;
+							  mui('#pullrefresh').pullRefresh().refresh(true);
+							}else{
+							  vm.loadflag=false;
+							}
+							
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+					});
+		}
+		//上拉加载更多
+		function pullupRefresh() {
+			setTimeout(function() {
+				console.log("上拉加载执行");
+				//这里面true为没有更多数据 false表示有更多数据，下次可以继续下拉。
+				if(vm.loadflag){
+				  addData();
+				  mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+				 
+				}else{
+				  mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+				}
+				
+			}, 1000);
+		}
+		//获取数据
+		function addData() {
+			vm.page++;
+			var param = {
+				pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,  //用户id
+			    pageIndex:vm.page,    //页码
+	            pageSize:vm.pageSize,  //每页请求的数量
+	            serviceStatus:vm.serviceStatus,
+			};
+			mui.ajax({
+				url: CONFIG.basePath+ '/api/pandwork/pand_service_list',
+				async: false,
+				data: param,
+				dataType: "json",
+				type: 'post',
+				beforeSend: function(){
+					plus.nativeUI.showWaiting();
+				},
+				complete: function(){
+					plus.nativeUI.closeWaiting();
+				},
+			    success: function(res){
+					console.log('加载滚蛋列表'+JSON.stringify(res.data));
+					vm.serverlist = vm.serverlist.concat(res.data);
+					if(res.data.length>=10){
+						vm.loadflag=true;
+					}else{
+						vm.loadflag=false;
+					}
+								
+				},
+				error: function(xhr, type, errorThrown){
+					mui.toast('服务器响应失败');
+				}
+			});
+		}
+   
+	</script>
+</html>

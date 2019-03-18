@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的认证</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style type="text/css">
+		#mui-content{
+			background-color: #ffffff;
+		}
+		.realname{
+			width: 100%;
+			height: 44px;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		.realname input{
+			border: 0; 
+			width: 81.5%;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+		}
+		.realname span{
+			font-size: 14px;
+			color: #333333;
+		}
+	
+		.certificatetype{
+			width: 100%;
+			height: 44px;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		.certificatetype div{
+			border: 0;
+			width: 78.5%;
+			height: 40px;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+			float: right;
+		}
+		.certificatetype span{
+			font-size: 14px;
+			color: #333333;
+		}
+		
+		.realnames{
+			width: 100%;
+			height: 44px;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		.realnames input{
+			border: 0;
+			width: 70%;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+		}
+		.realnames span{
+			font-size: 14px;
+			color: #333333;
+		}
+		
+		.certificatetypes{
+			width: 100%;
+			height: 44px;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		.certificatetypes div{
+			border: 0;
+			width: 86%;
+			height: 40px;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+			float: right;
+		}
+		.certificatetypes span{
+			font-size: 14px;
+			color: #333333;
+		}
+		
+		
+		#showCityPicker3{
+			width: 100%;
+			height: 44px;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		#showCityPicker3 div{
+			border: 0;
+			width: 81%;
+			height: 40px;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+			float: right;
+		}
+		#showCityPicker3 span{
+			font-size: 14px;
+			color: #333333;
+		}
+		
+		  .imageup{ width:100px; height: 36px; line-height:36px;} 
+            .identification{
+            	width: 100%;
+            	padding: 0px 20px 0px 20px;
+            	margin-top: 25px;
+            }
+         #identificationphoto{
+         width: 160px;
+         height: 95px;
+         float: left;
+        
+         }
+         #identificationphotos{
+         	 width: 160px;
+         height: 95px;
+         float: left;
+         }
+         #identificationphotose{
+         	width: 100%;
+         	height: 185px;
+         	
+         }
+         #agreement{
+         	margin-left: 30px;
+         	margin-top: 10px;
+         }
+         .agreementiimg{
+         	width: 13px;
+         	height: 13px;
+         }
+         #agreementsapn{
+         	font-size: 12px;
+         	color: #999999;
+         	margin-left: 20px;
+         }
+         #agreementspanh{
+         	font-size: 12px;
+         	color: #FF413A;
+         }
+         .sumbtn{text-align: center;}
+         .submitapplications{
+         	width: 80%;
+         	height:40px;
+         	line-height: 30px;
+         	border-radius:50px ;
+         	color: #ffffff;
+         	background: linear-gradient(to right,  #FF413A , #FF9849);
+         	border: 0;
+         	margin: 8px 0px;
+         }
+         .mui-checkbox input[type=checkbox]{
+         	position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    display: inline-block;
+		    width: 15px;
+		    height: 15px;
+		    border: 0;
+		    outline: 0!important;
+		    background-color: transparent;
+		    -webkit-appearance: none;
+         }
+        .mui-checkbox input[type=checkbox]:before{
+        	font-size: 17px;
+        }
+        .mui-checkbox input[type=checkbox]:checked:before{
+        	color: #FF413A;
+        }
+        #userRealname{
+        	border: 0;
+        	width: 81%;
+        	text-align: right;
+        	height: 38px;
+        	font-size: 12px;
+        	padding: 0;
+        }
+        #userRealnamezjh{
+        	border: 0;
+        	width: 73%;
+        	text-align: right;
+        	height: 38px;
+        	font-size: 12px;
+        	padding: 0;
+        }
+        #userRealnamexb{
+        	border: 0;
+        	width: 90%;
+        	text-align: right;
+        	height: 38px;
+        	font-size: 12px;
+        	padding: 0;
+        }
+       
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">我的认证</h1>
+		</header>
+		<div id="mui-content" class="mui-content">
+
+			<div class="realname">
+				<span>真实姓名</span>
+				<input id="userRealname" type="text" placeholder="成阳" />
+			</div>
+			  <div id="realname" class="certificatetype">
+			  	<span>证件类型</span>
+			  	<input id="userRealname" type="text" placeholder="身份证" />
+			  </div>  
+			<div class="realname">
+				<span>请输入证件号</span>
+				<input id="userRealnamezjh" type="text" placeholder="410825199562623236"  />
+			</div>
+			<div id="realname" class="certificatetypes">
+			  	<span>性别</span>
+			  	<input id="userRealnamexb" type="text" placeholder="男" />
+			  	
+			  </div> 
+			  <div id="realname" class="certificatetype">
+			  	<span>选择地区</span>
+			  	<input id="userRealname" type="text" placeholder="上海上海市青浦区" />
+			  </div>
+            <div id="realname" class="realname">
+				<span>详细地址</span>
+				<input id="userRealname" type="text" placeholder="东方庭园4支弄125号" />
+			</div>
+			<div class="identification">
+				<img id="identificationphoto"  src="../../images/pand/identitycardpositive.png" class="imageup">
+				<img id="identificationphotos"  src="../../images/pand/identitycardreverse.png" class="imageup">
+				<img id="identificationphotose"  src="../../images/pand/identitycardhand.png" class="imageup">
+			</div>
+		
+
+		</div>
+		
+		
+	</body>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+</html>

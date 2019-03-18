@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>店铺详情</title>
+		<link rel="stylesheet" href="../../css/mui.min.css">
+	</head>
+	<style>
+		.mui-slider-item img{
+			height: 180px;
+		}	
+		.details{
+			width: 100%;
+			height: 158px;
+		    overflow：hidden
+		}
+		.details img{
+			width: 100%;
+			height: 158px;
+			float: left;
+		
+		}
+		#header{
+			 background-color: rgba(0,0,0,0);
+			 border: 0;
+			 box-shadow: 0 0px rgb(0,0,0,0);
+		}
+       #headera{
+       	color: #ffffff;
+       }
+       #headerh{
+       	color: #ffffff;
+       }
+       .detailstop{
+       	width: 344px;
+       	height: 104px;
+       	background-color: #ffffff;
+       	border-radius: 10px;
+       	float: left;
+       	position: relative;
+        left: 4%;
+        bottom: 100px;
+         box-shadow: #dadada 1px 1px 5px 1px
+       }
+       #sliderSegmentedControl{
+       	margin: 0;
+       }
+       #detailstopimg{
+       	 width: 70px;
+       	 height: 70px;
+       	 float: left;
+       	margin-top: 16px; 
+       	margin-left: 15px;
+       }
+       .detailsname{
+       	font-size: 14px;
+       	color: #333333;
+       	float: left;
+       	width: 236px;
+       	margin-top: 28px;
+        margin-left: 15px
+       }
+       .detailsnuber{
+       	font-size: 12px;
+       	color: #333333;
+       	float: left;
+       	margin-top: 11px;
+        margin-left: 15px;
+       }
+       .detailszixun{
+       	width: 20px;
+       	height: 25px;
+       	float: right;
+       	margin-right: 17px;
+       	margin-top: -8px;
+       }
+       .detailszixun img{
+       	width: 16px;
+       	height: 15px;
+       	float: right;
+       	margin-right: 1px;
+       }
+       .detailszixun span{
+       	font-size: 10px;
+       	color: #FF6269;
+       	float: right;
+       	
+       }
+       #gooding{
+       	background-color: #ffffff;
+       }
+       #slider{
+       	top:175px
+       }
+       /*评价*/
+      	.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+			
+			.mui-slider-img-content {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				color: #fff;
+				line-height: 22px;
+				padding: 10px;
+				background-color: rgba(0, 0, 0, .6);
+			}
+			
+			#goTop {
+				width: 40px;
+				height: 40px;
+				position: fixed;
+				bottom: 80px;
+				right: 5%;
+				border-radius: 50%;
+				border: 1px solid #EFEFF4;
+				text-align: center;
+				line-height: 40px;
+				box-shadow: 1px 1px 1px #888888;
+				background: white;
+				z-index: 20;
+				opacity: 0.8;
+			}
+			
+			#goTop a {
+				color: #E02D26;
+				font-weight: bold;
+			}
+			
+			.hide {
+				display: none;
+			}
+			
+			
+			
+			.mui-icon-arrowdown:hover {
+				color: #858182;
+			}
+			
+			.mui-icon-arrowup:hover {
+				color: #858182;
+			}
+			
+			.BoxDetailser {
+				border-bottom: 1px solid #E7E7E7;
+			}
+			
+			.BoxDetailsTop {
+				height: 50px;
+			}
+			
+			.BoxDetailsTopImg {
+				float: left;
+				height: 40px;
+				width: 40px;
+				border-radius: 50%;
+				margin-top: 5px;
+				margin-left: 10px;
+			}
+			
+			.BoxDetailsTopName {
+				float: left;
+				height: 50px;
+				line-height: 50px;
+				margin-left: 10px;
+				font-size: 13px;
+			}
+			
+			.BoxDetailsTopTime {
+				float: right;
+				font-size: 12px;
+				color: #858182;
+				height: 50px;
+				line-height: 50px;
+				margin-right: 10px;
+			}
+			
+			.BoxDetailsContent {
+				margin-top: 5px;
+				padding: 0px 10px 0px 10px;
+				font-size: 12px;
+			}
+			
+			.BoxDetailsImg {
+				margin: 10px;
+				overflow: hidden;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img.BoxDetailsImgItem {
+				float: left;
+				width: 95px;
+				height: 95px;
+				margin: 0px 5px 5px 0px;
+			}
+			
+			.BodDetailsKuanshi {
+				padding: 0px 10px 10px 10px;
+				font-size: 12px;
+				color: #A3A3A3;
+			}
+			.mui-segmented-control.mui-scroll-wrapper {
+				height: 50px;
+				margin-top: 30px;
+			}
+			#top-scroll{
+				width: 80%;
+			    margin: 10%;
+			    margin-top: 0px;
+			    margin-bottom: 0px;
+			   border-radius:14px;
+			    border:1px solid #FF9849;
+			    display: flex;
+			}
+			#top-scroll .mui-control-item{
+				flex: 1;
+				font-size: 12px;
+				color:#FF413A;
+				 border-radius:14px;
+			}
+			#top-scroll .mui-control-item.mui-active {
+				border-bottom:none;
+				color: #FFFFFF;
+				background: linear-gradient(to right,  #FF413A , #FF9849);
+			}
+			
+			.mui-bar a {
+				color: #E02D26;
+			}
+				
+			.mui-icon-star {
+				color: #B5B5B5;
+				font-size: 22px;
+			}
+			
+			.mui-icon-star-filled {
+				color: #FF413A;
+				font-size: 22px;
+			}
+			
+			.mui-inline {
+				font-size: 12px;
+				color: #333333;
+				margin-right: 5px;
+			}
+			
+			.BoxTop {
+				height: 60px;
+				background: white;
+				border-top: 1px solid #EEEEEE;
+				border-bottom: 1px solid #EEEEEE;
+			}
+			
+			.BoxTopImg {
+				height: 40px;
+				height: 40px;
+				margin: 10px 10px 0px 10px;
+				float: left;
+			}
+			
+			.BoxTopShopName {
+				font-size: 13px;
+				line-height: 60px;
+			}
+			
+			.BoxEvaluateContent {
+				height: 120px;
+			}
+			
+			#txt_EvaluateContent {
+				height: 100%;
+				border: none;
+				font-size: 13px;
+				margin-bottom: 0px;
+				padding: 10px;
+			}
+			
+			#BoxUploadImg {
+				height: 130px;
+				width: 100%;
+				background: white;
+				border: 1px solid white;
+			}
+			
+			.BoxUploadDiv {
+				width: 110px;
+				height: 110px;
+				border: 1px dashed #C7C7CC;
+				margin: 10px;
+				text-align: center;
+				padding-top: 10px;
+			}
+			
+			.BoxUploadIcon {
+				font-size: 60px;
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadIcon:hover {
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadFont {
+				font-size: 13px;
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadShopScore {
+				height: 40px;
+				background: white;
+				margin-top: 8px;
+				line-height: 40px;
+			}
+			
+			.BoxUploadShopScoreIcon {
+				color: #797979;
+				padding-left: 10px;
+			}
+			
+			.BoxUploadShopScoreFont {
+				color: black;
+				font-size: 13px;
+			}
+			
+			.BoxUploadLevel {
+				background: white;
+				border: 1px solid white;
+				flex: auto;
+			}
+			
+			.mui-content-padded {
+				vertical-align: bottom;
+				font-size: 13px;
+				color: #8f8f94;
+				margin: 5px 10px;
+			}
+			
+			.icons {
+				margin-left: 6px;
+			}
+			
+			.BoxFooter {
+				width: 100%;
+				height: 60px;
+			}
+			
+			#btn_Evaluate {
+				height: 45px;
+				width: 94%;
+				background: #E02D26;
+				color: white;
+				font-size: 15px;
+				border-radius: 5px;
+				line-height: 45px;
+				text-align: center;
+				margin: 10px auto;
+			}
+			
+			.mui-icon-home:hover {
+				color: black;
+			}
+			
+			.BoxUploadShopScoreFont:hover {
+				color: black;
+			}
+			.zonfeng{display: flex;border-bottom:10px solid #F7F7F7;padding: 10px;}
+			.zonfeng-num{width:100px;border-right:1px solid #DDDDDD;}
+			.zonfeng-nums{color:#FF413A;font-size: 24px;padding: 20px 0px;text-align: center;}
+			.zonfeng-title{color:#333333;font-size: 12px;text-align: center;}
+			.realname{
+			width: 100%;
+			height: auto;
+			border-bottom: 1px solid #DDDDDD;
+			line-height: 44px;
+			padding: 0px 15px 0px 15px;
+		}
+		/*.realname input{
+			border: 0; 
+			width: 78.5%;
+			font-size: 12px;
+			color: #333333;
+			text-align:right;
+		}*/
+		.realname span{
+			font-size: 14px;
+			color: #333333;
+		}
+		.niubikelazi{
+			border: 0; 
+			width: 78.5%;
+			font-size: 12px;
+			color: #333333;
+			
+			float: right;
+			
+		}
+		/*服务*/
+		.collectimg{
+				width: 70px;
+				height: 70px;
+				float: left;
+			
+			}
+			.collectimg img{
+				width: 80px;
+				height: 70px;
+				
+			}
+			.collectr{
+				float: right;
+			}
+			.mui-test{
+				font-size: 14px;
+				color: #333333;
+				margin-left: 12px;
+				
+			}
+			
+			.mui-time{
+				font-size: 10px;
+				color: #666666;
+				float: left;
+				margin-top: 3px;
+				margin-left: 12px;
+			}
+			
+			.mui-collectb{
+				height: 20px;
+				margin-top: 30px;
+				margin-left: 12px;
+			}
+			.mui-qian{
+				font-size: 18px;
+				color: #FF413A;
+			}
+			.mui-qian-icon{
+				font-size: 10px;
+				color: #FF413A;
+			}
+			.mui-collectnuber{
+				font-size: 10px;
+				color: #999999;
+			}
+			#OA_task_2{
+				margin-top: 0;
+				width: 78%;
+				float: right;
+				min-height: 470px;
+			}
+			#mui-btn{
+				font-size:14px ;
+			}
+			#cemian{
+				width: 22%;
+				min-height: 470px;
+				margin-bottom: 0;
+				background-color: #F7F7F7;
+				float: left;
+			}
+			#item1mobile{background-color: #F7F7F7;}
+			#mui-table-view-cell{
+				padding: 15px 0px 12px 12px;
+				border-bottom: 1px solid #EEEEEE;
+			}
+			.cemians{
+				height: 41px;
+				font-size: 12px;
+				color: #333333;
+				text-align: center;
+				line-height: 41px;
+			}
+			#cemian>.active{
+				background-color: #ffffff;
+			}
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+				border-bottom: 2px solid #FF413A;
+				color:#666666;
+			}
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item{
+				padding: 0 35px;
+			}
+			.Box {
+				margin-bottom: 1px;
+				margin-top: 1px;
+			}
+			
+			.BoxTop {
+				height: 50px;
+				width: 100%;
+				background: white;
+			}
+			
+			.BoxTopImg {
+				width: 16px;
+			    height: 16px;
+			    float: left;
+			    margin: 16px 10px;
+			}
+			
+			.BoxTopShopName {
+				float: left;
+				line-height: 50px;
+				font-size: 13px;
+			}
+			
+			.BoxTopRightIcon {
+				line-height: 50px;
+				font-size: 16px;
+				color: black;
+				padding-left: 5px;
+			}
+			
+			.BoxTopRightStatus {
+				line-height: 50px;
+				font-size: 13px;
+				color: black;
+				padding-right: 10px;
+				color: #E02D26;
+			}
+			
+			.BoxTopRightStatus:hover {
+				color: #E02D26;
+			}
+			
+			.BoxDetails {
+				width: 100%;
+				background: #fff;
+				display: flex;
+				padding: 0px 10px;
+			}
+			
+			.BoxDetailsCenter {
+				flex:auto;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+			}
+			
+			.BoxDetailsCenterName {
+				color: black;
+				font-size: 13px;
+				margin-top: 10px;
+				line-height: 20px;
+				max-height: 60px;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+			}
+			
+			.BoxDetailsCenterDesc {
+				font-size: 13px;
+				color: #A9A9A9;
+				margin-top: 3px;
+			}
+			
+			.BoxDetailsRight {
+				float: left;
+			}
+			
+			.BoxDetailsRightMoney {
+				font-size: 13px;
+				color: black;
+				text-align: right;
+				margin-right: 10px;
+				margin-top: 10px;
+			}
+			
+			.BoxDetailsRightCount {
+				font-size: 13px;
+				color: black;
+				text-align: right;
+				margin-right: 10px;
+				color: #A9A9A9;
+			}
+			.boxprice{display: flex;}
+			.boxpricedel{color: #FF413A;font-size: 10px;}
+			.boxpricedel span{font-size: 18px;}
+			.boxxinxin{margin-top: 5px;}
+			.noseach{background: #ffffff;padding: 150px 0px;}
+			.noimg{text-align: center;margin-bottom: 10px;}
+			.noimg img{width:82px;height:62px;}
+			.notext{text-align: center;color: #666666;font-size: 12px;}
+	</style>
+	<body>	
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a id="headera" class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 id="headerh" class="mui-title">商家详情</h1>
+		</header>
+	<div id="app">	
+	    <div class="details">
+			<img src="../../images/pand/details.png"/>
+			<div class="detailstop">
+				<img id="detailstopimg" :src="shopinfo.roundImg" />
+				<span class="detailsname" v-text="shopinfo.shopName">
+					李富（搬运工35元/小时）
+				</span>
+				<span class="detailsnuber">
+					<i style="font-style: normal;" v-text="shopinfo.orderTotal"></i>单
+				</span>
+				<span class="detailsnuber">
+					综合平分：<i style="font-style: normal;" v-text="shopinfo.orderTotal"></i>
+				</span>
+				<div class="detailszixun" @click="chatshan(shopinfo.shopTel)"> 
+					<img src="../../images/pand/consult.png"/>
+					<span>咨询</span>
+				</div>
+			</div>
+	    </div>
+			<div  class="mui-content gooding">
+				<div id="slider" class="mui-slider mui-fullscreen"> 
+					<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+						<div class="titleList">
+							<a class="mui-control-item  mui-active "  @click="slider(0)" data-id="0" > 服务 </a> 
+							<a class="mui-control-item "  @click="slider(1)" data-id="1" >评价</a>
+							<a class="mui-control-item "  @click="slider(2)" data-id="2" >商家</a>
+						</div> 
+					</div> 
+					<div class="mui-slider-group"> 
+					<!--服务-->
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active" v-if="menustatus==0"> 
+						<div class="mui-scroll-wrapper"> 
+							<div class="mui-scroll"> 
+							    <div id="cemian">
+							    	<div  :class="skill=='skill_all' ? 'cemians active':'cemians'"  @click="skillclick('skill_all',$event)" data-id="skill_all">全部</div>
+									<div v-for="(item, index) in skills" :class="skill==item.id ? 'cemians active':'cemians'" @click="skillclick(item.id,$event)"  data-id="item.id" v-text="item.title"></div>
+								</div>
+								<div id="OA_task_2" class="serverlist">
+								<div class="" v-show="!noserverlist">	
+					            <div class="Box" v-for="(item, index) in newsList" @click="serverdetail(item.id)">
+									<div class="BoxDetails">
+										<img style="width:70px;height:70px;" class="BoxDetailsImg" :src="item.shoperInfo.shopImg">
+										<div class="BoxDetailsCenter">
+											<div class="BoxDetailsCenterName" v-text="item.serviceTilte">幕墙清洁幕墙清洁幕墙清洁幕墙清洁幕墙清洁幕墙清洁幕墙清洁 </div>
+											<div class="boxxinxin">
+												<p class="boxjuli">
+													<span style="font-size: 12px;color:#666666;"><i style="font-style: normal;" v-text="item.serviceTimeLength"></i>分钟上门</span>
+												</p>
+											</div>
+											<div class="boxprice">
+												<p class="boxpricedel" style="margin-right: 20px;">
+													¥<span  v-text="item.servicePrice">60</span>
+												</p>
+												<p class="boxnum" style="color: #999999;font-size: 10px;">
+													已售<span v-text="item.serviceTotal">20</span>
+												</p>
+											</div>
+										</div>
+					                </div>
+				                </div>
+				                </div>
+				               <!--收藏列表为空的时候判断-->
+						       <div class="noseach" v-show="noserverlist">
+						       	   <div class="noimg">
+						       	   	  <img style="width:100px;" src="../../images/pand/noseach.png" />
+						       	   </div>
+						       	   <p class="notext">啊哦，暂时没有相关服务哦~</p>
+						       </div>
+				              </div> 
+				           </div>    
+						</div>
+						
+					</div> 
+					
+					<!--评价--> 
+		<div  id="item2mobile" class="mui-slider-item mui-control-content" v-if="menustatus==1">
+			<div class="mui-scroll-wrapper"> 
+				<div class="mui-scroll"> 
+					<div class="mui-content" style="background-color: #ffffff;">
+					<div class="zonfeng">
+						<div class="zonfeng-num">
+							<div class="zonfeng-nums" v-text="shopinfo.orderTotal">4.91</div>
+							<div class="zonfeng-title">综合评分</div>
+						</div>
+						<div class="BoxUploadLevel">
+							<div class="mui-content-padded">
+								<div class="mui-inline">描述相符</div>
+								<div class="icons mui-inline">
+									<i :class="flag1>=1 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag1>=2 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag1>=3 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag1>=4 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag1>=5 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+								</div>
+								<span v-text="flag1" style="vertical-align:-3px;color: #FF413A;">4.98</span>
+							</div>
+							<div class="mui-content-padded">
+								<div class="mui-inline">服务态度</div>
+								<div class="icons mui-inline">
+									<i :class="flag2>=1 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag2>=2 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag2>=3 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag2>=4 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag2>=5 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+								</div>
+								<span v-text="flag2" style="vertical-align:-3px;color: #FF413A;">4.98</span>
+							</div>
+							<div class="mui-content-padded">
+								<div class="mui-inline">工作效率</div>
+								<div class="icons mui-inline">
+									<i :class="flag3>=1 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag3>=2 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag3>=3 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag3>=4 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+									<i :class="flag3>=5 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+								</div>
+								<span v-text="flag3" style="vertical-align:-3px;color: #FF413A;">4.98</span>
+							</div>
+					  </div>
+			    </div>
+			    <div class="boxcontent">
+			    	<div class="" v-show="!nopinjialist">
+						<div class="BoxDetailser" v-for="(item, index) in pinlist">
+							<div class="BoxDetailsTop">
+								<img style="height:40px;width:40px;" class="BoxDetailsTopImg" :src="item.issuser.userHeadpng" />
+								<div class="BoxDetailsTopName" v-text="item.issuser.userNickname">鱼儿</div>
+							</div>
+							<div class="BoxDetailsContent" v-text="item.comment">
+								
+							</div>
+							<div class="BoxDetailsImg" >
+								<img v-for="(items, index) in item.images" class="BoxDetailsImgItem" data-desc="" data-content="" data-preview-src="" data-preview-group="1" :src="items.imgUrl" />
+							</div>
+							<div class="BodDetailsKuanshi" v-text="item.createTime">2017.12.16</div>
+						</div>
+					</div>
+					<!--收藏列表为空的时候判断-->
+			       <div class="noseach" style="padding:70px 0px;" v-show="nopinjialist">
+			       	   <div class="noimg">
+			       	   	  <img style="width:100px;" src="../../images/pand/noseach.png" />
+			       	   </div>
+			       	   <p class="notext">啊哦，暂时没有相关评价哦~</p>
+			       </div>
+				   </div>
+ 		         </div>
+		        </div> 
+	        </div> 
+       </div> 
+						
+		<!--商家--> 
+		<div id="item3mobile"  class="mui-slider-item mui-control-content" v-if="menustatus==2"> 
+			<div class="mui-scroll-wrapper"> 
+				<div class="mui-scroll"> 
+					<div class="realname">
+						<span>服务简介</span>
+					    <div class="niubikelazi"  v-text="shopinfo.shopDes">
+                         	专业小时工、家具拆装、家具搬运、物品打包
+                        </div>
+					</div>
+					<div class="realname">
+						<span>所在地址</span>
+						<div class="niubikelazi"  >
+                         	上海市青浦区朱家角镇复兴路88弄4支弄125号
+                        </div>
+					</div>
+					<div class="realname">
+						<span>资质证明</span>
+						<div class="niubikelazi"  >
+                         	**一级技师
+                        </div>
+					</div>
+						<div class="realname">
+							<span>服务时间</span>
+							<div class="niubikelazi"  v-text="shopinfo.shopTime">
+	                         08:00-22:00
+	                        </div>
+						</div>
+					</div> 
+		    </div> 
+	    </div> 
+    </div>
+     <div id="pullrefresh" style="display: none;">
+                	
+     </div>
+   </div>
+	</body>
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/config.js" ></script>
+	    <script type="text/javascript" src="../../js/app.js" ></script>
+	    <script>
+	    	mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						auto: false, //默认false.自动上拉加载一次
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh,
+					}
+				},
+				keyEventBind: {
+					backbutton: true //开启back按键监听  
+				}
+			});
+	    	var vm=new Vue({
+			el: '#app',
+			data: {
+				shopinfo:[],   //店铺信息
+				servicelist:[],    //服务列表
+				pandUserId:"",    //发布者id
+				skills:[],   //店铺服务列表
+				newsList:[], //服务列表
+				page: 1,  //页码从1开始计算
+                pageSize: 10,  //每页显示总条数 默认10
+                loadflag:false, //代表没有更多数据加载
+                skill:"", //技能选中标志
+                pinlist: [],   //评论全部数据
+                flag1: 4,    //技术评论
+			    flag2: 4,    //物流服务
+			    flag3: 4,    //服务态度
+			    menustatus:0,   //菜单栏状态
+			    noserverlist:true,   //无服务结果显示
+			    nopinjialist:true,   //无评价结果显示
+			},
+			mounted: function(){
+				this.$nextTick(function(){
+					var _this = this;
+					mui.plusReady(function(){
+						_this.InitPage();
+						 //默认查看全部服务列表
+				        _this.skillclick('skill_all');
+					})
+				})
+			},
+			methods: {
+				//咨询商家
+				chatshan:function(id){
+					if(id){
+						var btnArray=['拨打','取消'];
+			            var phone=id;
+			            mui.confirm('是否拨打'+phone+'?','提示',btnArray,function(e){
+			                if(e.index == 0){
+			                    plus.device.dial(phone,false);
+			                }
+				        });
+					}else{
+						mui.toast('商家未绑定手机号');
+					}
+					
+				},
+				//查看服务详情
+				serverdetail:function(id){
+					mui.openWindow({
+					url: "/model/order/orderdetails/orderdetails.html",
+					id: "orderdetails.html",
+					extras: {
+		                serverid: id,
+		            }
+				   })	
+				},
+				//查询服务列表事件
+				skillclick:function(id, e){
+					var _this = this;
+					_this.skill=id;
+					_this.page=1;    //初始化页码
+					_this.newsList=[];  //初始化列表
+					var params = {
+					    pageIndex:_this.page,   //页码
+					    pageSize:_this.pageSize,   //一页为10个
+					    serviceTypeId:id,  //技能id
+					    pandUserId:_this.pandUserId,
+				     };
+				     mui.ajax({
+					    url: CONFIG.basePath+ '/api/pandwork/pand_service_list',
+						async: false,
+						data: params,
+						dataType: "json",
+						type: 'post',
+					    success: function(res){
+							console.log('默认查看全部服务列表'+JSON.stringify(res.data));
+							_this.newsList=res.data;
+							if(res.data.length==0){
+							  _this.noserverlist=true;
+							}else{
+							  _this.noserverlist=false;
+							}
+							if(res.data.length>=10){
+							  _this.loadflag=true;
+							  mui('#pullrefresh').pullRefresh().refresh(true);
+							}else{
+							  _this.loadflag=false;
+							}
+							
+						},
+						error: function(xhr, type, errorThrown){
+						   mui.toast('服务器响应失败');
+					    }
+				    });
+				},
+				slider:function(id){
+					var _this = this;
+					_this.menustatus=id;
+					 mui('#pullrefresh').pullRefresh().refresh(true);
+					 _this.pinliest();
+				},
+				InitPage: function(){
+					 var _this = this;
+					 var sData = plus.webview.currentWebview();
+	                   	_this.pandUserId=sData.pandUserId;
+	                 var params = {
+					     pandUserId:_this.pandUserId,   //发布者id	   
+				       };
+				    mui.ajax({
+					    url: CONFIG.basePath+ '/api/pandwork/shop_detail',
+						async: false,
+						data: params,
+						dataType: "json",
+						type: 'post',
+					    success: function(res){
+							console.log('查看店铺详情'+JSON.stringify(res.data));
+							_this.shopinfo=res.data;
+						},
+						error: function(xhr, type, errorThrown){
+						   mui.toast('服务器响应失败');
+					    }
+				    });
+				    mui.ajax({
+					    url: CONFIG.basePath+ '/api/pandwork/shop_detail',
+						async: false,
+						data: params,
+						dataType: "json",
+						type: 'post',
+					    success: function(res){
+							console.log('加载店铺技能列表'+JSON.stringify(res.data.skills));
+							_this.skills=res.data.skills;
+						},
+						error: function(xhr, type, errorThrown){
+						   mui.toast('服务器响应失败');
+					    }
+				    });
+				    
+				   
+				},
+				//加载评价列表数据
+				pinliest:function(){
+					var _this = this;
+					_this.page=1;
+					var paramer = {
+					        pageIndex:_this.page,   //页码
+						    pageSize:_this.pageSize,   //一页为10个
+						    pandUserId:_this.pandUserId, //店铺发布服务者id
+				       };
+				     mui.ajax({
+					    url: CONFIG.basePath+ '/api/freeuser/comment_list',
+						async: false,
+						data: paramer,
+						dataType: "json",
+						type: 'post',
+					    success: function(res){
+							console.log('加载评价列表'+JSON.stringify(res.data.skills));
+							if(res.result==1){
+							   _this.pinlist=res.data;
+							    if(res.data.length==0){
+								  _this.nopinjialist=true;
+								}else{
+								  _this.nopinjialist=false;
+								}
+							   if(res.data.length>=10){
+								  _this.loadflag=true;
+								  mui('#pullrefresh').pullRefresh().refresh(true);
+								}else{
+								  _this.loadflag=false;
+								}
+							}
+						},
+						error: function(xhr, type, errorThrown){
+						   mui.toast('服务器响应失败');
+					    }
+				    });  
+				}
+			 }
+		   });
+		   //上拉加载更多
+			function pullupRefresh() {
+				setTimeout(function() {
+					console.log("上拉加载执行");
+					//这里面true为没有更多数据 false表示有更多数据，下次可以继续下拉。
+					if(vm.menustatus==0){
+						if(vm.loadflag){
+						addData();
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+						}else{
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						}
+					}else if(vm.menustatus==1){
+						if(vm.loadflag){
+						  addDataer();
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+						}else{
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						}
+					}
+					
+				}, 1000);
+			};
+			//获取数据
+			function addData() {
+				vm.page++;
+				var param = {
+				    pageIndex:vm.page,   //页码
+				    pageSize:vm.pageSize,   //一页为10个
+				    serviceTypeId:vm.skill,  //技能id
+				    pandUserId:vm.pandUserId,
+			     };
+				mui.ajax({
+					url: CONFIG.basePath+ '/api/pandwork/pand_service_list',
+					async: false,
+					data: param,
+					dataType: "json",
+					type: 'post',
+					beforeSend: function(){
+						plus.nativeUI.showWaiting();
+					},
+					complete: function(){
+						plus.nativeUI.closeWaiting();
+					},
+				    success: function(res){
+						console.log('加载订单列表'+JSON.stringify(res.data));
+						vm.newsList = vm.newsList.concat(res.data);
+						if(res.data.length>=10){
+							vm.loadflag=true;
+						}else{
+							vm.loadflag=false;
+						}
+									
+					},
+					error: function(xhr, type, errorThrown){
+						mui.toast('服务器响应失败');
+					}
+				});
+			};
+			//获取数据
+			function addDataer() {
+				vm.page++;
+				var paramer = {
+					    pageIndex:vm.page,   //页码
+						pageSize:vm.pageSize,   //一页为10个
+						pandUserId:vm.pandUserId, //店铺发布服务者id
+				    };
+				     mui.ajax({
+					    url: CONFIG.basePath+ '/api/freeuser/comment_list',
+						async: false,
+						data: paramer,
+						dataType: "json",
+						type: 'post',
+					    success: function(res){
+							console.log('加载评价列表'+JSON.stringify(res.data));
+							if(res.result==1){
+							   vm.pinlist = vm.pinlist.concat(res.data);
+								if(res.data.length>=10){
+									vm.loadflag=true;
+								}else{
+									vm.loadflag=false;
+								}
+							}
+						},
+						error: function(xhr, type, errorThrown){
+						   mui.toast('服务器响应失败');
+					    }
+				    });  
+			}
+			(function ($) { 
+				//阻尼系数 
+				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+				$('.mui-scroll-wrapper').scroll({
+					bounce: false, indicators: true,
+					//是否显示滚动条 
+					deceleration: deceleration 
+				}); 
+				
+			})(mui);
+			
+			//判断是否显示更多评论类型
+			//思路：获取所有小类型的长度 装类型的盒子必须大于90并且所有小类型宽度的总和要大于屏幕宽度的2倍
+			var BoxTopItemWidth = 0;
+			var width = document.documentElement.clientWidth || document.body.clientWidth;
+			mui(".BoxTopItem").each(function(e) {
+				BoxTopItemWidth += $(this).width() + 32;
+			})
+			if($(".BoxTop").height() == 80 && BoxTopItemWidth > width*2)
+				$("#More").css("display", "block");
+			else
+				$("#More").css("display", "none");
+		    		
+	    </script>
+</html>

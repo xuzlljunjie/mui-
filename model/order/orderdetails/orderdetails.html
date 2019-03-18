@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>商品详情</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../../css/icons-extra.css">
+		<link rel="stylesheet" href="../../../fonts/mui-icons-extra.ttf">
+		<style type="text/css">
+			.mui-content { 
+				margin-bottom: 60px;
+				background: white;
+			}
+			
+			#Topslider {
+				height: 180px;
+			}
+			
+			.mui-bar a {
+				color: #E02D26;
+			}
+			
+			.mui-slider-item img {
+				height: 100%;
+			}
+			
+			.mui-slider-indicator .mui-indicator {
+				height: 0px;
+				width: 0px;
+				box-shadow: initial;
+				margin-right: 30px;
+				color: #ddd;
+			}
+			
+			.footer {
+				z-index: 10;
+				border-top: 1px solid #DDDDDD;
+				width: 100%;
+				height: 50px;
+				margin: 0 auto;
+				background: white;
+				position: fixed;
+				bottom: 0px;
+			}
+			
+			.footer-left {
+				width: 65%;
+				float: left;
+				height: 50px;
+				line-height: 50px;
+			}
+			
+			.footer-right {
+				width: 30%;
+				float: left;
+				height: 35px;
+				text-align: center;
+				line-height: 35px;
+				color: white;
+				background: linear-gradient(to right,  #FF413A , #FF9849);
+				border-radius: 18px;
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+			
+			.footer-left1 {
+				width: 90%;
+				float: left;
+			}
+			
+			.footer-left2 {
+				text-align: center;
+				width: 35%;
+				float: left;
+				background: #F2BAC7;
+			}
+			
+			.footer-left-font {
+				font-size: 12px;
+				line-height: 25px;
+				color: #666666;
+			}
+			
+			.footer-left-font2 {
+				font-size: 14px;
+				color: white;
+			}
+			
+			.footer-left-icondiv {
+				float: left;
+				width: 33.33%;
+				text-align: center;
+				
+			}
+			
+			.footer-left-icon {
+				height: 25px;
+				line-height: 35px;
+			}
+			
+			.mui-icon-home:before {
+				font-size: 22px;
+				color: #E02D26;
+			}
+			
+			.icon-shoucang:before {
+				content: "\e612";
+				font-size: 18px;
+				color: #E02D26;
+			}
+			
+			.icon-service:before {
+				content: "\e7bb";
+				font-size: 23px;
+				color: #E02D26;
+			}
+			
+			.footer-left-money {
+				font-size: 17px;
+				color: white;
+			}
+			
+			.footer-left-money:hover {
+				color: white;
+			}
+			
+			.money {
+				height: 45px;
+				line-height: 45px;
+				background: white;
+			}
+			
+			.top-money {
+				font-size: 12px;
+				margin-left: 10px;
+				color: #FF413A;
+				font-weight: bold;
+			}
+			
+			.primaryMoney {
+				padding-left: 80px;
+				color: #999999;
+				font-size: 10px;
+				
+			}
+			
+			.top-money-right {
+				color: #858585;
+				font-size: 11px;
+				padding-right: 10px;
+			}
+			
+			.name {
+				max-height: 60px;
+				background: white;
+				display: flex;
+				padding:10px;
+			}
+			.nametitle{
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+				width:280px;
+				margin-right: 15px;
+				font-size: 14px;
+				color:#333333;
+			}
+			.nameshare{
+				flex: auto;
+				color:#999999;
+				font-size: 10px;
+				padding-left: 15px;
+				
+			}
+			
+			
+			.titleTop {
+				border-top: 8px solid #EFEFF4;
+			}
+			
+			.pindan_num {
+				color: #333333;
+				font-size: 14px;
+			}
+			
+			.pindan_num:hover {
+				color: black;
+			}
+			
+			.seemore {
+				margin-right: 20px;
+				color: #858585;
+				font-size: 13px;
+			}
+			
+			.seemore:hover {
+				color: #858585;
+			}
+			
+			.seeall {
+				margin-right: 20px;
+				color: #FF413A;
+				font-size: 12px;
+			}
+			
+			.seeall:hover {
+				color: #858585;
+			}
+			
+			
+			/*--*/
+			
+			.mui-icon-home:before {
+				color: #858585;
+			}
+			
+			.detail {
+				float: left;
+				background: #fceae9;
+				margin: 10px 0px 0px 10px;
+				padding: 5px 10px 3px 10px;
+				border-radius: 5px;
+				overflow: hidden;
+				font-size: 12px;
+				color: #858585;
+			}
+			
+			
+			.pingjiaItem {
+				float: left;
+				height: 25px;
+				line-height: 25px;
+				width: 100%;
+				margin-top: 10px;
+			}
+			
+			.pingjiaImg {
+				width: 25px;
+				height: 25px;
+				border-radius: 50%;
+				float: left;
+				margin-left: 10px;
+			}
+			
+			.pingjiaName {
+				border-radius: 50%;
+				float: left;
+				margin-left: 5px;
+				font-size: 13px;
+			}
+			
+			.pingjiaTime {
+				font-size: 12px;
+				margin-right: 10px;
+				color: black;
+			}
+			
+			.pingjiaContent {
+				font-size: 12px;
+				padding: 3px 10px;
+				float: left;
+				width: 100%;
+				height: auto;
+			}
+			
+			.kuanshi {
+				font-size: 12px;
+				padding: 5px 10px;
+				float: left;
+				width: 100%;
+				height: auto;
+				color: #858585;
+				border-bottom: 1px solid #EFEFF4;
+			}
+			
+			.shopDetails {
+				float: left;
+				width: 100%;
+				border-bottom: 1px solid #EFEFF4;
+			}
+			
+			.shopDetailsContent {
+				float: left;
+				padding: 10px;
+				font-size: 12px;
+				width: 95%;
+			}
+			.shopImgItems {
+				width: 100%;
+			}
+			.time {
+				font-size: 11px;
+				color: #8f8f94;
+			}
+			
+			#goTop {
+				width: 40px;
+				height: 40px;
+				position: fixed;
+				bottom: 80px;
+				right: 5%;
+				border-radius: 50%;
+				border: 1px solid #EFEFF4;
+				text-align: center;
+				line-height: 40px;
+				box-shadow: 1px 1px 1px #888888;
+				background: white;
+				z-index: 20;
+				opacity: 0.8;
+			}
+			
+			#goTop a {
+				color: #E02D26;
+				font-weight: bold;
+			}
+			
+			.hide {
+				display: none;
+			}
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			.mui-icon-star-filled {
+				color: #FF413A;
+			}
+			</div>
+		</style>
+ 
+	</head>
+ 
+	<body>
+		<header id="header" class="mui-bar mui-bar-transparent">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title"></h1>
+		</header>
+		<div class="mui-content" id="serverlist">
+			<!--轮播图片-->
+			<!--轮播图片-->
+			<div id="Topslider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<div v-for="(item, index) in servicedetails.images" :class="index == 0 ? 'mui-slider-item mui-slider-item-duplicate':'mui-slider-item'" >
+						<a href="#">
+							<img style="height: 350px;width: 100%;" :src="item.imgUrl">
+						</a>
+					</div>
+					<div v-for="(item, index) in servicedetails.images" :class="index == servicedetails.images.length ? 'mui-slider-item mui-slider-item-duplicate':'mui-slider-item'" >
+						<a href="#">
+							<img style="height: 350px;width: 100%;" :src="item.imgUrl">
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div v-for="(item, index) in servicedetails.images" :class="index == 0 ? 'mui-indicator mui-active':'mui-indicator'" ></div>
+				</div>
+			</div>
+			<div class="name">
+				<div class="nametitle" v-text="servicedetails.serviceTilte">马桶维修 水路管路安装改造更新工程维</div>
+				<div class="nameshare" onclick="shareHref()"><span style="font-size: 10px;" class="mui-icon-extra mui-icon-extra-share"></span>分享</div>
+			</div>
+			<div class="money">
+				<span class="top-money">￥<em style="font-size: 18px;font-style:normal;" v-text="servicedetails.servicePrice"></em><a class="primaryMoney">已售<em v-text="servicedetails.serviceTotal"></em>笔</a></span>
+			</div>
+			<ul class="mui-table-view titleTop pjBottmBorder">
+				<li class="mui-table-view-cell">
+					<div class="mui-navigate-right" style="margin-top:3px">
+						<a class="pindan_num">用户评价(<em style="font-style: normal;" v-text="pinlistlength"></em>)</a>
+						<a class="mui-pull-right seeall" v-show="pinflag">查看全部</a>
+					</div>
+				</li>
+			</ul>
+			<div class="pingjiaAll" >
+				<div class="pingjiaList" v-show="pinflag">
+					<div class="pingjiaItem">
+						<img class="pingjiaImg" :src="pinlist.userHeadpng">
+						<div class="pingjiaName" v-text="pinlist.userNickname">淋湿的诺言</div>
+						<a class="mui-pull-right pingjiaTime" v-text="pinlist.createTime">2018.4.10</a>
+					</div>
+					<div class="pingjiaContent" v-text="pinlist.comment" >
+						非常满意已经种下了，静等发芽了期待
+					</div>
+				</div>
+				<div class="pingjiaList" v-show="!pinflag">
+					<div class="pingjiaContent" style="text-align: center;padding: 10px;">
+						用户暂无评价
+					</div>
+				</div>
+			</div>
+			
+			<ul class="mui-table-view titleTop shopDetails">
+				<li class="mui-table-view-cell">
+					<div style="margin-top:3px">
+						<a class="pindan_num">商品详情</a>
+					</div>
+				</li>
+			</ul>
+			<div class="shopDetailsContent" v-text="servicedetails.serviceDes">
+				
+			</div>
+			 <div class="footer">
+			<div class="footer-left">
+				<div id="messageList1" class="footer-left1 order-item mui-bar-tab">
+					<div class="footer-left-icondiv" id="btn_Tab_gotoHome">
+						<div class="footer-left-icon">
+							<a class="mui-icon  mui-icon-settings"></a>
+						</div>
+						<div class="footer-left-font">店铺</div>
+					</div>
+					<div class="footer-left-icondiv result_item" :id="servicedetails.pandUserId" :data-name='servicedetails.serviceTilte'>
+						<div class="footer-left-icon">
+							<a class="mui-icon  mui-icon-chat"></a>
+						</div>
+						<div class="footer-left-font">联系商家</div>
+					</div>
+					<div class="footer-left-icondiv" id="btn_Tab_Shoucang">
+						<div class="footer-left-icon" id="collectflag">
+							<a  class="mui-icon  mui-icon-star"></a>
+						</div>
+						<div class="footer-left-font">收藏</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			<div id="btn_Tab_GoPingdan" class="footer-right">
+				<div class="footer-left-font2">立即购买</div>
+			</div>
+		  </div>
+		</div>
+		</div>
+		  
+		
+			
+		<!--以下div勿删 定位使用-->
+		<div id="div"></div>
+		<div id="goTop">
+			<a class="mui-icon mui-icon-arrowthinup"></a>
+		</div>
+ 
+		<script src="../../../js/vue.min.js"></script>
+	    <script src="../../../js/mui.min.js"></script>
+	    <script src="../../../js/jquery.min.js"></script>
+	    <script type="text/javascript" src="../../../js/mui.zoom.js"></script>
+		<script type="text/javascript" src="../../../js/mui.previewimage.js"></script>
+		<script type="text/javascript" src="../../../chatmessage/common.js" ></script>
+		<script type="text/javascript" src="../../../chatmessage/friends.js" ></script>
+	    <script type="text/javascript" src="../../../js/app.js" ></script>
+	    <script type="text/javascript" src="../../../js/config.js" ></script>
+		<script>
+			mui.init();
+			var mask=mui.createMask();
+			 mask.show();
+			mui.plusReady(function() {
+				plus.nativeUI.showWaiting();
+			});
+			var vm = new Vue({
+		          el: '#serverlist',
+		          data: {
+		           servicedetails:[], //服务详情列表
+		           serverid:"",      //服务id
+		           pinlist:[],   //评价列表
+                   pinlistlength:0,  //评价数量
+                   pinflag:false,    //评价列表是否显示
+                   collectid:"",  //收藏id
+                   pandUserId:"",  //发布服务者id
+		          },
+				updated:function(){
+		                var slider = mui("#Topslider");
+							slider.slider({
+							interval: 1000
+						});
+					    mui.previewImage();
+		            },
+				  mounted: function () {
+				        var _this = this;
+				      	this.$nextTick(function() {
+				      	mui.plusReady(function(){
+				            _this.InitMain();
+				         })
+				      }) 
+					},
+		          methods: {
+			           //初始化
+                       InitMain: function() {
+                       	var _this = this;
+                       	  var sData = plus.webview.currentWebview();
+                       	  _this.serverid=sData.serverid;
+                       	  var params = {
+							  id:_this.serverid,  //服务id 
+						    };
+						   mui.ajax({
+							    url: CONFIG.basePath+ '/api/pandwork/service_detail',
+								async: false,
+							    data: params,
+							    dataType: "json",
+							    type: 'post',
+								success: function(res){
+									console.log('服务详情列表'+JSON.stringify(res.data))
+									_this.servicedetails=res.data;
+									_this.pandUserId=res.data.pandUserId;
+								},
+								error: function(xhr, type, errorThrown){
+									mui.toast('服务器响应失败');
+								}
+							});
+							var param = {
+							  serviceId:_this.serverid,  //服务id
+							   pageIndex:1,
+                               pageSize:10,
+						    };
+						    mui.ajax({
+							    url: CONFIG.basePath+ '/api/freeuser/comment_list',
+								async: false,
+							    data: param,
+							    dataType: "json",
+							    type: 'post',
+								success: function(res){
+									console.log('评论列表'+JSON.stringify(res.data))
+									mask.close();
+									 plus.nativeUI.closeWaiting();
+									if(res.data.length>0){
+										_this.pinlist={
+											userHeadpng:res.data[0].issuser.userHeadpng,
+											userNickname:res.data[0].issuser.userNickname,
+											comment:res.data[0].comment,
+											createTime:res.data[0].createTime,
+										};
+										_this.pinlistlength=res.data.length;
+										_this.pinflag=true;
+
+									}else{
+										_this.pinlist={
+											userHeadpng:'',
+											userNickname:'',
+											comment:'',
+											createTime:'',
+										};
+										_this.pinlistlength=0;
+										_this.pinflag=false;
+									}
+								},
+								error: function(xhr, type, errorThrown){
+									mui.toast('服务器响应失败');
+								}
+							});
+						  //开始检测是否否收藏
+						  var parame = {
+							  token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+							  pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+                              serviceId: _this.serverid,    //服务id
+						   };
+						   mui.ajax({
+							    url: CONFIG.basePath+ '/api/panduser/collection_flag',
+								async: false,
+							    data: parame,
+							    dataType: "json",
+							    type: 'post',
+								success: function(res){
+									console.log('检测是否收藏'+res.data);
+									_this.collectid=res.data;
+									 
+									if(res.data){
+										$('#collectflag').find('a').addClass('mui-icon-star-filled').removeClass('mui-icon-star');
+										_this.collectid=res.data;
+									}
+								
+								},
+								error: function(xhr, type, errorThrown){
+									mui.toast('服务器响应失败');
+								}
+							});
+                       },
+		            }
+		    });
+			mui.init();
+			$("#goTop").addClass("hide");
+			//查看全部评价
+			mui(".mui-table-view").on("tap", ".seeall", function() {
+				mui.openWindow({
+					url: "CommentDetails.html",
+					id: "CommentDetails.html",
+					extras: {
+		                serverid: vm.serverid,
+		            }
+				})
+			})
+			//进店铺
+			document.getElementById("btn_Tab_gotoHome").addEventListener("tap", function() {
+			    mui.openWindow({
+					url: "../../shop/shopfordetails.html",
+					id: "shopfordetails.html",
+					extras:{
+		                pandUserId:vm.pandUserId,
+		            }
+			    })
+			})
+			//点击立即购买
+			mui("#btn_Tab_GoPingdan").on("tap", ".footer-left-font2", function() {
+				if(!localStorage.getItem('token')){
+					mui.openWindow({
+						url: "/model/login/login.html",
+						id: "login.html"
+				   })
+			      return;		
+				}
+				mui.openWindow({
+					url: "buydetails.html",
+					id: "buydetails.html",
+					extras: {
+		                serverid: vm.serverid,
+		            }
+				})
+			})
+//			//收藏
+//			document.getElementById("btn_Tab_Shoucang").addEventListener("tap", function() {
+//				mui.alert("收藏");
+//			})
+			//客服
+			mui('#messageList1').on('tap','.result_item',function(){
+				if(localStorage.getItem('userinfo')){
+					var tid = this.getAttribute('id');
+					var fname = this.getAttribute('data-name');
+					var userList=JSON.parse(localStorage.getItem('userList'));
+					var meInfo=JSON.parse(localStorage.getItem('meInfo'));
+			     var params = {userId:tid};
+					mui.ajax({
+						url: CONFIG.basePath+ '/api/system/get_rongcloud_token',
+						async: false,
+				        data: params,
+				        dataType: "json",
+				        type: 'post',
+						success: function(res){
+							console.log('融云token'+JSON.stringify(res.data));
+							if(res.result==1){
+								userList[res.data.userId]={
+										targetId: res.data.userId,
+										imageUrl:res.data.headImg,
+										userName:res.data.name,
+										userLevel:res.data.name
+							        }
+								localStorage.setItem('rightimg',res.data.headImg);
+									var da=res.data.userId.replace(/\"/g, "");
+									meInfo[res.data.userId]={
+									  da:res.data.token,
+									}
+									localStorage.setItem('userList',JSON.stringify(userList));
+									localStorage.setItem('meInfo',JSON.stringify(meInfo))
+									mui.openWindow({
+									id: 'message_talk_info',
+									url: '/model/order/message/message_talk_info.html',
+									extras: {
+										targetId: tid,
+										targetName:fname
+									},
+									waiting:{
+										autoShow:false
+									}
+								});
+							}else{
+								mui.toast(res.message);
+							}
+									
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+					});
+				}else{
+					mui.openWindow({
+						url: "/model/login/login.html",
+						id: "login.html"
+				   })
+				}
+				
+			});
+//			document.getElementById("testC").addEventListener("tap", function() {
+//				var item={
+//					"name":"潘多拉客服",
+//					"chatUser":"",
+//					"headImg":"../../../images/pand/tou.png",
+//					"lastAsk":"你好，我是商家客服想问有什么需要帮助的吗？",
+//					"dataTime":"12:31",
+//					"dataDay":"05-01"
+//				}
+//				mui.openWindow({
+//					url: "chat.html",
+//					id: "chat.html",
+//					extras: {
+//		                chatObj: item
+//		              }
+//				})
+//			})
+			
+			
+			//判断是否收藏
+			mui('#btn_Tab_Shoucang').on('tap', '.mui-icon', function() {
+				if(!localStorage.getItem('token')){
+					mui.openWindow({
+						url: "/model/login/login.html",
+						id: "login.html"
+				   })
+			      return;		
+				}
+				if(this.classList.contains("mui-icon-star-filled")) {
+					this.classList.remove('mui-icon-star-filled');
+					this.classList.add('mui-icon-star');
+					//取消收藏
+					var parama = {
+					    token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+                        id: vm.collectid,    //收藏id
+					};
+					mui.ajax({
+					    url: CONFIG.basePath+ '/api/panduser/collection_delete',
+						async: false,
+					    data: parama,
+					    dataType: "json",
+						type: 'post',
+						beforeSend: function(){
+						   plus.nativeUI.showWaiting();
+						},
+						complete: function(){
+						  plus.nativeUI.closeWaiting();
+						},
+						success: function(res){
+							console.log('取消收藏'+res.data)
+							mui.toast('取消成功');
+							vm.collectid="";		
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+				    });
+				} else {
+					this.classList.remove('mui-icon-star');
+					this.classList.add('mui-icon-star-filled');
+					//开始收藏
+					 var param = {
+					    token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+					    pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+                        serviceId: vm.serverid,    //服务id
+					};
+				    mui.ajax({
+					    url: CONFIG.basePath+ '/api/panduser/collection_save',
+						async: false,
+					    data: param,
+					    dataType: "json",
+						type: 'post',
+						beforeSend: function(){
+						   plus.nativeUI.showWaiting();
+						},
+						complete: function(){
+						  plus.nativeUI.closeWaiting();
+						},
+						success: function(res){
+							console.log('开始收藏'+res.data)
+							mui.toast('收藏成功');
+							vm.collectid=res.data;		
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+				    });
+				}
+			});
+			//回到顶部
+			document.getElementById("goTop").addEventListener("tap", function() {
+				mui.scrollTo(0, 100);
+			})
+ 
+			//返回顶部按钮在顶部不显示 一定距离后显示
+			var scrollToTopBox = document.getElementById('goTop');
+			window.addEventListener('scroll', function(e) {
+				if(window.pageYOffset >= window.innerHeight && scrollToTopBox.classList.contains('hide')) {
+					scrollToTopBox.classList.remove('hide');
+				} else if(window.pageYOffset < window.innerHeight && !scrollToTopBox.classList.contains('hide')) {
+					scrollToTopBox.classList.add('hide');
+				}
+			});
+			
+			mui.plusReady(function() {  
+			updateSerivces();
+			if (plus.os.name == "Android") {
+				Intent = plus.android.importClass("android.content.Intent");
+				File = plus.android.importClass("java.io.File");
+				Uri = plus.android.importClass("android.net.Uri");
+				main = plus.android.runtimeMainActivity();
+			}
+		})
+		/**
+		 * 更新分享服务
+		 */
+		function updateSerivces() {
+			plus.share.getServices(function(s) {
+				shares = {};
+				for (var i in s) {
+					var t = s[i];
+					shares[t.id] = t;
+				}
+			 	outSet("获取分享服务列表成功");
+			}, function(e) {
+				outSet("获取分享服务列表失败：" + e.message);
+			});
+		}
+		/**
+		 * 分享操作
+		 */
+		function shareAction(id, ex) {
+			console.log('id = ' + id);
+			console.log('ex = ' + ex);
+			console.log('shares[id]' + shares[id]);
+			var s = null;
+			if (!id || !(s = shares[id])) {
+				outLine("无效的分享服务！");
+				return;
+			}
+			if (s.authenticated) {
+				outSet("---已授权---");
+				shareMessage(s, ex);
+			} else {
+				outSet("---未授权---");
+				s.authorize(function() {
+					shareMessage(s, ex);
+				}, function(e) {
+					outLine("认证授权失败");
+				});
+			}
+		}
+		/**
+		 * 发送分享消息
+		 */
+		function shareMessage(s, ex) {
+			var msg = {
+				content: '分享-详情',
+				href: '/model/order/orderdetails/orderdetails.html',
+				title: vm.servicedetails.serviceTilte,
+				content: vm.servicedetails.serviceDes,
+				thumbs: [vm.servicedetails.issuser.userHeadpng],
+				pictures: [vm.servicedetails.issuser.userHeadpng],
+				extra: {
+					scene: ex
+				}
+			};
+			s.send(msg, function() {
+				outLine("分享成功!");
+			}, function(e) {
+				outLine("分享失败!");
+			});
+		}
+		/**
+		 * 分享按钮点击事件
+		 * 注意这里的这些id值
+		 */
+		function shareHref() {
+			var ids = [{
+					id: "weixin", 
+					ex: "WXSceneSession"  /*微信好友*/
+				}, {
+					id: "weixin",
+					ex: "WXSceneTimeline" /*微信朋友圈*/
+				}, {
+					id: "qq"   /*QQ好友*/
+				},{
+					id: "tencentweibo"   /*腾讯微博*/
+				},{
+					id: "sinaweibo"  /*新浪微博*/
+				}],
+				bts = [{
+					title: "发送给微信好友"
+				}, {
+					title: "分享到微信朋友圈"
+				}, {
+					title: "分享到QQ"
+				}, {
+					title: "分享到腾讯微博"
+				}, {
+					title: "分享到新浪微博"
+				}];
+			plus.nativeUI.actionSheet({
+					cancel: "取消",
+					buttons: bts
+				},
+				function(e) {
+					var i = e.index;
+					console.log('i = ' + i);
+					if (i > 0) {
+						shareAction(ids[i - 1].id, ids[i - 1].ex);
+					}
+				}
+			);
+		}		
+		// 控制台输出日志
+		function outSet(msg) {
+			console.log(msg);
+		}
+		// 界面弹出吐司提示
+		function outLine(msg) {
+			mui.toast(msg);
+		}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>个人中心</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: white;
+			}
+			
+			#top {
+				width: 96%;
+				height: 120px;
+				margin: 7px auto;
+				border-radius: 5px;
+			}
+			
+			#top .acc_manager {
+				width: 20%;
+				font-size: 15px;
+				float: right;
+				text-align: center;
+				height: 30px;
+				margin-top: 35px;
+				color: #333333;
+			}
+			
+			#mui-icon-gear .mui-icon-gear {
+				font-weight: bold;
+			}
+			
+			.mui-icon-gear:before {
+				font-size: 20px;
+			}
+			
+			#top .top-info {
+				width: 70%;
+				height: 70px;
+				float: left;
+				margin-left: 20px;
+				margin-top: 30px;
+			}
+			
+			#top .top-info .top-info-img {
+				width: 30%;
+				height: 100%;
+				float: left;
+			}
+			
+			#top .top-info .top-info-name {
+				width: 70%;
+				height: 100%;
+				float: left;
+			}
+			
+			#top .top-info .top-info-img img {
+				width: 70px;
+				height: 70px;
+				border-radius: 50%;
+			}
+			
+			.user-name-box {
+				margin-left: 5px;
+				line-height: 35px;
+			}
+			
+			.user-id {
+				margin-left: 5px;
+				font-size: 10px;
+				color:#FF413A;
+				border:1px solid #FF413A;
+				width: 80px;
+                text-align: center;
+                border-radius: 9px;
+			}
+			
+			.user-name {
+				color: #333333;
+				font-size: 16px;
+			}
+			
+			.user-name:hover {
+				color: #333333;
+			}
+			
+			.user-lever {
+				color: #F9D50D;
+				font-weight: bold;
+				font-size: 15px;
+			}
+			
+			.user-lever:hover {
+				color: #FFFF00;
+			}
+			
+			.order-top {
+				margin: 15px 20px;
+				font-weight: bold;
+				font-size: 15px;
+			}
+			
+			.ft {
+				font-size: 12px;
+				color: #E02D26;
+				font-weight: bold;
+				display: initial;
+			}
+			
+			.bg {
+				height: 10px;
+				background: #EFEFF4;
+			}
+			
+			.mui-tab-label{
+				color: #FFFFFF;
+				background: linear-gradient(to right,  #FF413A , #FF9849);
+				border-radius: 10px;
+				font-size: 12px;
+				padding: 4px 10px;
+			}
+			#menuItem .mui-card-media img{width:15px;height:15px;}
+		    #menuItem .mui-media-body{margin-left: 25px;color:#333333;font-size: 14px;}
+		    #gologin{padding: 15px;}
+		</style>
+	</head>
+ 
+	<body>
+		<div class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div id="top">
+					<div id="btn_accountManager" class="acc_manager mui-pull-right">
+						<span class="mui-tab-label">商家入驻</span>
+					</div>
+					<div class="top-info">
+						<div class="top-info-img" id="go_photo">
+							<img src="../../images/pand/tou.png">
+						</div>
+ 
+						<div class="top-info-name" style="display: none;">
+							<div class="user-name-box">
+								<a class="user-name">鬼话连篇</a>
+							</div>
+							<div class="user-id">米米信用4.5</div>
+						</div>
+						<div class="top-info-name" id="gologin">
+							<div class="user-name-box">
+								<a class="user-name">登录/注册</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg"></div>
+				<div id="menuItem">
+					<div class="mui-card-header mui-card-media">
+						<img src="../../images/pand/order.png" />
+						<div class="mui-media-body">
+							我的订单
+						</div>
+					</div>
+					<div class="mui-card-header mui-card-media">
+						<img src="../../images/pand/collect.png" />
+						<div class="mui-media-body">
+							我的收藏
+						</div>
+					</div>
+					<div class="mui-card-header mui-card-media">
+						<img src="../../images/pand/jifen.png" />
+						<div class="mui-media-body">
+							我的积分
+						</div>
+					</div>
+					<div class="mui-card-header mui-card-media">
+						<img src="../../images/pand/zuji.png" />
+						<div class="mui-media-body">
+							我的足迹
+						</div>
+					</div>
+					<div class="mui-card-header mui-card-media" id="connection">
+						<img src="../../images/pand/chat.png" />
+						<div class="mui-media-body">
+							联系客服
+						</div>
+					</div>
+					<div class="mui-card-header mui-card-media">
+						<img src="../../images/pand/address.png" />
+						<div class="mui-media-body">
+							地址管理
+						</div>
+					</div>
+					<div class="mui-card-header mui-card-media">
+						<img src="../../images/pand/setting.png" />
+						<div class="mui-media-body">
+							设置
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script>
+			mui.init({
+			swipeBack:true //启用右滑关闭功能
+		   });
+			//菜单
+			mui(".mui-content").on("tap", ".mui-card-media", function() {
+				switch($(this).children()[1].innerHTML.trim()) {
+					case "我的订单":
+						mui.openWindow({
+							url: "../user/myorder/myorder.html",
+							id: "myorder.html"
+						})
+						break;
+					case "我的收藏":
+						mui.openWindow({
+							url: "../user/Collection/collection.html",
+							id: "collection.html"
+						})
+						break;
+					case "我的积分":
+						mui.openWindow({
+							url: "../user/Integral/integral.html",
+							id: "integral.html"
+						})
+						break;
+						case "我的足迹":
+						mui.openWindow({
+							url: "../user/Footprint/footprint .html",
+							id: "footprint .html"
+						})
+						break;
+//					case "联系客服":
+//						mui.openWindow({
+//							url: "../user/Service/service.html",
+//							id: "service.html"
+//						})
+//						break;
+					case "地址管理":
+						mui.openWindow({
+							url: "../user/Address/address.html",
+							id: "address.html"
+						})
+						break;
+					case "设置":
+						mui.openWindow({
+							url: "../user/AccountManager/AccountManager.html",
+							id: "AccountManager.html"
+						})
+						break;
+					
+					default:
+						break;
+				}
+			})
+			//商家入驻
+			document.getElementById("btn_accountManager").addEventListener("tap", function() {
+				mui.openWindow({
+					url: "../user/Entering/entering.html",
+					id: "entering.html"
+				})
+			})
+			//去登录
+			document.getElementById("gologin").addEventListener("tap", function() {
+				mui.openWindow({
+					url: "../login/login.html",
+					id: "login.html"
+				})
+			})
+			//点击头像跳转个人资料
+			document.getElementById("go_photo").addEventListener("tap", function() {
+				mui.openWindow({
+					url: "../user/AccountManager/AccountManager.html",
+					id: "AccountManager.html"
+				})
+			})
+			//点击拨打客服电话
+			document.getElementById("connection").addEventListener("tap",function(){
+			   var btnArray=['拨打','取消'];
+            var phone="13122222222";
+            mui.confirm('是否拨打'+phone+'?','提示',btnArray,function(e){
+                if(e.index == 0){
+                    plus.device.dial(phone,false);
+                }
+            });
+
+
+		})
+		</script>
+	</body>
+</html>

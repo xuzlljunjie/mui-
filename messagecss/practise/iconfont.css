@@ -1,0 +1,51 @@
+icon_msg
+@font-face {font-family: "iconfont";
+  src: url('../../fonts/iconfont.ttf') format('truetype'); 
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:24px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-wendang:before { content: "\e625"; }
+.icon-iconanswer:before { content: "\e600"; }
+.icon-iconback:before { content: "\e601"; }
+.icon-iconbanshou:before { content: "\e602"; }
+.icon-iconbenefits:before { content: "\e603"; }
+.icon-iconbest:before { content: "\e604"; }
+.icon-iconcalendar:before { content: "\e605"; }
+.icon-iconcamera:before { content: "\e606"; }
+.icon-iconchangecar:before { content: "\e607"; }
+.icon-iconcheckbox:before { content: "\e608"; }
+.icon-iconcoffee:before { content: "\e609"; }
+.icon-icondel:before { content: "\e60a"; }
+.icon-icondown:before { content: "\e60b"; }
+.icon-iconeye:before { content: "\e60c"; }
+.icon-iconfind:before { content: "\e60d"; }
+.icon-icongo:before { content: "\e60e"; }
+.icon-iconguanzhu:before { content: "\e60f"; }
+.icon-iconhistory:before { content: "\e610"; }
+.icon-iconhome:before { content: "\e611"; }
+.icon-iconmy:before { content: "\e613"; }
+.icon-iconoppose:before { content: "\e614"; }
+.icon-iconphone:before { content: "\e615"; }
+.icon-iconphoto:before { content: "\e616"; }
+.icon-iconradios:before { content: "\e617"; }
+.icon-iconright:before { content: "\e618"; }
+.icon-iconscreendown:before { content: "\e619"; }
+.icon-iconscreenup:before { content: "\e61a"; }
+.icon-iconsearch:before { content: "\e61b"; }
+.icon-iconservice:before { content: "\e61c"; }
+.icon-iconset:before { content: "\e61d"; }
+.icon-iconshare:before { content: "\e61e"; }
+.icon-iconsite:before { content: "\e61f"; }
+.icon-iconsupport:before { content: "\e620"; }
+.icon-iconup:before { content: "\e621"; }
+.icon-iconwait:before { content: "\e622"; }
+.icon-iconmessage:before { content: "\e612"; }
+.icon-iconplus:before { content: "\e623"; }
+.icon-iconmasterhome:before { content: "\e624"; }

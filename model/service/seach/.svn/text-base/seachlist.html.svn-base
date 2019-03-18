@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>搜索</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet">
+	</head>
+	<style>
+		   #search {
+				height: 50px;
+				
+			}
+			
+			.search_left {
+				width: 85%;
+				float: left;
+				padding: 10px 0px 10px 10px;
+			}
+			
+			.search_right {
+				width: 15%;
+				float: left;
+				text-align: left;
+				padding-left: 5px;
+				font-size: 13px;
+				line-height: 56px;
+				color: #FF413A;
+				text-align: center;
+			}
+			.mui-search .mui-placeholder {
+				font-size: 13px;
+				text-align: left;
+				padding-left: 10px;
+			}
+			.mui-content{background: #fff;}
+			input[type=search] {
+				    font-size: 13px;
+				   background: #F7F7F7;
+				   border-radius: 18px;
+				   margin-bottom: 0px;
+				}
+			.mui-search .mui-placeholder .mui-icon {
+			    font-size: 18px;
+			    color: #333;
+			}
+		#topItem{border-bottom:1px solid #DDDDDD;}
+		.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+		    color: #333333;
+		    border-bottom: 0px solid #fff;
+		    background: 0 0;
+		    font-weight: bold;
+          }
+          .mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+			    display: inline-block;
+			    padding:0px;
+			    border: 0;
+			    width: 25%;
+			}
+	      .Box {
+				margin-bottom: 5px;
+				margin-top: 5px;
+				border-bottom: 1px solid #DDDDDD;
+			}
+			
+			.BoxTop {
+				height: 50px;
+				width: 100%;
+				background: white;
+			}
+			
+			.BoxTopImg {
+				width: 16px;
+			    height: 16px;
+			    float: left;
+			    margin: 16px 10px;
+			}
+			
+			.BoxTopShopName {
+				float: left;
+				line-height: 50px;
+				font-size: 13px;
+			}
+			
+			.BoxTopRightIcon {
+				line-height: 50px;
+				font-size: 16px;
+				color: black;
+				padding-left: 5px;
+			}
+			
+			.BoxTopRightStatus {
+				line-height: 50px;
+				font-size: 13px;
+				color: black;
+				padding-right: 10px;
+				color: #E02D26;
+			}
+			
+			.BoxTopRightStatus:hover {
+				color: #E02D26;
+			}
+			
+			.BoxDetails {
+				width: 100%;
+				background: #fff;
+				display: flex;
+				padding: 0px 10px;
+			}
+			
+			.BoxDetailsImg {
+				width:80px;
+				height:70px;
+				margin-top: 13px;
+                margin-right: 15px;
+			}
+			
+			.BoxDetailsCenter {
+				flex:auto;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+			}
+			
+			.BoxDetailsCenterName {
+				color: black;
+				font-size: 13px;
+				margin-top: 10px;
+				line-height: 20px;
+				max-height: 60px;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+			}
+			
+			.BoxDetailsCenterDesc {
+				font-size: 13px;
+				color: #A9A9A9;
+				margin-top: 3px;
+			}
+			
+			.BoxDetailsRight {
+				float: left;
+			}
+			
+			.BoxDetailsRightMoney {
+				font-size: 13px;
+				color: black;
+				text-align: right;
+				margin-right: 10px;
+				margin-top: 10px;
+			}
+			
+			.BoxDetailsRightCount {
+				font-size: 13px;
+				color: black;
+				text-align: right;
+				margin-right: 10px;
+				color: #A9A9A9;
+			}
+			#refreshContainer{margin-top: -50px;padding: 10px;}
+			.boxxinxin{
+				display: flex;
+				margin-top: 5px;
+			}
+			.boxpingfen span{
+				color: #FF413A;
+			  width: 10px;
+			  height: 10px;
+			  margin-left: 2px;
+			}
+			.boxjuli{margin-left: 10px;}
+			.boxjuli span{color:#666666;font-size:10px;margin-right: 10px;}
+			.boxprice{display: flex;}
+			.boxpricedel{color: #FF413A;font-size: 10px;}
+			.boxpricedel span{font-size: 18px;}
+			.boxnum{font-size: 10px; color: #999999;margin-left: 20px;}
+			.mui-search:before{top:80%;}
+			input[type=search]{text-align: left;}
+			#goTop {
+				width: 40px;
+				height: 40px;
+				position: fixed;
+				bottom: 80px;
+				right: 5%;
+				border-radius: 50%;
+				border: 1px solid #EFEFF4;
+				text-align: center;
+				line-height: 40px;
+				box-shadow: 1px 1px 1px #888888;
+				background: white;
+				z-index: 20;
+				opacity: 0.8;
+			}
+			
+			#goTop a {
+				color: #E02D26;
+				font-weight: bold;
+			}
+			
+			.hide {
+				display: none;
+			}
+			.noseach{padding: 100px 0px;}
+			.noimg{text-align: center;margin-bottom: 10px;}
+			.noimg img{width:175px;height:124px;}
+			.notext{text-align: center;color: #666666;font-size: 12px;}
+	  </style>
+	<body>
+		 <header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">搜索</h1>
+		</header>
+		<div id="newslist" class="mui-content">
+			<div id="search">
+				<div class="search_left">
+					<div class="mui-input-row mui-search">
+						<input id="goSearch"  type="search" v-model="contents" class="mui-input-clear" placeholder=" ">
+					</div> 
+				</div>
+				<div class="search_right mui-action-back">取消</div>
+			</div>
+			<div id="topItem" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<a class='mui-control-item mui-active' href="#item1mobile" >综合</a>
+				<a class='mui-control-item' href="#item2mobile" >销量</a>
+			    <a class='mui-control-item' href="#item3mobile" >价格</a>
+				<a class='mui-control-item' href="#item4mobile" >筛选</a>
+			</div>
+			<!--下拉刷新容器-->
+            <div id="refreshContainer" v-show="!noseach" class="mui-content mui-scroll-wrapper">
+              <div class="mui-scroll">
+	            <div class="Box" v-for="(item, index) in newsList" @click="serverdetail(item.id)">
+					<div class="BoxDetails">
+						<img class="BoxDetailsImg" :src="item.shoperInfo.shopImg">
+						<div class="BoxDetailsCenter">
+							<div class="BoxDetailsCenterName" v-text="item.serviceTilte">幕墙清洁幕墙清洁幕墙清洁幕墙清洁幕墙清洁幕墙清洁幕墙清洁 </div>
+							<div class="boxxinxin">
+								<p class="boxpingfen">
+									<span class="mui-icon mui-icon-starhalf"></span>
+									<span class="mui-icon mui-icon-star"></span>
+									<span class="mui-icon mui-icon-star"></span>
+									<span class="mui-icon mui-icon-star"></span>
+									<span class="mui-icon mui-icon-star"></span>
+								</p>
+								<p class="boxjuli">
+									<span v-text="item.serviceStar">4.5</span>
+									<span ><i v-text="item.serviceTimeLength"></i>分钟</span>
+									<span ><i v-text="item.serviceDistance"></i>km</span>
+								</p>
+							</div>
+							<div class="boxprice">
+								<p class="boxpricedel">
+									¥<span v-text="item.servicePrice">60</span>
+								</p>
+								<p class="boxnum">
+									已售<span v-text="item.serviceTotal">20</span>
+								</p>
+							</div>
+						</div>
+					</div>
+			   </div>
+	         </div>
+	       </div>
+	       <!--下拉刷新容器结束-->
+	       <!--查询列表为空的时候判断-->
+	       <div class="noseach" v-show="noseach">
+	       	   <div class="noimg">
+	       	   	  <img src="../../../images/pand/noseach.png" />
+	       	   </div>
+	       	   <p class="notext">啊哦，暂时没有相关服务哦~</p>
+	       </div>
+		</div>
+		<!--以下div勿删 定位使用-->
+		<div id="div"></div>
+		<div id="goTop">
+			<a class="mui-icon mui-icon-arrowthinup"></a>
+		</div>
+	</body>
+	<script src="../../../js/vue.min.js"></script>
+	<script src="../../../js/mui.min.js"></script>
+	<script src="../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../js/app.js" ></script>
+	<script type="text/javascript" src="../../../js/config.js" ></script>
+	  <script type="text/javascript">
+        var vm = new Vue({
+          el: '#newslist',
+          data: {
+            newsList: [], //搜索列表数据
+            page: 1,  //页码从1开始计算
+            pageSize: 10,  //每页显示总条数 默认10
+            serviceTypeId:"", //技能id
+            contents:"",  //查询关键字
+            noseach:false,   //无结果显示
+          },
+		  mounted: function () {
+		      	 var _this = this;
+		      	 this.$nextTick(function() {
+		      	 mui.plusReady(function(){
+		            _this.InitMain();
+		         })
+		      	}) 
+			},
+          methods: {
+             //初始化
+             InitMain: function() {
+             	var _this = this;
+//              var sData = plus.webview.currentWebview();
+                _this.contents=localStorage.getItem('seachword');
+                _this.serviceTypeId=localStorage.getItem('serviceTypeId');
+            },
+            //查看服务详情
+            serverdetail:function(e){
+              mui.openWindow({
+					url: "/model/order/orderdetails/orderdetails.html",
+					id: "orderdetails.html",
+					extras: {
+		                serverid: e,
+		            }
+				})	
+            }
+          }
+        });
+        mui.init(
+            {
+                pullRefresh : {
+                    container:"#refreshContainer",
+                    down: {
+                    contentdown : "下拉刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+                    contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+                    contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+		              style:'circle',//必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+		              color:'#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+		              height:'50px',//可选,默认50px.下拉刷新控件的高度,
+		              range:'100px', //可选 默认100px,控件可下拉拖拽的范围
+		              offset:'0px', //可选 默认0px,下拉刷新控件的起始位置
+		              auto: true,//可选,默认false.首次加载自动上拉刷新一次
+                        auto: true,
+                        callback: pulltofresh
+                    },
+                    up: {
+                        contentdown : "正在加载...",
+                        callback: pushtoloadmore
+                    }
+                }
+            }
+        );
+       $("#goTop").addClass("hide");
+      function pulltofresh() {
+	      if(vm.page>1){
+	      	var wobj = plus.webview.getWebviewById("seachlist.html")
+		    wobj.reload(true);
+	      }
+            vm.page = 1;
+             
+            if(localStorage.getItem('seachtype')=='3368'){
+            	
+            	var params = {
+				  pageIndex:vm.page,  //页码从1开始计算 
+				  pageSize:vm.pageSize,  //每页总条数
+//				  contents:vm.contents,  //关键词
+				  serviceTypeId:vm.serviceTypeId,  //技能id
+			    };
+            }else{
+            	var params = {
+				  pageIndex:vm.page,  //页码从1开始计算 
+				  pageSize:vm.pageSize,  //每页总条数
+				  contents:vm.contents,  //关键词
+//				  serviceTypeId:vm.serviceTypeId,  //技能id
+			    };
+            }
+           
+      
+           mui.ajax({
+			    url: CONFIG.basePath+ '/api/pandwork/pand_service_list',
+				async: false,
+			    data: params,
+			    dataType: "json",
+			    type: 'post',
+				beforeSend: function(){
+					plus.nativeUI.showWaiting();
+				},
+				complete: function(){
+					plus.nativeUI.closeWaiting();
+				},
+				success: function(res){
+					console.log('编辑状态'+JSON.stringify(res.data))
+					vm.newsList=res.data;
+					if(res.data.length==0){
+						vm.noseach=true;
+						
+					}else{
+						vm.noseach=false;
+						
+					}
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+				},
+				error: function(xhr, type, errorThrown){
+					mui.toast('服务器响应失败');
+				}
+			});
+           
+        }
+        function pushtoloadmore() {
+            vm.page++;
+            if(localStorage.getItem('seachtype')=='3368'){
+            	var params = {
+				  pageIndex:vm.page,  //页码从1开始计算 
+				  pageSize:vm.pageSize,  //每页总条数
+//				  contents:vm.contents,  //关键词
+				  serviceTypeId:vm.serviceTypeId,  //技能id
+			    };
+            }else{
+            	var params = {
+				  pageIndex:vm.page,  //页码从1开始计算 
+				  pageSize:vm.pageSize,  //每页总条数
+				  contents:vm.contents,  //关键词
+//				  serviceTypeId:vm.serviceTypeId,  //技能id
+			    };
+            }
+             mui.ajax({
+			    url: CONFIG.basePath+ '/api/pandwork/pand_service_list',
+				async: false,
+			    data: params,
+			    dataType: "json",
+			    type: 'post',
+				beforeSend: function(){
+					plus.nativeUI.showWaiting();
+				},
+				complete: function(){
+					plus.nativeUI.closeWaiting();
+				},
+				success: function(res){
+					console.log('编辑状态'+JSON.stringify(res.data))
+					vm.newsList = vm.newsList.concat(res.data);
+					if(res.data.length==0){
+					  mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
+					}else{
+					  mui('#refreshContainer').pullRefresh().endPullupToRefresh(false);
+					}
+				},
+				error: function(xhr, type, errorThrown){
+					mui.toast('服务器响应失败');
+				}
+			});
+           
+        };
+    //监听搜索完成事件
+	document.getElementById("goSearch").addEventListener("keydown", function(e) {
+		if(13 == e.keyCode) { //点击了“搜索”  
+			document.activeElement.blur(); //隐藏软键盘 
+			//mui.alert("你搜索了：" + $("#goSearch").val());
+		   //vm.contents=$("#goSearch").val();
+		   var wobj = plus.webview.getWebviewById("seachlist.html")
+		   wobj.reload(true);
+		   localStorage.setItem('seachword',$("#goSearch").val());
+		   localStorage.setItem('seachtype','');
+		}
+	}, false);
+	
+	//回到顶部
+	document.getElementById("goTop").addEventListener("tap", function() {
+		mui.scrollTo(0, 100);
+	})
+ 
+	//返回顶部按钮在顶部不显示 一定距离后显示
+	var scrollToTopBox = document.getElementById('goTop');
+	window.addEventListener('scroll', function(e) {
+		if(window.pageYOffset >= window.innerHeight && scrollToTopBox.classList.contains('hide')) {
+			scrollToTopBox.classList.remove('hide');
+		} else if(window.pageYOffset < window.innerHeight && !scrollToTopBox.classList.contains('hide')) {
+			scrollToTopBox.classList.add('hide');
+		}
+	});
+    </script>
+</html>

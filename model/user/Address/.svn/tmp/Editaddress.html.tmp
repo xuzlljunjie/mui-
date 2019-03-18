@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>新增地址</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../../css/mui.picker.min.css" rel="stylesheet" />
+		
+	</head>
+	<style>
+		header img{
+				width: 9px;
+				height: 18px;
+				margin-top: 12px;
+			}
+		.mui-table-view-cell:after {
+			    position: absolute;
+			    right: 0;
+			    bottom: 0;
+			    left: 0px;
+			    height: 1px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color: #c8c7cc;
+			}
+			.mui-content>.mui-table-view:first-child{
+				margin-top: 0px;
+				border-bottom:9px solid #F7F7F7;
+				
+			}
+			.mui-table-view-cell {
+				padding: 12px 15px
+			}
+			#label{
+				font-size: 14px;
+				color: #333333;
+				line-height: 26px;
+				width:25%;
+			}
+			
+			.input{
+				font-size: 12px;
+		        margin-top: 5px;
+			}
+			#mui-input-row{
+				border-bottom: 1px solid #DDDDDD;
+				height: 46px;
+				
+			}
+			#serveaddress{
+				border-bottom: 1px solid #DDDDDD;
+				height: 46px;
+			}
+			#addres {
+				width:100%;
+				
+				
+			}
+			#personAddress{
+				font-size: 12px;
+				color: #333333;
+				margin-top: 14px;
+			} 
+				.mui-input-group{
+				padding-top: 44px;
+			}
+			#addres .addresbutton{
+				width:315px;
+				height: 40px;
+				text-align: center;
+				margin-left: 6.5%;
+				margin-top: 40px;
+				background: linear-gradient(to left,#FF9849 ,#FF413A );
+				border-radius: 50px; 
+				color: #ffffff;
+				border: 0;
+			}
+			#addres .addresbuttons{
+				width:315px;
+				height: 40px;
+				text-align: center;
+				margin-left: 6.5%;
+				margin-top: 15px;
+				border-radius: 50px; 
+				color: #FF9849;
+				border:1px solid #FF413A ;
+			}
+	</style>
+	<body>
+		<body>
+			<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">编辑地址</h1>
+		</header>
+<<<<<<< .mine
+		<div id="modifylist">
+		<form class="mui-input-group">
+=======
+		
+>>>>>>> .r328
+<<<<<<< .mine
+	    <div id="mui-input-row" class="mui-input-row">
+	        <label id="label">联系人:</label>
+	        <input style="width:75%" v-model="addresslist.personName" id="personName" class="input" type="text"  placeholder="请填写联系人姓名">
+	    </div>
+	     <div id="mui-input-row" class="mui-input-row">
+	        <label id="label">手机号:</label>
+	        <input style="width:75%" v-model="addresslist.personPhone" id="personPhone" class="input" type="text"   placeholder="请填写联系人手机号">
+	    </div>
+	
+	       <div id='serveaddress' class="mui-input-row" type='button'>
+	        <label id="label">服务地址:</label>
+	        	 <div  style="width:75%" v-text="addresslist.personAddress" id='personAddress'  class="ui-alert"  placeholder="请输入详细地址：例如8号楼101室">
+	        	 </div>
+	           </div>
+	           
+	         <div id="mui-input-row" class="mui-input-row">
+	        <label id="label">门牌号:</label>
+	        <input style="width:75%" v-model="addresslist.houseNumber" id="houseNumber" class="input" type="text"  placeholder="请输入详细地址：例如8号楼101室">
+	    </div>
+	 
+	    </div>
+	    <div id="addres">
+	    	 <button class="addresbutton" id="save" >保存地址</button>
+    	     <button class="addresbuttons" id="deladdress" >删除地址</button>
+	    </div>
+     </form>
+     </div>
+=======
+    <div id="mui-input-row" class="mui-input-row">
+        <label id="label">联系人:</label>
+        <input id="input" type="text"  placeholder="请填写联系人姓名">
+    </div>
+     <div id="mui-input-row" class="mui-input-row">
+        <label id="label">手机号:</label>
+        <input id="input" type="text" oninput="value=value.replace(/[^\d]/g,'')"  placeholder="请填写联系人手机号">
+    </div>
+
+       <div id='showCityPicker3' class="mui-input-row" type='button'>
+        <label id="label">服务地址:</label>
+
+        	 <div id='cityResult3' class="ui-alert"  placeholder="请输入详细地址：例如8号楼101室">
+        	 	
+        	 </div>
+           </div>
+           
+         <div id="mui-input-row" class="mui-input-row">
+        <label id="label">门牌号:</label>
+        <input id="input" type="text"  placeholder="请输入详细地址：例如8号楼101室">
+    </div>
+ 
+    </div>
+    <div id="addres">
+    	 <button class="addresbutton"  onclick="">保存地址</button>
+    	 <button class="addresbuttons" onclick="">删除地址</button>
+    </div>
+    
+
+>>>>>>> .r328
+	</body>
+	<script src="../../../js/vue.min.js"></script>
+	<script src="../../../js/mui.js"></script>
+	<script src="../../../js/jquery.min.js"></script>
+	<script src="../../../js/mui.picker.min.js"></script>
+	<script src="../../../js/mui.poppicker.js"></script>
+	<script type="text/javascript" src="../../../js/city.data.js"></script>
+	<script src="../../../js/app.js"></script>
+	<script src="../../../js/config.js"></script>
+	<script type="text/javascript">
+		mui.init({
+		    beforeback: function() {
+		　　　　 //获得父页面的webview
+		        var list = plus.webview.currentWebview().opener();
+		　　　　 //触发父页面的自定义事件(refresh),从而进行刷新
+		        mui.fire(list, 'refresh');
+		        //返回true,继续页面关闭逻辑
+		        return true;
+		    }
+		});
+		var vm = new Vue({
+	          el: '#modifylist',
+	          data: {
+	            addresslist:[],    //地址列表
+	            id:"",  //地址id
+	          },
+			  mounted: function () {
+			        var _this = this;
+			      	this.$nextTick(function() {
+			      	mui.plusReady(function(){
+			            _this.InitMain();
+			            
+			         })
+			      }) 
+				},
+	          methods: {
+				//初始化
+                InitMain: function() {
+                	var _this = this;
+                	var sData = plus.webview.currentWebview();
+                	_this.id=sData.addressid;
+                	var param = {
+				      token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+                      id:_this.id,   //地址id
+					};
+					mui.ajax({
+						url: CONFIG.basePath+ '/api/pandorder/address_detail',
+						async: false,
+						data: param,
+						dataType: "json",
+						type: 'post',
+						beforeSend: function(){
+							plus.nativeUI.showWaiting();
+						},
+						complete: function(){
+							plus.nativeUI.closeWaiting();
+						},
+					    success: function(res){
+							console.log('查看地址'+JSON.stringify(res.data));
+							if(res.result==1){
+							   _this.addresslist=res.data;
+							}else{
+							   mui.toast(res.message);
+							}
+							
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+					});
+                }
+			}
+	   });
+       //选择常住地
+		document.getElementById("serveaddress").addEventListener("tap", function() {
+			var city_picker = new mui.PopPicker({
+				layer: 3
+			});
+			city_picker.setData(cityData);
+			setTimeout(function() {
+				city_picker.show(function(items) {
+					if((items[0] || {}).text == undefined) {
+						(items[0] || {}).text = "";
+					} else if((items[1] || {}).text == undefined) {
+						(items[1] || {}).text = "";
+					} else if((items[2] || {}).text == undefined) {
+						(items[2] || {}).text = "";
+					}
+					//alert((items[0] || {}).value)
+					$("#personAddress").html((items[0] || {}).text + "&nbsp;&nbsp" + (items[1] || {}).text+"&nbsp;&nbsp" + (items[2] || {}).text);
+				});
+			}, 200);
+		}, false);
+     //保存地址		
+     document.getElementById("save").addEventListener("tap", function() {
+     	var param = {
+		      token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+              pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+              personAddress:document.getElementById('personAddress').innerText, //地址
+              addressLat:localStorage.getItem('userLat'),  //地址纬度
+              addressLng:localStorage.getItem('userLng'),  //地址经度
+              personName:document.getElementById('personName').value,  //联系人姓名
+              personPhone:document.getElementById('personPhone').value,  //联系人手机
+              houseNumber:document.getElementById('houseNumber').value,  //门牌号
+              id:vm.id,  //地址id
+		    };
+		  mui.ajax({
+		    url: CONFIG.basePath+ '/api/pandorder/address_save',
+			async: false,
+		    data: param,
+		    dataType: "json",
+		    type: 'post',
+			beforeSend: function(){
+				plus.nativeUI.showWaiting();
+			},
+			complete: function(){
+				plus.nativeUI.closeWaiting();
+			},
+			success: function(res){
+				console.log('新增地址'+res.message)
+				if(res.result==1){
+					mui.toast('编辑成功');
+				}else{
+					mui.toast(res.message);
+				}
+			},
+			error: function(xhr, type, errorThrown){
+				mui.toast('服务器响应失败');
+			}
+		});  
+     })
+    //删除地址
+    document.getElementById("deladdress").addEventListener("tap", function() {
+    	var param = {
+	      token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+          id:vm.id,   //用户id
+		};
+		mui.ajax({
+			url: CONFIG.basePath+ '/api/pandorder/address_delete',
+			async: false,
+			data: param,
+			dataType: "json",
+			type: 'post',
+			beforeSend: function(){
+				plus.nativeUI.showWaiting();
+			},
+			complete: function(){
+				plus.nativeUI.closeWaiting();
+			},
+		    success: function(res){
+				console.log('删除地址'+res.message);
+				if(res.result==1){
+				  mui.toast('删除地址成功');
+				}else{
+				   mui.toast(res.message);
+				}
+				
+			},
+			error: function(xhr, type, errorThrown){
+				mui.toast('服务器响应失败');
+			}
+		});
+    })
+	</script> 
+</html>

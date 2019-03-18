@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>评论详情</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet">
+		<style type="text/css">
+			.mui-bar a {
+				color: #E02D26;
+			}
+			
+			body,
+			.mui-content {
+				background: white;
+			}
+			
+			
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+			
+			.mui-slider-img-content {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				color: #fff;
+				line-height: 22px;
+				padding: 10px;
+				background-color: rgba(0, 0, 0, .6);
+			}
+			
+			#goTop {
+				width: 40px;
+				height: 40px;
+				position: fixed;
+				bottom: 80px;
+				right: 5%;
+				border-radius: 50%;
+				border: 1px solid #EFEFF4;
+				text-align: center;
+				line-height: 40px;
+				box-shadow: 1px 1px 1px #888888;
+				background: white;
+				z-index: 20;
+				opacity: 0.8;
+			}
+			
+			#goTop a {
+				color: #E02D26;
+				font-weight: bold;
+			}
+			
+			.hide {
+				display: none;
+			}
+			
+			
+			
+			.mui-icon-arrowdown:hover {
+				color: #858182;
+			}
+			
+			.mui-icon-arrowup:hover {
+				color: #858182;
+			}
+			
+			.BoxDetails {
+				border-bottom: 1px solid #E7E7E7;
+			}
+			
+			.BoxDetailsTop {
+				height: 50px;
+			}
+			
+			.BoxDetailsTopImg {
+				float: left;
+				height: 40px;
+				width: 40px;
+				border-radius: 50%;
+				margin-top: 5px;
+				margin-left: 10px;
+			}
+			
+			.BoxDetailsTopName {
+				float: left;
+				height: 50px;
+				line-height: 50px;
+				margin-left: 10px;
+				font-size: 13px;
+			}
+			
+			.BoxDetailsTopTime {
+				float: right;
+				font-size: 12px;
+				color: #858182;
+				height: 50px;
+				line-height: 50px;
+				margin-right: 10px;
+			}
+			
+			.BoxDetailsContent {
+				margin-top: 5px;
+				padding: 0px 10px 0px 10px;
+				font-size: 12px;
+			}
+			
+			.BoxDetailsImg {
+				margin: 10px;
+				overflow: hidden;
+			}
+			
+			.BoxDetailsImgItem {
+				float: left;
+				width: 95px;
+				height: 95px;
+				margin: 0px 5px 5px 0px;
+			}
+			
+			.BodDetailsKuanshi {
+				padding: 0px 10px 10px 10px;
+				font-size: 12px;
+				color: #A3A3A3;
+			}
+			.mui-segmented-control.mui-scroll-wrapper {
+				height: 50px;
+				margin-top: 30px;
+			}
+			#top-scroll{
+				width: 100%;
+			    display: flex;
+			}
+			#top-scroll .mui-control-item{
+				flex: 1;
+				font-size: 14px;
+				display: block;
+				color: #666666;
+			}
+			#top-scroll .mui-control-item.mui-active {
+				border-bottom: 2px solid #FF413A;
+				color: #333333;
+			}
+			
+			.mui-bar a {
+				color: #E02D26;
+			}
+				
+			.mui-icon-star {
+				color: #B5B5B5;
+				font-size: 22px;
+			}
+			
+			.mui-icon-star-filled {
+				color: #FF413A;
+				font-size: 22px;
+			}
+			
+			.mui-inline {
+				font-size: 12px;
+				color: #333333;
+				margin-right: 5px;
+			}
+			
+			.BoxTop {
+				height: 60px;
+				background: white;
+				border-top: 1px solid #EEEEEE;
+				border-bottom: 1px solid #EEEEEE;
+			}
+			
+			.BoxTopImg {
+				height: 40px;
+				height: 40px;
+				margin: 10px 10px 0px 10px;
+				float: left;
+			}
+			
+			.BoxTopShopName {
+				font-size: 13px;
+				line-height: 60px;
+			}
+			
+			.BoxEvaluateContent {
+				height: 120px;
+			}
+			
+			#txt_EvaluateContent {
+				height: 100%;
+				border: none;
+				font-size: 13px;
+				margin-bottom: 0px;
+				padding: 10px;
+			}
+			
+			#BoxUploadImg {
+				height: 130px;
+				width: 100%;
+				background: white;
+				border: 1px solid white;
+			}
+			
+			.BoxUploadDiv {
+				width: 110px;
+				height: 110px;
+				border: 1px dashed #C7C7CC;
+				margin: 10px;
+				text-align: center;
+				padding-top: 10px;
+			}
+			
+			.BoxUploadIcon {
+				font-size: 60px;
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadIcon:hover {
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadFont {
+				font-size: 13px;
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadShopScore {
+				height: 40px;
+				background: white;
+				margin-top: 8px;
+				line-height: 40px;
+			}
+			
+			.BoxUploadShopScoreIcon {
+				color: #797979;
+				padding-left: 10px;
+			}
+			
+			.BoxUploadShopScoreFont {
+				color: black;
+				font-size: 13px;
+			}
+			
+			.BoxUploadLevel {
+				background: white;
+				border: 1px solid white;
+				flex: auto;
+			}
+			
+			.mui-content-padded {
+				vertical-align: bottom;
+				font-size: 13px;
+				color: #8f8f94;
+				margin: 5px 10px;
+			}
+			
+			.icons {
+				margin-left: 6px;
+			}
+			
+			.BoxFooter {
+				width: 100%;
+				height: 60px;
+			}
+			
+			#btn_Evaluate {
+				height: 45px;
+				width: 94%;
+				background: #E02D26;
+				color: white;
+				font-size: 15px;
+				border-radius: 5px;
+				line-height: 45px;
+				text-align: center;
+				margin: 10px auto;
+			}
+			
+			.mui-icon-home:hover {
+				color: black;
+			}
+			
+			.BoxUploadShopScoreFont:hover {
+				color: black;
+			}
+			.zonfeng{display: flex;border-bottom:10px solid #F7F7F7;padding: 10px;}
+			.zonfeng-num{width:100px;border-right:1px solid #DDDDDD;}
+			.zonfeng-nums{color:#FF413A;font-size: 24px;padding: 20px 0px;text-align: center;}
+			.zonfeng-title{color:#333333;font-size: 12px;text-align: center;}
+		</style>
+	</head>
+ 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">服务评价</h1>
+		</header>
+		<div class="mui-content" id="commonlist">
+			<div class="zonfeng">
+				<div class="zonfeng-num">
+					<div class="zonfeng-nums">4</div>
+					<div class="zonfeng-title">综合评分</div>
+				</div>
+				<div class="BoxUploadLevel">
+					<div class="mui-content-padded">
+						<div class="mui-inline">描述相符</div>
+						<div class="icons mui-inline">
+							<i :class="flag1>=1 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag1>=2 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag1>=3 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag1>=4 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag1>=5 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+						</div>
+						<span v-text="flag1" style="vertical-align:-3px;color: #FF413A;">4.98</span>
+					</div>
+					<div class="mui-content-padded">
+						<div class="mui-inline">服务态度</div>
+						<div class="icons mui-inline">
+							<i :class="flag2>=1 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag2>=2 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag2>=3 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag2>=4 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag2>=5 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+						</div>
+						<span v-text="flag2" style="vertical-align:-3px;color: #FF413A;">4.98</span>
+					</div>
+					<div class="mui-content-padded">
+						<div class="mui-inline">服务态度</div>
+						<div class="icons mui-inline">
+							<i :class="flag3>=1 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag3>=2 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag3>=3 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag3>=4 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+							<i :class="flag3>=5 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></i>
+						</div>
+						<span v-text="flag3" style="vertical-align:-3px;color: #FF413A;">4.98</span>
+					</div>
+			  </div>
+			 
+			</div>
+			
+			<div id="topItem" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<div class="mui-scroll" id="top-scroll">
+						<a class='mui-control-item mui-active'  data-wid="0">全部(22)</a>
+						<a class='mui-control-item'  data-wid="1">带图(123)</a>
+				</div>
+			</div>
+			<div>
+				<div class="BoxDetails" v-for="(item, index) in pinlist">
+					<div class="BoxDetailsTop">
+						<img class="BoxDetailsTopImg" :src="item.issuser.userHeadpng" />
+						<div class="BoxDetailsTopName" v-text="item.issuser.userNickname">鱼儿</div>
+					</div>
+					<div class="BoxDetailsContent" v-text="item.comment">
+						
+					</div>
+					<div class="BoxDetailsImg" v-for="(items, index) in item.images">
+						<img class="BoxDetailsImgItem" data-desc="" data-content="" data-preview-src="" data-preview-group="1" :src="items.imgUrl"  />
+					</div>
+					<div class="BodDetailsKuanshi" v-text="item.createTime">2017.12.16</div>
+				</div>
+                <div id="pullrefresh">
+                	
+                </div>
+				
+			</div>
+		</div>
+		
+		
+		<div id="goTop">
+			<a class="mui-icon mui-icon-arrowthinup"></a>
+		</div>
+		<script src="../../../js/vue.min.js"></script>
+	    <script src="../../../js/mui.min.js"></script>
+	    <script src="../../../js/jquery.min.js"></script>
+	    <script type="text/javascript" src="../../../js/mui.zoom.js"></script>
+		<script type="text/javascript" src="../../../js/mui.previewimage.js"></script>
+	    <script type="text/javascript" src="../../../js/app.js" ></script>
+	    <script type="text/javascript" src="../../../js/config.js" ></script>
+		<script>
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						auto: false, //默认false.自动上拉加载一次
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				},
+				keyEventBind: {
+					backbutton: true //开启back按键监听  
+				}
+			});
+			var vm = new Vue({
+		          el: '#commonlist',
+		          data: {
+		            pinlist:[],   //评论全部数据
+		            serverid:"",  //服务id
+		            page: 1,  //页码从1开始计算
+                    pageSize: 10,  //每页显示总条数 默认10
+                    loadflag:false, //代表没有更多数据加载
+                    current:0,   //默认查看全部
+                    flag1: 4,    //技术评论
+				    flag2: 4,    //物流服务
+				    flag3: 4,    //服务态度
+		          },
+				  updated:function(){
+		                
+		          },
+				  mounted: function () {
+				        var _this = this;
+				      	this.$nextTick(function() {
+				      	mui.plusReady(function(){
+				            _this.InitMain();
+				         })
+				      }) 
+					},
+		          methods: {
+			        //初始化
+                    InitMain: function() {
+                      var _this = this;
+                      var sData = plus.webview.currentWebview();
+                       	  _this.serverid=sData.serverid;
+                      var param = {
+					      serviceId:_this.serverid,  //服务id
+						  pageIndex:_this.page,
+                          pageSize:_this.pageSize,
+                          current:_this.current,
+						};
+						mui.ajax({
+							    url: CONFIG.basePath+ '/api/freeuser/comment_list',
+								async: false,
+							    data: param,
+							    dataType: "json",
+							    type: 'post',
+								beforeSend: function(){
+									plus.nativeUI.showWaiting();
+								},
+								complete: function(){
+									plus.nativeUI.closeWaiting();
+								},
+								success: function(res){
+									console.log('评论列表'+JSON.stringify(res.data))
+									_this.pinlist=res.data;
+									if(res.data.length>=10){
+									  _this.loadflag=true;
+									}else{
+									  _this.loadflag=false;
+									}
+									
+								},
+								error: function(xhr, type, errorThrown){
+									mui.toast('服务器响应失败');
+								}
+							});
+                    },
+		         }
+		   });
+		   //查询分类
+		   mui(".mui-scroll").on("tap", ".mui-control-item", function(e) {
+					var targetTab = this.getAttribute('data-wid');
+					if(targetTab==0){
+					   vm.pinlist=[];
+					   vm.page=1;
+					   vm.current=0;
+					   var param = {
+					      serviceId:vm.serverid,  //服务id
+						  pageIndex:vm.page,
+                          pageSize:vm.pageSize,
+                          current:vm.current,
+						};
+						mui.ajax({
+							    url: CONFIG.basePath+ '/api/freeuser/comment_list',
+								async: false,
+							    data: param,
+							    dataType: "json",
+							    type: 'post',
+								beforeSend: function(){
+									plus.nativeUI.showWaiting();
+								},
+								complete: function(){
+									plus.nativeUI.closeWaiting();
+								},
+								success: function(res){
+									console.log('评论列表'+JSON.stringify(res.data))
+									vm.pinlist=res.data;
+									if(res.data.length>=10){
+									  vm.loadflag=true;
+									  mui('#pullrefresh').pullRefresh().refresh(true);
+									}else{
+									  vm.loadflag=false;
+									}
+									
+								},
+								error: function(xhr, type, errorThrown){
+									mui.toast('服务器响应失败');
+								}
+							});
+					}else{
+					   vm.pinlist=[];
+					   vm.page=1;
+					   vm.current=1;
+					   var param = {
+					      serviceId:vm.serverid,  //服务id
+						  pageIndex:vm.page,
+                          pageSize:vm.pageSize,
+                          current:vm.current,
+						};
+						mui.ajax({
+							    url: CONFIG.basePath+ '/api/freeuser/comment_list',
+								async: false,
+							    data: param,
+							    dataType: "json",
+							    type: 'post',
+								beforeSend: function(){
+									plus.nativeUI.showWaiting();
+								},
+								complete: function(){
+									plus.nativeUI.closeWaiting();
+								},
+								success: function(res){
+									console.log('评论列表'+JSON.stringify(res.data))
+									vm.pinlist=res.data;
+									if(res.data.length>=10){
+									  vm.loadflag=true;
+									  mui('#pullrefresh').pullRefresh().refresh(true);
+									}else{
+									  vm.loadflag=false;
+									}
+									
+								},
+								error: function(xhr, type, errorThrown){
+									mui.toast('服务器响应失败');
+								}
+							});
+					}
+					
+			});
+		   //上拉加载更多
+			function pullupRefresh() {
+				setTimeout(function() {
+					console.log("上拉加载执行");
+					//这里面true为没有更多数据 false表示有更多数据，下次可以继续下拉。
+					if(vm.loadflag){
+					  addData();
+					  mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+					 
+					}else{
+					  mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					}
+					
+				}, 1000);
+			}
+			//获取数据
+			function addData() {
+				vm.page++;
+				var param = {
+					serviceId:vm.serverid,  //服务id
+				    pageIndex:vm.page,    //页码
+                    pageSize:vm.pageSize,  //每页请求的数量
+                    current:vm.current,
+				};
+				mui.ajax({
+					url: CONFIG.basePath+ '/api/freeuser/comment_list',
+					async: false,
+					data: param,
+					dataType: "json",
+					type: 'post',
+					beforeSend: function(){
+						plus.nativeUI.showWaiting();
+					},
+					complete: function(){
+						plus.nativeUI.closeWaiting();
+					},
+				    success: function(res){
+						console.log('评论列表'+JSON.stringify(res.data));
+						vm.pinlist = vm.pinlist.concat(res.data);
+						if(res.data.length>=10){
+							vm.loadflag=true;
+						}else{
+							vm.loadflag=false;
+						}
+									
+					},
+					error: function(xhr, type, errorThrown){
+						mui.toast('服务器响应失败');
+					}
+				});
+			}
+			mui.previewImage();
+			$("#goTop").addClass("hide");
+			//回到顶部
+			document.getElementById("goTop").addEventListener("tap", function() {
+				mui.scrollTo(0, 100);
+			})
+			//返回顶部按钮在顶部不显示 一定距离后显示
+			var scrollToTopBox = document.getElementById('goTop');
+			window.addEventListener('scroll', function(e) {
+				if(window.pageYOffset >= window.innerHeight && scrollToTopBox.classList.contains('hide')) {
+					scrollToTopBox.classList.remove('hide');
+				} else if(window.pageYOffset < window.innerHeight && !scrollToTopBox.classList.contains('hide')) {
+					scrollToTopBox.classList.add('hide');
+				}
+			});
+			//判断是否显示更多评论类型
+			//思路：获取所有小类型的长度 装类型的盒子必须大于90并且所有小类型宽度的总和要大于屏幕宽度的2倍
+			var BoxTopItemWidth = 0;
+			var width = document.documentElement.clientWidth || document.body.clientWidth;
+			mui(".BoxTopItem").each(function(e) {
+				BoxTopItemWidth += $(this).width() + 32;
+			})
+			if($(".BoxTop").height() == 80 && BoxTopItemWidth > width*2)
+				$("#More").css("display", "block");
+			else
+				$("#More").css("display", "none");
+			//选中评论类型
+			mui(".BoxTop").on("tap", ".BoxTopItem", function() {
+				mui(".BoxTopItem").each(function(e) {
+					$(this).removeClass("BoxTopItem-Active");
+				})
+				$(this).addClass("BoxTopItem-Active")
+			}) 
+			//评分
+			mui('.icons').on('tap', 'i', function() {
+				var index = parseInt(this.getAttribute("data-index"));
+				var parent = this.parentNode;
+				var children = parent.children;
+				if(this.classList.contains("mui-icon-star")) {
+					for(var i = 0; i < index; i++) {
+						children[i].classList.remove('mui-icon-star');
+						children[i].classList.add('mui-icon-star-filled');
+					}
+				} else {
+					for(var i = index; i < 5; i++) {
+						children[i].classList.add('mui-icon-star')
+						children[i].classList.remove('mui-icon-star-filled')
+					}
+				}
+				starIndex = index;
+			});
+		</script>
+	</body>
+</html>

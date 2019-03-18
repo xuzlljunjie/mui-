@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+				<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style>
+		
+			header img{
+				width: 9px;
+				height: 18px;
+				margin-top: 12px;
+			}
+				.mui-table-view-cell:after {
+			    position: absolute;
+			    right: 0;
+			    bottom: 0;
+			    left: 0px;
+			    height: 1px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color: #c8c7cc;
+			}
+			.mui-content>.mui-table-view:first-child{
+				margin-top: 0px;
+				border-bottom:9px solid #F7F7F7;
+				
+			}
+			.mui-table-view-cell {
+				padding: 12px 15px
+			}
+			.label{
+				font-size: 14px;
+				color: #333333;
+				width: 28%;
+				line-height: 26px;
+				
+			}
+			
+			.input{
+				width: 72%;
+				font-size: 12px;
+		        margin-top: 5px;
+		       text-align: right;
+			}
+			#mui-input-row{
+				border-bottom: 1px solid #DDDDDD;
+				height: 46px;
+				
+			}
+			#showCityPicker3{
+				border-bottom: 1px solid #DDDDDD;
+				height: 46px;
+			}
+			#addres {
+				width:100%;
+				
+				
+			}
+			#addres button{
+				width:315px;
+				height: 40px;
+				text-align: center;
+				margin-left: 6.5%;
+				margin-top: 40px;
+				background: linear-gradient(to left,#FF9849 ,#FF413A );
+				border-radius: 50px; 
+				color: #ffffff;
+				border: 0;
+			}
+			#cityResult3{
+				font-size: 12px;
+				color: #333333;
+				margin-top: 14px;
+			} 
+			
+			.shezhi{
+				width: 100%;
+				padding-top: 44px;
+				text-align: center;
+			}
+			.shezhi img{
+				width: 90px;
+				height: 90px;
+				margin-top: 30px;
+				border-radius: 50%;
+			}
+	</style>
+	<body>
+		<div id="app">
+			<header class="mui-bar mui-bar-nav">
+				<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+				<h1 class="mui-title">设置</h1>
+				<a class="mui-btn mui-btn-link mui-pull-right mui-btn-blue" v-show="edit" @click="submitChange()" style="color: #007aff;">保存</a>
+			</header>
+			<div class="shezhi">
+				<img id="head"  :src="user.userHeadpng" />
+			</div>
+				<form class="mui-input-group">
+			    <div id="mui-input-row" class="mui-input-row">
+			        <label class="label">昵称</label>
+			        <input id="userNickname" style="padding-right:20px;" @input="inputFun" v-model="user.userNickname" class="input" type="text"  placeholder="请输入用户昵称">
+			    </div>
+			     <div id="mui-input-row" class="mui-input-row">
+			        <label class="label">修改手机号</label>
+			        <input id="userPhone" @input="inputFun" style="padding-right:20px;" v-model="user.userPhone" class="input" type="text"   placeholder="请输入用户手机号">
+			    </div>
+			    </div>
+			    <div id="addres">
+			    	 <button id="loginout"  onclick="">退出登录</button>
+			    </div> 
+		   </form>
+	  </div>
+	</body>
+	<script src="../../../js/mui.min.js"></script>
+	<script src="../../../messagejs/js/practise/common.js"></script>
+    <script src="../../../js/jquery.min.js"></script>
+    <script src="../../../js/vue.min.js"></script>
+	<script type="text/javascript" src="../../../js/config.js" ></script>
+	<script type="text/javascript" src="../../../js/app.js" ></script>
+	<script type="text/javascript">
+//		mui.init();
+		mui.init({
+		    beforeback: function() {
+		　　　　 //获得父页面的webview
+		        var list = plus.webview.currentWebview().opener();
+		　　　　 //触发父页面的自定义事件(refresh),从而进行刷新
+		        mui.fire(list, 'refresh');
+		        //返回true,继续页面关闭逻辑
+		        return true;
+		    }
+		});
+		new Vue({
+			el: '#app',
+			data: {
+				user: {},
+				edit: false,
+				userNickname:'',
+				userPhone:'',
+				userHeadpng:"",   //用户头像
+			},
+			mounted: function(){
+				this.$nextTick(function(){
+					var _this = this;
+					mui.plusReady(function(){
+						_this.InitPage();
+					})
+				})
+			},
+			methods: {
+				InitPage: function(){
+					var _this=this;
+					mui.ajax({
+							url: CONFIG.basePath+ '/api/panduser/panduser_completion?token='+ JSON.parse(localStorage.getItem('token')).accessToken + '&id=' + JSON.parse(localStorage.getItem('userinfo')).id,
+							type: 'GET',
+							timeout: 7000,
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+							success: function(res){
+								console.log("nihai"+res)
+								  if(JSON.parse(res).result==1){
+								  	_this.user=JSON.parse(res).data;
+								  }
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						})
+					
+				},
+				//更换头像
+				submitChange: function(){
+					var _this = this;
+					_this.userNickname = document.getElementById('userNickname').value;
+					_this.userPhone = document.getElementById('userPhone').value;
+					var params = {token: JSON.parse(localStorage.getItem('token')).accessToken,id:JSON.parse(localStorage.getItem('userinfo')).id,userNickname:_this.userNickname,userPhone:_this.userPhone};
+					mui.ajax({
+							url: CONFIG.basePath+ '/api/panduser/panduser_completion',
+							 async: false,
+				            data: params,
+				            dataType: "json",
+				            type: 'post',
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+							success: function(res){
+								console.log('编辑'+JSON.stringify(res.data))
+								console.log('编辑'+JSON.stringify(res.result))
+								 //alert(JSON.parse(JSON.stringify(res)).result)
+								  if(JSON.stringify(res.result)==1){
+								  	 localStorage.setItem('userinfo',JSON.stringify(res.data));
+								  	 mui.toast("保存成功");
+								  	//app.clearpage('/index.html');
+
+								  }
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+						
+					
+						
+					
+				},
+				//input触礁事件
+				inputFun(e){
+			     var _this = this;
+			     _this.edit=true;
+			    }
+			}
+		})
+		//更换头像
+		mui(".shezhi").on("tap", "#head", function(e) {
+			if(mui.os.plus){
+				var a = [{
+					title: "拍照"
+				}, {
+					title: "从手机相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "修改头像",
+					cancel: "取消",
+					buttons: a
+				}, function(b) {
+					switch (b.index) {
+						case 0:
+							break;
+						case 1:
+							appendByCamera();
+							break;
+						case 2:
+							appendByGallery();
+							break;
+						default:
+							break
+					}
+				})	
+			} 
+			
+		});
+		 // 拍照添加文件
+            function appendByCamera(){
+                plus.camera.getCamera().captureImage(function(e){
+                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+                    var path = entry.toLocalURL(); 
+                    document.getElementById("head").src = path; 
+                    compressImage(path);   //上传文件路径
+                    }, function(e) { 
+                        mui.toast("读取拍照文件错误：" + e.message); 
+                    }); 
+    
+                });    
+            }
+            function compressImage(path){
+            	
+					plus.zip.compressImage({
+							src:path,
+							dst:"_doc/a.jpg",
+							quality:20,
+							overwrite:true,
+						},
+						function(e) {
+							//alert("Compress success!");
+							upload(e.target)
+						},function(error) {
+							//alert("Compress error!");
+					});
+				}
+            // 从相册添加文件
+            function appendByGallery(){
+                plus.gallery.pick(function(path){
+                    document.getElementById("head").src = path; 
+                    upload(path);   //上传文件路径
+                    
+                });
+            }
+            //服务端接口路径
+            var server = CONFIG.basePath+ '/api/pand_image_upload/image_upload';
+            // 上传文件
+            function upload(imgurl){
+                console.log(imgurl);
+               var task=plus.uploader.createUpload(server,
+                    {method:"POST",blocksize:1904800},
+                    function(t,status){ //上传完成
+                        if(status==200){
+                            //alert("上传成功："+JSON.parse(t.responseText).data);
+                            uploadserver(JSON.parse(t.responseText).data);
+                            //wt.close(); //关闭等待提示按钮
+                        }else{
+                            //alert("上传失败："+status);
+                            //wt.close();//关闭等待提示按钮
+                        }
+                    }
+                );
+                //添加其他参数
+                task.addData("token",JSON.parse(localStorage.getItem('token')).accessToken);
+                task.addData("imgModel", "1");
+                task.addFile(imgurl,{key:"file"});
+                task.start();
+                
+          }
+          //上传图片服务器
+         function uploadserver(serverurl){
+         	var params = {token: JSON.parse(localStorage.getItem('token')).accessToken,id:JSON.parse(localStorage.getItem('userinfo')).id,userHeadpng:serverurl};
+					mui.ajax({
+							url: CONFIG.basePath+ '/api/panduser/panduser_completion',
+							 async: false,
+				            data: params,
+				            dataType: "json",
+				            type: 'post',
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+							success: function(res){
+								console.log('服务图片'+JSON.stringify(res.data))
+								console.log('服务图片'+JSON.stringify(res.result))
+								  if(res.result==1){
+								  	 localStorage.setItem('userinfo',JSON.stringify(res.data));
+								  	 alert("图片上传成功");
+								  	//app.clearpage('/index.html');
+								  }
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+         }
+	 document.getElementById('loginout').addEventListener('tap', function() {
+		      	plus.nativeUI.confirm("确定退出登录？ 退出后用户需重新登录", function(e) {
+                    if(e.index == 0) {
+                        localStorage.setItem('userinfo','');
+			            localStorage.setItem('token','');
+			            app.clearpage('/model/login/login.html');
+			            new UserInfo().clear();  
+                    }
+                }, "新消息通知", ["确定", "取消"]);
+		   
+		 });
+		</script>
+</html>

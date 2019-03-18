@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="UTF-8">
+		<title>立即评价</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-bar a {
+				color: #E02D26;
+			}
+			
+			.mui-bar-nav {
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}
+			
+			.mui-icon-star {
+				color: #B5B5B5;
+				font-size: 22px;
+			}
+			
+			.mui-icon-star-filled {
+				color: #E02D26;
+				font-size: 22px;
+			}
+			
+			.mui-inline {
+				font-size: 13px;
+			}
+			
+			.BoxTop {
+				height: 60px;
+				background: white;
+				border-top: 1px solid #EEEEEE;
+				border-bottom: 1px solid #EEEEEE;
+				display: flex;
+			}
+			
+			.BoxTopImg {
+				height: 40px;
+				width: 40px;
+				margin: 10px 10px 0px 10px;
+				float: left;
+			}
+			
+			.BoxTopShopName {
+				font-size: 14px;
+				line-height: 60px;
+				max-width:150px;
+				color: #333333;
+			}
+			
+			.BoxEvaluateContent {
+				height: 120px;
+				background: #ffffff;
+				padding: 10px;
+			}
+			
+			#txt_EvaluateContent {
+				height: 100%;
+				border: none;
+				font-size: 13px;
+				margin-bottom: 0px;
+				padding: 10px;
+				background: #F7F7F7;
+			}
+			
+			#BoxUploadImg {
+				height: 130px;
+				width: 100%;
+				background: white;
+				border: 1px solid white;
+				display: flex;
+			}
+			
+			.BoxUploadDiv {
+				width: 50px;
+				height: 50px;
+				border: 1px dashed #C7C7CC;
+				margin: 10px;
+				text-align: center;
+				padding-top: 10px;
+			}
+			
+			.BoxUploadIcon {
+				font-size: 20px;
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadIcon:hover {
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadFont {
+				font-size: 13px;
+				color: #C7C7CC;
+			}
+			
+			.BoxUploadShopScore {
+				height: 40px;
+				background: white;
+				margin-top: 8px;
+				line-height: 40px;
+			}
+			
+			.BoxUploadShopScoreIcon {
+				color: #797979;
+				padding-left: 10px;
+			}
+			
+			.BoxUploadShopScoreFont {
+				color: black;
+				font-size: 13px;
+			}
+			
+			.BoxUploadLevel {
+				background: white;
+				border: 1px solid white;
+			}
+			
+			.mui-content-padded {
+				vertical-align: bottom;
+				font-size: 13px;
+				color: #8f8f94;
+			}
+			
+			.icons {
+				margin-left: 6px;
+			}
+			
+			.BoxFooter {
+				width: 100%;
+				height: 60px;
+				background: #fff;
+				padding-top: 50px;
+			}
+			
+			#btn_Evaluate {
+				height: 45px;
+				width: 94%;
+				background: linear-gradient(to right,  #FF413A , #FF9849);
+				color: white;
+				font-size: 15px;
+				border-radius: 25px;
+				line-height: 45px;
+				text-align: center;
+				margin: 10px auto;
+			}
+			
+			.mui-icon-home:hover {
+				color: black;
+			}
+			
+			.BoxUploadShopScoreFont:hover {
+				color: black;
+			}
+			
+			.mui-icon-checkmarkempty {
+				font-size: 13px;
+				color: #979797;
+				border-radius: 50%;
+				border: 1px solid #8f8f94;
+			}
+			
+			.mui-icon-checkmarkempty:hover {
+				color: #ffffff;
+			}
+			.selectPrice {
+				font-size: 13px;
+				color: white;
+				background: #E02D26;
+				border-radius: 50%;
+				border: 1px solid white;
+				
+			}
+			.Box-con{flex: auto;}
+			.BoxItemBottomLeft {
+				width:75px;
+				color: #666666;
+				font-size: 12px;
+				line-height: 50px;
+				position: relative;
+				text-align: right;
+				padding-right: 10px;
+			}
+			
+			.chks {
+			    width: 13px;
+				height: 13px;
+				margin-left: 10px;
+				margin-top: 20px;
+				margin-right: 5px;
+				
+			}
+		
+			#servicexaingq{
+			  padding: 20px 0px;
+			  width: 100%;
+			  display: flex;
+			  background: #ffffff;
+			}
+			#servicexaingq img{
+				width: 55px;
+				height: 55px;
+				margin-left: 15px;
+			}
+			.mui-checkbox input[type=checkbox]{
+	         	position: absolute;
+			    top: 15px;
+			    left: 0px;
+			    display: inline-block;
+			    width: 15px;
+			    height: 15px;
+			    border: 0;
+			    outline: 0!important;
+			    background-color: transparent;
+			    -webkit-appearance: none;
+	         }
+	        .mui-checkbox input[type=checkbox]:before{
+	        	font-size: 17px;
+	        }
+	        .mui-checkbox input[type=checkbox]:checked:before{
+	        	color: #FF413A;
+	        }
+		</style>
+	</head>
+ 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">发表评价</h1>
+		</header>
+		<div class="mui-content" id="fabuserver">
+			<div class="Box">
+				<div class="BoxTop">
+					<div class="Box-con">
+						<img class="BoxTopImg" :src="userHeadpng">
+						<div class="BoxTopShopName mui-ellipsis" v-text="serverlist.serviceTilte"></div>
+					</div>
+				</div>
+				<div class="BoxUploadLevel">
+					<div class="mui-content-padded">
+						<div class="mui-inline">综合评分</div>
+						<div class="icons mui-inline skilledScore">
+							<i data-index="1" class="mui-icon mui-icon-star"></i>
+							<i data-index="2" class="mui-icon mui-icon-star"></i>
+							<i data-index="3" class="mui-icon mui-icon-star"></i>
+							<i data-index="4" class="mui-icon mui-icon-star"></i>
+							<i data-index="5" class="mui-icon mui-icon-star"></i>
+						</div>
+					</div>
+				</div>
+				<div class="BoxEvaluateContent">
+					<textarea id="txt_EvaluateContent" class="mui-input-clear" placeholder="亲,您对这个商品满意吗?您的评价会帮助我们选择更好的产品哦~"></textarea>
+				</div>
+				<div class="BoxFooter">
+					<div id="btn_Evaluate">提交评价</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/app.js"></script>
+		<script src="../../js/config.js"></script>
+		<script>
+			 mui.init();
+	         var baseArray = [];  //图片传值
+			 var vm = new Vue({
+			    el: '#fabuserver',
+			    data: {
+			        serviceId:"",  //服务id
+			        orderId: "",  //订单id  
+			        serverlist:[],  //服务列表
+			        comprehensiveScore:"",  //综合评分
+			        userHeadpng:"",  //服务照片
+			    },
+			    mounted: function () {
+					var _this = this;
+					this.$nextTick(function() {
+					    mui.plusReady(function(){
+					        _this.InitMain();
+					    })
+					}) 
+				},
+			    methods: {
+				    //初始化
+	                InitMain: function() {
+	                    var _this = this;
+                         var sData = plus.webview.currentWebview();
+                         _this.serviceId=sData.serverid;
+                         _this.orderId=sData.orderid;
+                         //查看服务详情
+                        var param = {
+					       id: _this.serviceId,      //服务id
+						};
+						mui.ajax({
+						    url: CONFIG.basePath+ '/api/pandwork/service_detail',
+							async: false,
+						    data: param,
+						    dataType: "json",
+						    type: 'post',
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+							success: function(res){
+								console.log('服务详情'+JSON.stringify(res.data))
+								_this.serverlist=res.data;
+								_this.userHeadpng=res.data.issuser.userHeadpng;
+								
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+	                },
+	            }
+			});
+			//技术熟练评分
+			mui('.skilledScore').on('tap', 'i', function() {
+				var index = parseInt(this.getAttribute("data-index"));
+				var parent = this.parentNode;
+				var children = parent.children;
+				if(this.classList.contains("mui-icon-star")) {
+					for(var i = 0; i < index; i++) {
+						children[i].classList.remove('mui-icon-star');
+						children[i].classList.add('mui-icon-star-filled');
+					}
+				} else {
+					for(var i = index; i < 5; i++) {
+						children[i].classList.add('mui-icon-star')
+						children[i].classList.remove('mui-icon-star-filled')
+					}
+				}
+				vm.comprehensiveScore=index;
+			});
+			//提交评价
+			document.getElementById("btn_Evaluate").addEventListener("tap", function() {
+				plus.nativeUI.confirm("确定是否提交评价", function(e) {
+                if(e.index == 0) {
+			       	var params = {
+					    token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+					    pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+					    serviceId:vm.serviceId, //服务id
+					    orderId:vm.orderId,  //订单id
+					    skilledScore:0, //技术熟练分数
+					    attitudeScore:0, //服务态度分数
+					    efficiencyScore:0, //	工作效率分数
+					    anonymous:0,
+					    comprehensiveScore:vm.comprehensiveScore, //综合评分
+					    comment:document.getElementById('txt_EvaluateContent').value, 
+					    commentType:2,
+				    }; 
+				    mui.ajax({
+					    url: CONFIG.basePath+ '/api/panduser/comment_save',
+						async: false,
+					    data: params,
+					    dataType: "json",
+					    type: 'post',
+						beforeSend: function(){
+							plus.nativeUI.showWaiting();
+						},
+						complete: function(){
+							plus.nativeUI.closeWaiting();
+						},
+						success: function(res){
+							console.log('普通用户评论'+JSON.stringify(res.data))
+							if(res.result==1){
+								mui.toast('评论成功');
+							}else{
+								mui.toast(res.message);
+							}
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+					});
+                }
+            }, "提交评价成功通知", ["确定", "取消"]);
+			})
+			
+		</script>
+	</body>
+ 
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>PAND</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/icons-extra.css">
+		<link rel="stylesheet" href="fonts/mui-icons-extra.ttf">
+	</head>
+     <style>
+     	.mui-badge1 {
+				font-size: 12px;
+				line-height: 1.5;
+				display: inline-block;
+				position: absolute;
+				padding: 4px 4px;
+				left: 70%;
+				border-radius: 100px;
+				background-color: red;
+		}
+		.tips_display{
+			display: none;
+		}
+     </style>
+	<body>
+		<nav class="mui-bar mui-bar-tab">
+			<a id="defaultTab" class="mui-tab-item mui-active" href="model/service/pand-main.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a id="message" class="mui-tab-item" href="model/order/chatmain.html">
+				<span class="mui-icon mui-icon-email"><em id="messageTips" class="mui-badge1 tips_display"></em></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item" href="model/order/order-main.html">
+				<span style="font-size: 18px;top:6px;" class="mui-icon mui-icon-extra mui-icon-extra-order"></span>
+				<span class="mui-tab-label">订单</span>
+			</a>
+			<a class="mui-tab-item" href="model/user/my-main.html">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+	</body>
+	<script src="./js/mui.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/config.js"></script>
+	<script type="text/javascript" src="messagejs/js/practise/common.js"></script>
+	<script type="text/javascript" src="messagejs/js/practise/do.js" ></script>
+	<script type="text/javascript" src="messagejs/js/practise/push.js"></script>
+	<script type="text/javascript" src="messagejs/js/index.js" ></script>
+	<script src="js/jquery.min.js"></script>
+	<script>
+		 //mui初始化
+			mui.init();
+			var subpages = ['model/service/pand-main.html','model/order/chatmain.html','model/order/order-main.html', 'model/user/my-main.html'];
+			var subpage_style = {
+				top: '0px',
+				bottom: '51px'
+			};
+			
+			var aniShow = {};
+			
+			 //创建子页面，首个选项卡页面显示，其它均隐藏；
+			mui.plusReady(function() {
+				launchScreen();
+				contention(); //融云服务器连接
+				var self = plus.webview.currentWebview();
+				for (var i = 0; i < 4; i++) {
+					var temp = {}; 
+					var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+					if (i > 0) {
+						sub.hide();
+					}else{
+						temp[subpages[i]] = "true";
+						mui.extend(aniShow,temp);
+					}
+					self.append(sub);
+				}
+			});
+			 //当前激活选项
+			var activeTab = subpages[0];
+			var title = document.getElementById("title");
+			 //选项卡点击事件
+			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+				var targetTab = this.getAttribute('href');
+				if (targetTab == activeTab) {
+					return;
+				}
+				//更换标题
+//				title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
+				//显示目标选项卡
+				//若为iOS平台或非首次显示，则直接显示
+				if(mui.os.ios||aniShow[targetTab]){
+					plus.webview.show(targetTab);
+				}else{
+					//否则，使用fade-in动画，且保存变量
+					var temp = {};
+					temp[targetTab] = "true";
+					mui.extend(aniShow,temp);
+					plus.webview.show(targetTab,"fade-in",300);
+				}
+				//隐藏当前;
+				plus.webview.hide(activeTab);
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+			 //自定义事件，模拟点击“首页选项卡”
+			document.addEventListener('gohome', function() {
+				var defaultTab = document.getElementById("defaultTab");
+				//模拟首页点击
+				mui.trigger(defaultTab, 'tap');
+				//切换选项卡高亮
+				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+				if (defaultTab !== current) {
+					current.classList.remove('mui-active');
+					defaultTab.classList.add('mui-active');
+				}
+			});
+			
+	// 设置启动时的轮播页
+	function launchScreen() {
+		//读取本地存储，检查是否为首次启动
+		var showGuide = plus.storage.getItem("lauchFlag");
+		if(showGuide){ 
+			//有值，说明已经显示过了，无需显示；
+			//关闭splash页面；
+			plus.navigator.closeSplashscreen();
+			plus.navigator.setFullscreen(false);
+		}else{
+			//显示启动导航
+			mui.openWindow({
+				id:'guide',
+				url:'model/guide.html',
+				show:{
+					aniShow:'none'
+				},
+				waiting:{
+					autoShow:false
+				}
+			});
+		}
+	}
+	function contention(){
+		if(localStorage.getItem('userinfo')){
+			var userList=new Map();
+			var meInfo=new Map();
+				var params = {userId:JSON.parse(localStorage.getItem('userinfo')).id};
+				mui.ajax({
+					url: CONFIG.basePath+ '/api/system/get_rongcloud_token',
+					async: false,
+			        data: params,
+			        dataType: "json",
+			        type: 'post',
+					success: function(res){
+						console.log('融云token'+JSON.stringify(res.data));
+						if(res.result==1){
+							userList[res.data.userId]={
+									targetId: res.data.userId,
+									imageUrl:res.data.headImg,
+									userName:res.data.name,
+									userLevel:res.data.name
+						        }
+								var da=res.data.userId.replace(/\"/g, "");
+								meInfo[res.data.userId]={
+								  da:res.data.token,
+								}
+								localStorage.setItem('leftimg',res.data.headImg);
+								localStorage.setItem('userList',JSON.stringify(userList));
+								localStorage.setItem('meInfo',JSON.stringify(meInfo))
+								new UserInfo().userId(res.data.userId);
+						        new UserInfo().imToken(res.data.token);
+						}
+						
+								
+					},
+					error: function(xhr, type, errorThrown){
+						mui.toast('服务器响应失败');
+					}
+				});
+			}
+	}
+	
+	</script>
+</html>

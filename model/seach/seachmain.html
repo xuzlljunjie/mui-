@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>搜索</title>
+		<link href="../../css/mui.min.css" rel="stylesheet">
+		<style type="text/css">
+			
+			.mui-bar a {
+				color: #E02D26;
+			}
+			
+			#search {
+				height: 50px;
+			}
+			
+			.search_left {
+				width: 85%;
+				float: left;
+				padding: 10px 0px 10px 10px;
+			}
+			
+			.search_right {
+				width: 10%;
+				float: left;
+				text-align: left;
+				padding-left: 5px;
+				font-size: 13px; 
+				line-height: 56px;
+				/*border: 1px solid red;*/
+				color: #999
+			}
+			
+			.mui-input-row {
+				width: 95%;
+				/*margin: 10px auto;*/
+			}
+			
+			.mui-icon {
+				/*line-height: initial;*/
+			}
+			.mui-icon-search{
+				padding-top: 7px;
+			}
+			.mui-search .mui-placeholder {
+				font-size: 13px;
+			}
+			/*.mui-placeholder {
+				font-size: 13px;
+			}*/
+			
+			input[type=search] {
+				font-size: 13px;
+				background: white;
+			}
+			
+			.search_details {
+				margin-top: 5px;
+				width: 100%;
+				height: 100%;
+				float: left;
+			}
+			
+			.search_detailss {
+				/*margin-top: 5px;*/
+				width: 100%;
+				height: 100%;
+				float: left;
+			}
+			
+			.top_title {
+				width: 100%;
+				height: 40px;
+				margin-top: 5px;
+				border-top: 1px solid #E0E0E0;
+			}
+			
+			.top_titles {
+				width: 100%;
+				height: 20px;
+				margin-top: 20px;
+				float: left;
+			}
+			
+			.title {
+				font-size: 15px;
+				margin-left: 10px;
+			}
+			
+			.mui-icon-trash {
+				color: #ACACAC;
+				margin-right: 15px;
+			}
+			
+			.mui-icon-trash:hover {
+				color: #ACACAC;
+			}
+			
+			.detail {
+				float: left;
+				height: 27px;
+				color: #666666;
+				border: 1px solid #D4D4D4;
+				margin: 10px 0px 0px 10px;
+				padding: 7px 15px 5px 15px;
+				border-radius: 5px;
+				text-align: center;
+				overflow: hidden;
+				font-size: 12px;
+				line-height: 13px;
+				border-radius: 50px;
+			}
+			
+			.mui-popup-button.mui-popup-button-bold {
+				font-weight: 100;
+			}
+			#goSearch{
+				border-radius: 50px;
+				float: left;
+				background-color: #F7F7F7;
+			}
+			#mui-pull-left{
+				font-size: 14px;
+			}
+			#del{
+				width: 13px;
+				height: 13px;
+			}
+			#mui-content{
+				background-color: #ffffff;
+			}
+		</style>
+	</head>
+ 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">搜索</h1>
+		</header>
+		<div id="mui-content" class="mui-content">
+			<div id="search">
+				<div class="search_left">
+					<div class="mui-input-row mui-search">
+						<input id="goSearch" type="search" class="mui-input-clear" placeholder="输入商品名称">
+					</div>
+				</div>
+				<div class="search_right mui-action-back">取消</div>
+			</div>
+ 
+			<div class="top_title">
+				<div id="mui-pull-left" class="mui-pull-left title">历史搜索</div>
+				<a id="del" class="mui-icon mui-icon-trash mui-pull-right"></a>
+			</div>
+			<div class="search_details">
+				<div class="searchHostory" id="hostroy">
+					<div class="detail">法国红酒</div>
+					<div class="detail">束脚裤男</div>
+					<div class="detail">宠物用品</div>
+					<div class="detail">春季装</div>
+					<div class="detail">白色帆布鞋</div>
+				</div>
+			</div>
+ 
+			<div class="top_titles">
+				<div class="mui-pull-left title">热门搜索</div>
+			</div>
+			<div class="search_detailss">
+				<div class="searchHostory">
+					<div class="detail">金毛用品</div>
+					<div class="detail">洋酒威士忌</div>
+					<div class="detail">卫裤男</div>
+					<div class="detail">鲨鱼活体</div>
+					<div class="detail">范思哲</div>
+					<div class="detail">哟哟哟哟哟哟</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script>
+			mui.init();
+			mui.back = function() {
+				plus.webview.currentWebview().hide("auto", 300);
+			}
+			//监听搜索跳转
+			window.addEventListener('gotoSearch', function(event) {
+				$("#goSearch").val("");
+			});
+			mui.plusReady(function() {
+				//右滑返回隐藏webview
+				plus.webview.currentWebview().setStyle({
+					'popGesture': 'hide'
+				});
+			})
+			//选中搜索记录
+			mui(".mui-content").on("tap", ".detail", function() {
+				mui.alert($(this).html())
+			})
+			//删除搜索记录
+			document.getElementById("del").addEventListener("tap", function() {
+				var btnArray = ['确认', '取消'];
+				mui.confirm('确认删除搜索记录吗？', '提示', btnArray, function(e) {
+					if(e.index == 0) {
+						$("#hostroy").html("");
+					}
+				});
+			})
+			//监听搜索完成事件
+			document.getElementById("goSearch").addEventListener("keydown", function(e) {
+				if(13 == e.keyCode) { //点击了“搜索”  
+					document.activeElement.blur(); //隐藏软键盘 
+//					mui.alert("你搜索了：" + $("#goSearch").val());
+	            mui.openWindow({
+					url: "../seach/seachlist/seachlist.html",
+					id: "seachlist.html"
+				})
+				}
+			}, false);
+		</script>
+	</body>
+</html>

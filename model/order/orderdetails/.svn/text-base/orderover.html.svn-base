@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="UTF-8">
+		<title>立即评价</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-bar a {
+				color: #E02D26;
+			}
+			.mui-content{background: #fff;}
+			.orderheader{
+				background: linear-gradient(to right,  #FF413A , #FF9849);
+				padding: 30px 0px;
+			}
+			.orderpay{text-align: center;font-size: 18px;color:#ffffff; margin-bottom: 10px;}
+			.ordertime{text-align: center;font-size: 12px;color: #ffffff;}
+			.orderinfo{padding: 10px;border-bottom: 8px solid #F7F7F7;}
+			.orderinfo-name{font-size: 14px; color: #333333;margin-bottom: 10px;}
+			.orderinfo-address{display: flex;color: #333333;font-size: 14px;}
+			.address-name{width: 70px;}
+			.address-detail{flex: auto;}
+			.Box {
+				margin-bottom: 5px;
+				margin-top: 5px;
+			}
+			
+			.BoxTop {
+				height: 50px;
+				width: 100%;
+				background: white;
+			}
+			
+			.BoxTopImg {
+				width: 16px;
+			    height: 16px;
+			    float: left;
+			    margin: 16px 10px;
+			}
+			
+			.BoxTopShopName {
+				float: left;
+				line-height: 50px;
+				font-size: 13px;
+			}
+			
+			.BoxTopRightIcon {
+				line-height: 50px;
+				font-size: 16px;
+				color: black;
+				padding-left: 5px;
+			}
+			
+			.BoxTopRightStatus {
+				line-height: 50px;
+				font-size: 13px;
+				color: black;
+				padding-right: 10px;
+				color: #E02D26;
+			}
+			
+			.BoxTopRightStatus:hover {
+				color: #E02D26;
+			}
+			
+			.BoxDetails {
+				width: 100%;
+				background: #fff;
+				display: flex;
+				padding: 0px 10px;
+			}
+			
+			.BoxDetailsImg {
+				width:50px;
+				height:50px;
+				margin-top: 13px;
+                margin-right: 15px;
+			}
+			
+			.BoxDetailsCenter {
+				flex:auto;
+			}
+			
+			.BoxDetailsCenterName {
+				color: black;
+				font-size: 13px;
+				margin-top: 10px;
+				line-height: 20px;
+				max-height: 60px;
+				overflow: hidden;
+			}
+			
+			.BoxDetailsCenterDesc {
+				font-size: 13px;
+				color: #A9A9A9;
+				margin-top: 3px;
+			}
+			
+			.BoxDetailsRight {
+				float: left;
+			}
+			
+			.BoxDetailsRightMoney {
+				font-size: 13px;
+				color: black;
+				text-align: right;
+				margin-right: 10px;
+				margin-top: 10px;
+			}
+			
+			.BoxDetailsRightCount {
+				font-size: 13px;
+				color: black;
+				text-align: right;
+				margin-right: 10px;
+				color: #A9A9A9;
+			}
+			
+			.BoxPay {
+				width: 100%;
+				background: white;
+			}
+			
+			.BoxPayRight {
+				height: 40px;
+				padding:0px 10px;
+			}
+			
+			.BoxPayRightYF {
+				font-size: 13px;
+				color: black;
+				line-height: 40px;
+			}
+			
+			.BoxPayRightYF:hover {
+				color: black;
+			}
+			.BoxPayRightMoney {
+				font-size: 14px;
+				color: black;
+				line-height: 40px;
+				padding-right: 5px;
+			}
+			
+			.BoxPayRightMoney:hover {
+				color: black;
+			}
+			
+			.BoxPayRightSF {
+				font-size: 13px;
+				color: black;
+				line-height: 40px;
+				padding-right: 3px;
+			}
+			
+			.BoxPayRightSF:hover {
+				color: black;
+			}
+			
+			.BoxPayRightIcon {
+				color: #E02D26;
+				font-size: 18px;
+				line-height: 40px;
+				padding-right: 5px;
+			}
+			.orederinmo{border-top: 8px solid #F7F7F7;padding: 13px 15px;}
+			.orederinmo-title{color: #333333;font-size: 14px;}
+			.servertime{
+				font-size: 12px;
+				color: #666666;
+				display: flex;
+				margin-top: 15px;
+			}
+			.server-title{width:70px;}
+			.server-con{flex: auto;}
+			.footer {
+				z-index: 10;
+				border-top: 1px solid #DDDDDD;
+				width: 100%;
+				height: 50px;
+				margin: 0 auto;
+				background: white;
+				position: fixed;
+				bottom: 0px;
+			}
+			.footer div{
+				float: right;
+				padding: 5px 15px;
+				color: #666666;
+				border:1px solid #999999;
+				margin: 10px;
+				border-radius: 14px;
+				font-size: 12px;
+			}
+			#gopay{
+				color: #FF413A;
+				border: 1px solid #FF413A;
+			}
+			#div {
+				width: 0px;
+				height: 0px;
+				position: fixed;
+				top: 70%;
+				left: 50%;
+			}
+			
+			.mui-popover .mui-popover-arrow:after {
+				width: 0px;
+			}
+			
+			#middlePopover {
+				height: 350px;
+			}
+			
+			.PingDanPopoverTitle {
+				text-align: center;
+				height: 50px;
+				border-bottom: 1px solid #D4D4D4;
+				line-height: 50px;
+				position: relative;
+			}
+			
+			.PingDanPopoverTitle a {
+				color: black;
+			}
+			
+			#PingdanAllClose {
+				font-size: 30px;
+				position: absolute;
+				top: 10px;
+				right: 10px;
+			}
+			
+			#PingdanOneClose {
+				font-size: 30px;
+				position: absolute;
+				top: 10px;
+				right: 10px;
+			}
+			#menuItem .mui-card-media img{width:15px;height:15px;}
+		    #menuItem .mui-media-body{margin-left: 25px;color:#333333;font-size: 14px;}
+		    .OnePindanTop{text-align: center;padding: 10px 0px;}
+		    .OnePindanTop span{font-size: 16px;}
+		    .OnePindanTop span em{color:#FF413A;font-size:18px;font-style:normal;}
+		    .OnePindanCenter{margin-top: 10px;}
+		    .OnePindanGo{
+		    	width:80%;
+		    	margin:auto;
+		    	background: #1AAD1A;
+		    	color: #fff;
+		    	font-size: 14px;
+		    	border-radius: 8px;
+		    	padding: 8px 0px;
+		    	text-align: center;
+		    }
+		   .mui-checkbox input[type=checkbox]{
+         	position: absolute;
+		    top: -20px;
+		    right: 0px;
+		    display: inline-block;
+		    width: 15px;
+		    height: 15px;
+		    border: 0;
+		    outline: 0!important;
+		    background-color: transparent;
+		    -webkit-appearance: none;
+         }
+        .mui-checkbox input[type=checkbox]:before{
+        	font-size: 17px;
+        }
+        .mui-checkbox input[type=checkbox]:checked:before{
+        	color: #FF413A;
+        }
+		</style>
+	</head>
+ 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">订单详情</h1>
+		</header>
+		<div class="mui-content" id="orderover">
+			<div class="orderheader">
+				<div class="orderpay">等待付款</div>
+				<div class="ordertime">请在2018-09-25 23:59:59前完成支付，超时将自动关闭哦</div>
+			</div>
+			<div class="orderinfo">
+				<div class="orderinfo-name" v-text="orderlist.contactName">
+					李木子         15888888888
+				</div>
+				<div class="orderinfo-address">
+				   <div class="address-name">服务地址：</div>
+				   <div class="address-detail" v-text="orderlist.address">上海市青浦区复兴路88弄4支弄</div>
+				</div>
+			</div>
+			<div class="Box">
+				<div class="BoxTop">
+					<img class="BoxTopImg" src="../../../images/pand/shop.png">
+					<div class="BoxTopShopName" v-text="orderlist.userNickname">旋光家居专营店 </div>
+					<a class="BoxTopRightIcon mui-icon mui-icon-arrowright" style=""></a>
+				</div>
+				<div class="BoxDetails">
+					<img class="BoxDetailsImg" :src="orderlist.shopUserHead">
+					<div class="BoxDetailsCenter">
+						<div class="BoxDetailsCenterName" v-text="orderlist.serviceTitle"> </div>
+					</div>
+					<div class="BoxDetailsRight">
+						<div class="BoxDetailsRightMoney">￥<em style="font-style: normal;" v-text="orderlist.serviceMoney">18.9</em></div>
+						<div style="" class="BoxDetailsRightCount" >x<em style="font-style: normal;" v-text="orderlist.serviceCount"></em></div>
+					</div>
+				</div>
+				<div class="BoxPay">
+					<div class="BoxPayRight">
+						<a class="mui-pull-right BoxPayRightMoney">￥<em style="font-style: normal;" v-text="allprice"></em></a>
+						<a class=" BoxPayRightSF">需付款</a>
+					</div>
+				</div>
+			</div>
+			<div class="orederinmo">
+				<div class="orederinmo-title">订单信息</div>
+				<div class="servertime">
+					<div class="server-title">服务时间:</div>
+					<div class="server-con" v-text="orderlist.timePeriod">2018-09-25 18:00:00</div>
+				</div>
+				<div class="servertime">
+					<div class="server-title">订单号码:</div>
+					<div class="server-con" v-text="orderlist.orderNum">1234 5678 9000 0522</div>
+				</div>
+				<div class="servertime">
+					<div class="server-title">下单时间:</div>
+					<div class="server-con" v-text="orderlist.createTime">2018-09-25 18:00:00</div>
+				</div>
+			</div>
+			
+		<div class="footer" id="messageList1">
+			<div class="footer-child" id="gopay">
+				去付款
+			</div>
+			<div class="footer-child" id="cancelorder">
+				取消订单
+			</div>
+			<!--<div class="footer-child result_item"  :id="orderlist.pandUserId" :data-name='orderlist.userNickname'>
+				咨询商家
+			</div>-->
+		</div>
+		  
+		  
+		  <!--支付弹框-->
+		<div id="PindanOnePopover" class="mui-popover" style="height: 300px;">
+			<div class="mui-popover-arrow"></div>
+			<div class="PingDanPopoverTitle">
+				<a>确认支付</a>
+				<a id="PingdanOneClose" class="mui-icon mui-icon-closeempty"></a>
+			</div>
+			<div id="selectOnePindan" class="mui-scroll-wrapper" style="margin-top: 50px;">
+				<div class="mui-scroll">
+					<div class="OnePindanTop">
+						<span>支付金额￥<em v-text="allprice">60</em></span>
+					</div>
+					<div class="OnePindanCenter" id="menuItem">
+					  <div class="mui-card-header mui-card-media">
+						<img src="../../../images/pand/wx.png" />
+						<div class="mui-media-body">
+							微信支付
+							<div class="mui-checkbox">
+					          <input type="checkbox" class="checkbox" id="wxpay" value="" />
+			                </div>
+						</div>
+					  </div>
+					  <div class="mui-card-header mui-card-media">
+						<img src="../../../images/pand/ali.png" />
+						<div class="mui-media-body">
+							支付宝支付
+							<div class="mui-checkbox">
+					          <input type="checkbox" class="checkbox" id="alipay" value="" />
+			                </div>
+						</div>
+					  </div>
+					  <div class="mui-card-header mui-card-media">
+						<img src="../../../images/pand/bank.png" />
+						<div class="mui-media-body">
+							网银支付
+							<div class="mui-checkbox">
+					          <input type="checkbox" class="checkbox" id="banpay" value="" />
+			                </div>
+						</div>
+					  </div>
+					</div>
+					<div class="OnePindanCenter">
+						<div class="OnePindanGo" id="payto">前往支付</div>
+					</div>
+				</div>
+			</div>
+		  </div>
+		</div>
+		
+		<!--以下div勿删 定位使用-->
+		<div id="div"></div>
+		<script type="text/javascript" src="../../../js/vue.min.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../js/app.js" ></script>
+	    <script type="text/javascript" src="../../../js/config.js" ></script>
+		<script type="text/javascript">
+			mui.init();
+			var wxChannel = null; // 微信支付
+		    var aliChannel = null; // 支付宝支付
+		    var channel = null;    //网银支付
+		    mui.plusReady(function() {  
+			// 获取支付通道
+    			plus.payment.getChannels(function(channels){
+    				aliChannel=channels[0];
+       			wxChannel=channels[1];
+    			},function(e){
+       			 alert("获取支付通道失败："+e.message);
+    			});
+		    })
+			var vm = new Vue({
+		        el: '#orderover',
+		        data: {
+		          orderlist:[],   //订单数据
+		          orderid:"",    //订单id
+		          allprice:"",   //订单总额
+		          payid:"",  //支付id
+		        },
+				updated:function(){
+		                
+		        },
+				mounted: function () {
+				    var _this = this;
+				    this.$nextTick(function() {
+				       mui.plusReady(function(){
+				            _this.InitMain();
+				        })
+				    }) 
+			    },
+		        methods: {
+			        //初始化
+                    InitMain: function() {
+                    	var _this = this;
+                        var sData = plus.webview.currentWebview();
+                       	  _this.orderid=sData.orderid;
+                       	var params = {
+                       		  token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+							  id:_this.orderid,  //订单id 
+						    };
+						mui.ajax({
+							url: CONFIG.basePath+ '/api/pandorder/order_detail',
+						    async: false,
+							data: params,
+							dataType: "json",
+							type: 'post',
+						    success: function(res){
+							    console.log('订单详情完成列表'+JSON.stringify(res.data))
+								_this.orderlist=res.data;
+								_this.allprice=res.data.serviceCount*res.data.serviceMoney;
+						    },
+						    error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+					    });
+						
+                    },
+		        }
+		    });
+//		   //咨询商家
+//			//客服
+//			mui('#messageList1').on('tap','.result_item',function(){
+//				if(localStorage.getItem('userinfo')){
+//					var tid = this.getAttribute('id');
+//					var fname = this.getAttribute('data-name');
+//					var userList=JSON.parse(localStorage.getItem('userList'));
+//					var meInfo=JSON.parse(localStorage.getItem('meInfo'));
+//					alert(tid)
+//			     var params = {userId:tid};
+//					mui.ajax({
+//						url: CONFIG.basePath+ '/api/system/get_rongcloud_token',
+//						async: false,
+//				        data: params,
+//				        dataType: "json",
+//				        type: 'post',
+//						success: function(res){
+//							console.log('融云token'+JSON.stringify(res.data));
+//							if(res.result==1){
+//								userList[res.data.userId]={
+//										targetId: res.data.userId,
+//										imageUrl:res.data.headImg,
+//										userName:res.data.name,
+//										userLevel:res.data.name
+//							        }
+//									var da=res.data.userId.replace(/\"/g, "");
+//									meInfo[res.data.userId]={
+//									  da:res.data.token,
+//									}
+//									localStorage.setItem('userList',JSON.stringify(userList));
+//									localStorage.setItem('meInfo',JSON.stringify(meInfo))
+//									alert(JSON.stringify(userList))
+//									alert(JSON.stringify(meInfo))
+//									mui.openWindow({
+//									id: 'message_talk_info',
+//									url: '/model/order/message/message_talk_info.html',
+//									extras: {
+//										targetId: tid,
+//										targetName:fname
+//									},
+//									waiting:{
+//										autoShow:false
+//									}
+//								});
+//							}else{
+//								mui.toast(res.message);
+//							}
+//									
+//						},
+//						error: function(xhr, type, errorThrown){
+//							mui.toast('服务器响应失败');
+//						}
+//					});
+//				}else{
+//					mui.openWindow({
+//						url: "/model/login/login.html",
+//						id: "login.html"
+//				   })
+//				}
+//				
+//			});
+		 //取消订单
+		 document.getElementById("cancelorder").addEventListener("tap", function() {
+		 	var params = {
+                token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+				orderId:vm.orderid,  //订单id 
+				status:1,
+			};
+			mui.ajax({
+				url: CONFIG.basePath+ '/api/pandorder/order_update',
+				async: false,
+				data: params,
+				dataType: "json",
+				type: 'post',
+				success: function(res){
+					console.log('订单取消'+res.message)
+				   mui.toast('订单取消成功');
+				},
+				error: function(xhr, type, errorThrown){
+					mui.toast('服务器响应失败');
+				}
+			});
+		 });
+		 //去付款
+		 document.getElementById("gopay").addEventListener("tap", function() {
+//		 	console.log("zhifubao");
+//			pay('alipay'); 
+            mui("#PindanOnePopover").popover('toggle', document.getElementById("div"));
+		 });
+		 //关闭页面模态框
+		document.getElementById("PingdanOneClose").addEventListener("tap", function() {
+			mui("#PindanOnePopover").popover('toggle', document.getElementById("div"));
+		})
+		// 事件绑定
+		mui('.mui-checkbox').on('change','input',function(){
+			console.log("id = " + this.id + " status = " + this.checked);
+			if (this.checked) { 
+				$(this).parents('.mui-card-header').siblings().find('.checkbox').removeAttr("checked");
+				vm.payid=this.id;
+				console.log('勾选上了')
+		    } else{
+				//_this.checked=false;
+				console.log('取消勾选')
+			}
+						
+		});
+		//前去支付
+		 document.getElementById("payto").addEventListener("tap", function() {
+		 	console.log("前往支付");
+			pay(vm.payid); 
+            //mui("#PindanOnePopover").popover('toggle', document.getElementById("div"));
+		 });
+		var ALIPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=';
+		var WXPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/wxpay.php?total=';
+		// 2. 发起支付请求
+		function pay(id){
+    			// 从服务器请求支付订单
+    			var PAYSERVER='';
+    			if(id=='alipay'){
+    			mui.toast('支付接口还没开放');
+//     			PAYSERVER=ALIPAYSERVER;
+//     			channel = aliChannel;
+   	 		}else if(id=='wxpay'){
+   	 			mui.toast('微信接口还没开放');
+//      			PAYSERVER=WXPAYSERVER;
+//      			channel = wxChannel;
+    	     }else if(id=='banpay'){
+    	     	mui.toast('网银接口还没开放');
+    	     }else{
+    	     	mui.toast('请选择支付方式');
+//      			plus.nativeUI.alert("不支持此支付通道！",null,"捐赠");
+      			return;
+   			 }
+    			var xhr=new XMLHttpRequest();
+    			xhr.onreadystatechange=function(){
+        			switch(xhr.readyState){
+            			case 4:
+            			if(xhr.status==200){
+                			plus.payment.request(channel,xhr.responseText,function(result){
+                    			plus.nativeUI.alert("支付成功！",function(){
+                       	 		back();
+                   	 		});
+                			},function(error){
+                    			plus.nativeUI.alert("支付失败：" + error.code);
+                			});
+            			}else{
+                			alert("获取订单信息失败！");
+            			}
+            			break;
+            		default:
+            		break;
+        		}
+   		 }
+    		xhr.open('GET',PAYSERVER);
+    		xhr.send();
+	    }
+		</script>
+	</body>
+ 
+</html>

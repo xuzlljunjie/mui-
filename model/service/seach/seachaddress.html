@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>搜索</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_650380_9dxpvvaexb8lrf6r.css" />
+        <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+		<style type="text/css">
+			.mui-content{background: #ffffff;}
+			.headmps{
+				display: flex;
+				background: #fff;
+				padding: 0px 15px;
+				padding-top: 10px;
+				border-bottom: 1px solid #DDDDDD;
+			}
+			.mui-search{
+				flex: auto;
+			}
+			.mpstitle{
+				
+                max-width:200px;
+                display: flex;
+			}
+			.mpslocation{
+				line-height:36px;
+				font-size:14px;
+				color:#333333;
+				font-family:'PingFangSC';
+				overflow:hidden;
+				text-overflow:ellipsis;
+				white-space:nowrap;
+				padding-right:5px;
+				max-width:100px;
+			}
+			.mpsicon{
+				    flex: auto;
+				    line-height: 35px;
+				    margin-right: 25px;
+			}
+			.mui-icon-search{
+				padding-top: 7px;
+			}
+			.mui-search .mui-placeholder {
+				font-size: 13px;
+				text-align: left;
+				padding-left: 10px;
+			}
+			.search_left {
+				flex:auto;
+				
+			}
+			input[type=search] {
+			    font-size: 13px;
+			    background: #F7F7F7;
+			    border-radius: 18px;
+			}
+			.locationtitle{display: flex;background: #ffffff;padding: 10px 15px;border-bottom: 1px solid #DDDDDD;}
+			.location-icon{width:20px;}
+			.mui-icon-location{vertical-align: -5px;}
+			.mpslocation{flex: auto;color: #999999;}
+			.locationlist{}
+			.locationame{
+				border-bottom: 1px solid #DDDDDD;
+				padding: 10px 15px;
+				color: #333333;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+ 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">选择地址</h1>
+		</header>
+		<div class="mui-content" id="locationlist">
+			<div class="headmps">
+				<div class="mpstitle" id="seachaddress">
+					
+					<div class="mpslocation" v-text="province">
+						上海
+					</div>
+					<div class="mpsicon">
+						<span class="mui-icon mui-icon-arrowdown"></span>
+					</div>
+				</div>
+			    <div class="search_left">
+					<div class="mui-input-row mui-search">
+						<input id="goSearch" type="search" class="mui-input-clear" placeholder="请输入关键字">
+					</div>
+				</div>
+			</div>
+			<div class="locationtitle">
+				<div class="location-icon">
+					<span class=" mui-icon mui-icon-location"></span>
+				</div>
+					
+				<div class="mpslocation">
+						附近地址
+				</div>
+			</div>
+			<div class="locationlist">
+				<div class="locationame" @click="changeadress(item.title)" v-for="(item, index) in locationlist" v-text="item.title">
+				</div>
+			</div>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+	    <script src="../../../js/jquery.min.js"></script>
+	    <script src="../../../js/vue.min.js"></script>
+		<script type="text/javascript" src="../../../js/config.js" ></script>
+		<script type="text/javascript" src="../../../js/app.js" ></script>
+		<script type="text/javascript">
+			mui.init({
+			swipeBack:true //启用右滑关闭功能
+		   });
+		   var vm = new Vue({
+	          el: '#locationlist',
+	          data: {
+	            locationlist:[],    //地址列表
+	            latitude:"",  //经度
+	            longitude:"",  //纬度
+	            province:"",   //属于哪个市
+	          },
+			  mounted: function () {
+			        var _this = this;
+			      	this.$nextTick(function() {
+			      	mui.plusReady(function(){
+			            _this.InitMain();
+			            
+			         })
+			      }) 
+				},
+	          methods: {
+		          //选择地址
+		          changeadress:function(adress){
+		          	localStorage.setItem("locationadress",adress);
+		          	app.clearpage('/index.html');
+		          },
+			      //初始化
+                    InitMain: function() {
+                    	var _this = this;
+                    	 var sData = plus.webview.currentWebview();
+                       	  _this.latitude=sData.latitude;
+                       	  _this.longitude=sData.longitude;
+                       	  console.log(_this.latitude)
+                       	  console.log(_this.longitude)
+                       	 mui.ajax({
+							url: CONFIG.basePath+ '/api/system/getLocation_pois?location='+ _this.latitude + ',' + _this.longitude,
+							type: 'GET',
+							timeout: 7000,
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+							success: function(res){
+								console.log('地址列表'+res)
+								console.log('地址列表'+JSON.parse(res).length)
+								_this.locationlist=JSON.parse(res);
+								for(var i=0;i<JSON.parse(res).length;i++){
+									if(i==0){
+										_this.province=JSON.parse(res)[i].ad_info.province;
+									}
+								}
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						})
+                    }
+		       }
+	    });
+		</script>
+	</body>
+</html>

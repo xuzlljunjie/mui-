@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的店铺</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+	</head>
+	 <style>
+			header img{
+				width: 9px;
+				height: 18px;
+				margin-top: 12px;
+			}
+			.myshoptop{
+				width: 100%;
+				height: 172px;
+				background: url(../../images/pand/myshop.png)no-repeat;
+			    background-size: 100%100%;
+				padding: 15px;
+			}
+			.myshoptop .myshoptopimgt{
+				width: 19px;
+				height: 19px;
+				float: right;
+			}
+			.myshopleft{
+				display: flex;
+			    margin-top: 30px;
+			}
+		    .myshoptop .myshoptopimgo{
+				width: 70px;
+				height: 70px;
+				float: left;
+				border-radius: 50px;
+				line-height: 205px;
+				margin-right: 20px;
+			}
+			.myshoptitle{
+				color: #fff;
+				font-size: 14px;
+				margin-top: 10px;
+			}
+			.myshoptext{
+				color: #fff;
+				font-size: 12px;
+			}
+			.myshopdivo{
+				width: 100%;
+				float: left;
+				padding: 0px 15px 0px 15px;
+				border-bottom: 1px solid #DDDDDD;
+			}
+			.myshopdivo .myshopodiv{
+				float: left;
+				width: 33.3%;
+				height: 94px;
+				
+			}
+			.myshopdivo .myshopodiv img{
+				width: 18px;
+				height: 20px;
+				margin: 27px 47px 0px 47px;
+				
+			}
+			.myshopdivo .myshopodiv span{
+				font-size: 12px;
+				color: #333333;
+				margin: 0px 31px 0px 31px;
+			}
+			.myshopdivt{
+				width: 100%;
+				background-color: #ffffff;
+				float: left;
+				padding: 20px 15px 0px 15px;
+				border-bottom: 1px solid #DDDDDD;
+			}
+			.myshopdivth{
+				width: 100%;
+				height: 22px;
+			}
+			.myshopdivth span{
+				float: left;
+				font-size: 14px;
+				color: #333333;
+				font-weight: bolder;
+			}
+			.myshopdivth a{
+				font-size: 12px;
+				color:#666666;
+				float: right;
+				margin-right: 5px;
+				
+			}
+			.myshopdivth img{
+				width: 4px;
+				height: 8px;
+				float: right;
+				margin-top: 5px;
+			}
+			.myshoptdiv{
+				float: left;
+				width: 33.3%;
+				height: 94px;
+			}
+			.myshoptdiv img{
+				width: 18px;
+				height: 20px;
+				margin: 20px 47px 0px 47px;
+			}
+			.myshoptdiv span{
+				font-size: 12px;
+				color: #333333;
+				margin: 0px 37px 0px 37px;
+			}
+			.myshopdivf{
+				background-color: #ffffff;
+				width: 100%;
+				float: left;
+				height: 46px;
+				padding: 0px 15px 0px 15px;
+				line-height: 46px;
+				border-bottom: 1px solid #DDDDDD;
+			}
+			.myshopdivf span{
+				font-size: 14px;
+				color: #333333;
+				
+			}
+			.myshopdivf img{
+				width: 4px;
+				height: 8px;
+				float: right;
+				margin-top: 20px;
+			}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">我的店铺</h1>
+		</header>
+		<div class="mui-content" id="shoplist">
+			<div class="myshoptop">
+			  <img id="myshoptopimgt" class="myshoptopimgt" src="../../images/pand/set.png"/>
+			  <div class="myshopleft">
+			  	<img class="myshoptopimgo" :src="shopdetails.shopImg" />
+			  <div class="myshops">
+			  	<div class="myshoptitle" v-text="shopdetails.shopName">
+			  		
+			  	</div>
+			  	<div class="myshoptext" v-text="shopdetails.shopDes">
+			  		
+			  	</div>
+			   </div>	
+			  </div>
+			</div>
+			<div class="myshopdivo">
+				<div id="myshopodiv" class="myshopodiv">
+					<img src="../../images/pand/issue.png" />
+				     <span>发布管理</span>
+				</div>
+				<div id="myshopodivgive" class="myshopodiv">
+					<img src="../../images/pand/grade.png" />
+					<span>评分管理</span>
+				</div>
+				<div id="myshopodivbill"  class="myshopodiv">
+					<img src="../../images/pand/bill.png" />
+					<span>账单管理</span>
+				</div>
+			</div>
+		
+			<div class="myshopdivt">
+					<div class="myshopdivth">
+						<span>已接订单</span>
+						<img src="../../images/pand/more.png" />
+						<a>查看全部</a>
+					</div>
+			<div class="myshoptdiv">
+					<img src="../../images/pand/stay.png" />
+				     <span>待服务</span>
+				</div>
+				<div  class="myshoptdiv">
+					<img src="../../images/pand/medium.png" />
+					<span>服务中</span>
+				</div>
+				<div class="myshoptdiv">
+					<img src="../../images/pand/evaluate .png" />
+					<span>待评价</span>
+				</div>
+				
+			</div>
+			<div id="myshopdivfauth" class="myshopdivf">
+				<span>我的认证</span>
+				<img src="../../images/pand/more.png" />
+			</div>
+			<div id="myshopdivfgiv" class="myshopdivf" style="border: 0;">
+				<span>评论管理</span>
+				<img src="../../images/pand/more.png" />
+			</div>
+		</div>
+	</body>
+	<script src="../../js/vue.min.js"></script>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/app.js" ></script>
+	<script type="text/javascript" src="../../js/config.js" ></script>
+	<script>
+		mui.init();
+		var vm = new Vue({
+		    el: '#shoplist',
+		    data: {
+		        shopdetails:[], //店铺详情列表
+		        shopid:"",   //店铺id
+		    },
+		    updated:function(){
+		    },
+		    mounted: function () {
+				var _this = this;
+				this.$nextTick(function() {
+				    mui.plusReady(function(){
+				        _this.InitMain();
+				        window.addEventListener('refresh', function(e){//执行刷新
+					      _this.shopdetails=JSON.parse(localStorage.getItem('shopdetail'));
+					   });
+				    })
+				}) 
+			},
+		    methods: {
+			   //初始化
+               InitMain: function() {
+                   var _this = this;
+                   var params = {
+						token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+					    pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id	   
+				    };
+				    mui.ajax({
+					    url: CONFIG.basePath+ '/api/pandwork/shop_detail',
+						async: false,
+						data: params,
+						dataType: "json",
+						type: 'post',
+					    success: function(res){
+							console.log('店铺详情'+JSON.stringify(res.data));
+							localStorage.setItem('shopdetail',JSON.stringify(res.data));
+							_this.shopdetails=res.data;
+							_this.shopid=res.data.id;
+						},
+						error: function(xhr, type, errorThrown){
+						   mui.toast('服务器响应失败');
+					    }
+				    });
+               },
+		    }
+		});
+	    document.getElementById("myshopodiv").addEventListener("tap", function() {
+			mui.openWindow({
+				url: "publish.html",
+				id: "publish.html"
+			})
+		})
+		document.getElementById("myshopodivbill").addEventListener("tap", function() {
+			mui.openWindow({
+				url: "billmanagement.html",
+				id: "billmanagement.html"
+		    })
+		})
+		
+		document.getElementById("myshoptopimgt").addEventListener("tap", function() {
+			mui.openWindow({
+				url: "setupshop.html",
+				id: "setupshop.html",
+				extras: {
+		            shopid: vm.shopid,
+		        }
+			});
+		})
+		document.getElementById("myshopodivgive").addEventListener("tap", function() {
+								mui.openWindow({
+									url: "../shop/giveamark.html",
+									id: "giveamark.html"
+				 				})
+							})
+			document.getElementById("myshopdivfgiv").addEventListener("tap", function() {
+								mui.openWindow({
+									url: "../shop/giveamark.html",
+									id: "giveamark.html"
+				 				})
+							})
+			document.getElementById("myshopdivfauth").addEventListener("tap", function() {
+								mui.openWindow({
+									url: "../shop/authentication.html",
+									id: "authentication.html"
+				 				})
+							})
+	</script>
+</html>

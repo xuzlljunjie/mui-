@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>发布管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../css/mui.min.css">
+	</head>
+	<style>
+		.inputbiaoti{
+			font-size: 14px;
+			color: #999999;
+			border-bottom: 1px solid #DDDDDD;
+			height: 48px;
+			width: 100%;
+			line-height: 48px;
+			border-top: 0;
+			border-right: 0;
+			border-left: 0;
+			padding: 0px 15px 0px 15px ;
+		}
+		#servicexaingqing{
+			width: 100%;
+			height: 254px;
+		}
+		#servicexaingqing textarea{
+			width: 100%;
+			height: 140px;
+			border: 0;
+			font-size: 14px;
+			color: #999999;
+			margin: 0;
+		}
+		#servicexaingq{
+			width: 100%;
+			float: left;
+		}
+		#servicexaingq img{
+			float: left;
+			width: 55px;
+			height: 55px;
+			margin-left: 15px;
+		}
+		#servicexaingq span{
+			float: left;
+			font-size: 12px;
+			color: #666666;
+			line-height: 12px;
+			line-height: 55px;
+			margin-left: 15px;
+		}
+		#serviceweizhi{
+			float: left;
+			margin-top: 18px;
+		}
+		#serviceweizhi img{
+			width: 14px;
+			height: 17px;
+			margin-left: 15px;
+		}
+		#serviceweizhi span{
+			font-size: 14px;
+			color: #FF413A;
+			margin-left: 12px;
+		}
+		#servicexaingqing{
+			border-bottom: 5px solid #DDDDDD;
+		}
+		#jiage{
+			float: left;
+			height: 50px;
+			width: 100%;
+			border-bottom: 1px solid #DDDDDD;
+			padding: 0px 15px 0px 15px ;
+		}
+		#jiage span{
+			float: left;
+			font-size: 14px;
+			color: #333333;
+			line-height: 50px;
+		}
+		#jiage input{
+			float: right;
+			width: 80%;
+			line-height: 46px;
+			border:0;
+		 text-align: right;
+		 font-size: 14px;
+		 margin-right: 5px;
+		}
+		#jiage img{
+			float: right;
+			width: 5px;
+			height: 12px;
+			line-height: 50px;
+			margin-top: 18px;
+		}
+		#fenlei{
+			float: left;
+			height: 50px;
+			width: 100%;
+			border-bottom: 1px solid #DDDDDD;
+			padding: 0px 15px 0px 15px ;
+		}
+		#fenlei span{
+			float: left;
+			font-size: 14px;
+			color: #333333;
+			line-height: 50px;
+		}
+		#fenlei em{
+			float: right;
+			width: 80%;
+			line-height: 46px;
+			border:0;
+		    text-align: right;
+		    font-size: 14px;
+		    margin-right: 5px;
+		    font-style: normal;
+		    color: #666666;
+		}
+		#fenlei img{
+			float: right;
+			width: 5px;
+			height: 12px;
+			line-height: 50px;
+			margin-top: 18px;
+		}
+		.mui-switch{width:4.6em;height: 1.6em;}
+        .mui-switch .mui-switch-handle{width:1.3em;height: 1.3em;line-height: 1.6em; }
+        .mui-switch:before{
+	    font-size: 9pt;
+	    position: absolute;
+	    top: -0.2em;
+	    right: 0.7em;
+	    
+	    text-transform: uppercase;
+	    color: #999;
+			}
+		#fapiao{
+			float: left;
+			width: 100%;
+			height: 50px;
+			padding: 0px 15px 0px 16px;
+			border-bottom: 1px solid #DDDDDD;
+		}
+		#fapiaobutton{
+			float: right;
+			margin-top:10px;
+			width:50px;
+			
+		}
+		#fapiao span{
+			float: left;
+			font-size: 14px;
+			color: #333333;
+			line-height: 50px;
+		}
+		#fabuservice{
+			width: 315px;
+			height: 40px;
+			border-radius: 50px;
+			border: 0;
+			color: #ffffff;
+			background:linear-gradient(270deg,rgba(255,152,73,1) 0%,rgba(255,65,58,1) 100%);
+			
+		}
+		#fabuservicebutton{
+			float: left;
+			width: 100%;
+			height: 40px;
+			margin-top: 50px;
+			text-align: center; 
+		}
+		.mui-content{background: #fff;}
+		.location{font-style: normal;}
+		#sheet3 {
+		    background: white;
+		    z-index: 1000000000000;
+		}
+	    .goPingdanKuanshi{min-height:300px;padding: 20px 10px;}
+	    .skil_img{width: 25%;float:left;text-align: center;}
+	    .skil_img img{width: 45px; height:45px;}
+	    .skil_img p{font-size: 12px;color: #333333;}
+	</style> 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">发布宝贝</h1>
+		</header>
+		<div class="mui-content" id="fabuserver">
+		   <div class="serverinput">
+		   	 <input id="serviceTilte" type="text" class="inputbiaoti" placeholder="标题 类型特点可以更快的让买家找到您哦"/>
+		   </div>	
+			<div id="servicexaingqing">
+				<textarea id="serviceDes" placeholder="在这里详细描述一下您的服务内容、服务流程等详情吧" name="" rows="" cols=""></textarea>
+				<div id="servicexaingq">
+					<img v-for="(item, index) in urlArr" :src="item"/>	
+					<img id="uploadimg" src="../../images/pand/shangchuanimg.png"/>	
+			    </div>
+			   <div id="serviceweizhi">
+				<span><i class=" mui-icon mui-icon-location"></i><em class="location" v-text="serviceAddress"></em></span>
+			   </div>
+			</div>
+			<div id="jiage">
+				<span >
+				价格
+				</span>
+				<img src="../../images/pand/more.png" />
+				<input id="servicePrice" type="text"  placeholder="开个价"/>
+				
+			</div>
+			<div id="fenlei">
+				<span >
+				分类
+				</span>
+				<img src="../../images/pand/more.png" />
+				<em v-text="skil_title">选择分类</em>
+			</div>
+			<div id="fapiao"  style="">
+				<span >
+				开具发票
+				</span>
+				<div id="fapiaobutton" class="mui-switch mui-switch-mini">
+					<div class="mui-switch-handle"></div>
+				</div>
+			</div>
+			<div id="fabuservicebutton">
+			  <button id="fabuservice">发布</button>
+		    </div>
+		  <!--选择技能id-->
+		    <div id="sheet3" class="mui-popover mui-popover-bottom mui-popover-action ">
+				<div class="goPingdanKuanshi">
+				   <div class="skil_img" v-for="(item, index) in categoryListArray" @click="gosure(item.id,item.title)">
+				   	  <img :src="item.iconUrl" />
+				   	  <p v-text="item.title">保洁</p>
+				   </div>
+				</div>
+		    </div>
+	  </div>
+	</body>
+	<script src="../../js/vue.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+	<script src="../../js/mui.min.js"></script>
+	<script type="text/javascript" src="../../js/config.js" ></script>
+	<script type="text/javascript" src="../../js/app.js" ></script>
+	<script type="text/javascript">
+	 mui.init();
+	  var baseArray = [];  //图片传值
+	  var vm = new Vue({
+		    el: '#fabuserver',
+		    data: {
+		        serviceAddress:"", //发布服务所在地址
+		        serviceLat:"",      //服务地址所在纬度
+		        serviceLng:"",   //服务地址所在经度
+		        categoryListArray:[],  //技能列表
+		        skil_id:"",   //技能id
+		        skil_title:"选择分类",  //技能title
+		        urlArr: [],  //图片路径
+		        serviceInvoice:0,   //默认不开发票
+		    },
+		    mounted: function () {
+				var _this = this;
+				this.$nextTick(function() {
+				    mui.plusReady(function(){
+				        _this.InitMain();
+				    })
+				}) 
+			},
+		    methods: {
+			    //初始化
+                InitMain: function() {
+                    var _this = this;
+                    var posi = null;
+                    posi = plus.geolocation.getCurrentPosition( function ( p ) {
+							console.log( "Geolocation\nLatitude:" + p.coords.latitude + "\nLongitude:" + p.coords.longitude + "\nAltitude:" + p.coords.altitude );
+							console.log("street = " + p.address.street);
+							console.log("poiName = " + p.address.poiName);
+							console.log("coordsType = " + p.coordsType);
+							console.log("timestamp = " + p.timestamp);
+							console.log("addresses = " + p.addresses);
+							_this.serviceAddress=p.addresses;
+							_this.serviceLat=p.coords.latitude;
+							_this.serviceLng=p.coords.longitude;
+						}, function ( e ) {
+							console.log( "Geolocation error: " + e.message );
+						},{enableHighAccuracy: true}); 
+					//加载技能列表
+			        mui.ajax({
+			            url: CONFIG.basePath+ '/api/system/skills_list',
+			             async: false,
+				         dataType: "json",
+				         type: 'post',
+			            success: function(res) {
+			              console.log(JSON.stringify(res.data.fullList))
+			              _this.categoryListArray=res.data.fullList;
+			            },
+			            error: function(xhr, type, errorThrown) {
+			            console.log("获取信息失败");
+			              
+			            }
+			        })	
+					
+                },
+               //选择技能id
+               gosure:function(id,title){
+               	var _this = this;
+               	_this.skil_id=id;
+             	_this.skil_title=title;
+               	mui('#sheet3').popover('toggle');
+             	 
+               }
+            }
+		});
+		//上传本地照片
+		document.getElementById('uploadimg').addEventListener('tap', function() {
+				if(mui.os.plus) {
+					var buttonTit = [{
+						title: "拍照"
+					}, {
+						title: "从手机相册选择"
+					}];
+ 
+					plus.nativeUI.actionSheet({
+						cancel: "取消",
+						buttons: buttonTit
+					}, function(b) { /*actionSheet 按钮点击事件*/
+						switch(b.index) {
+							case 0:
+								break;
+							case 1:
+								getImage(); /*拍照*/
+								break;
+							case 2:
+								galleryImg(); /*打开相册*/
+								break;
+							default:
+								break;
+						}
+					})
+				}
+			}, false);
+			// 拍照获取图片  
+			function getImage() {
+				var c = plus.camera.getCamera();
+				c.captureImage(function(e) {
+					plus.io.resolveLocalFileSystemURL(e, function(entry) {
+						var imgSrc = entry.toLocalURL() + "?version=" + new Date().getTime(); //拿到图片路径  
+						vm.urlArr.push(imgSrc);
+					}, function(e) {
+						console.log("读取拍照文件错误：" + e.message);
+					});
+				}, function(s) {
+					console.log("error" + s);
+				}, {
+					filename: "_doc/camera/"
+				})
+			}
+			
+ 
+			// 从相册中选择图片   
+			function galleryImg() {
+				// 从相册中选择图片  
+				vm.urlArr.length=0;  //清空照片
+				plus.gallery.pick(function(e) {
+					for(var i in e.files) {
+						var fileSrc = e.files[i];
+						vm.urlArr.push(fileSrc);
+					}
+				}, function(e) {
+					console.log("取消选择图片");
+				}, {
+					filter: "image",
+					multiple: true,
+					maximum: 4,
+					system: false,
+					onmaxed: function() {
+						plus.nativeUI.alert('最多只能选择4张图片');
+					}
+				});
+				
+			}
+			 //上传图片
+		  function upload(){
+		  	//服务端接口路径
+            var server = CONFIG.basePath+ '/api/pand_image_upload/image_upload';
+		    baseArray.length=0;
+		    for (var i = 0; i < vm.urlArr.length; i++) {
+		        var task=plus.uploader.createUpload(server,
+                    {method:"POST"},
+                    function(t,status){ //上传完成
+                    	console.log(status)
+                        if(status==200){
+                            //alert("上传成功："+JSON.parse(t.responseText).data);
+                            baseArray.push({ "baseStr": JSON.parse(t.responseText).data});
+                            //uploadserver(JSON.parse(t.responseText).data);
+                            //wt.close(); //关闭等待提示按钮
+                        }else{
+                            alert("上传失败："+status);
+                            //wt.close();//关闭等待提示按钮
+                        }
+                    }
+                );
+                //添加其他参数
+                task.addData("token",JSON.parse(localStorage.getItem('token')).accessToken);
+                task.addData("imgModel", "1");
+                task.addFile(vm.urlArr[i],{key:"file"});
+                task.start();
+		    }
+		  };  
+		//添加技能id
+	    document.getElementById("fenlei").addEventListener("tap", function() {
+	    	upload()// 调用上传图片接口
+			mui('#sheet3').popover('toggle');	
+	    });
+		//监听是否开发票事件
+		var autoLoginButton = document.getElementById("fapiaobutton");
+		autoLoginButton.addEventListener('toggle', function(event) {
+			console.log(event.detail.isActive)
+			if(event.detail.isActive){
+				console.log('开发票')
+				vm.serviceInvoice=1;
+			}else{
+				console.log('不开发票')
+				vm.serviceInvoice=1;
+			}
+		}, false);
+		//监听发布宝贝事件
+	    document.getElementById("fabuservice").addEventListener("tap", function() {
+			console.log('发布宝贝开始提交')
+			
+			plus.nativeUI.confirm("确定是否发布该服务", function(e) {
+                if(e.index == 0) {
+			    var params = {
+					    token:JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+					    pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+					    serviceAddress:vm.serviceAddress, //服务地址
+                        serviceLat:vm.serviceLat,    //服务地址所在纬度
+                        serviceLng:vm.serviceLng,   //服务地址所在经度
+                        imagesJson:JSON.stringify(baseArray),  //服务照片baseStr
+                        serviceTilte:document.getElementById('serviceTilte').value, //服务标题
+                        serviceDes:document.getElementById('serviceDes').value,
+                        serviceTypeId:vm.skil_id,   //服务技能id
+                        serviceInvoice:vm.serviceInvoice,  //是否开发票
+                        servicePrice:document.getElementById('servicePrice').value,  //服务价格
+                        serviceScope:'全天候',  //是否服务区间
+				    }; 
+				   mui.ajax({
+						url: CONFIG.basePath+ '/api/pandwork/pand_issue',
+						async: false,
+						data: params,
+						dataType: "json",
+						type: 'post',
+						success: function(res){
+							console.log('发布成功'+JSON.stringify(res.data))
+							console.log('发布信息'+res.message);
+							if(res.result==1){
+//								mui.toast(res.message);
+								mui.openWindow({
+									url: "pushsuccess.html",
+									id: "pushsuccess.html"
+								})
+							}
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+					});
+                }
+            }, "发布服务通知", ["确定", "取消"]);
+	    });
+    </script>		
+</html>

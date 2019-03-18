@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的地址</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.mui-bar a {
+				color: #E02D26;
+			}
+			#mui-btn{
+				font-size:14px;
+			}
+			li{
+				height: 65px;
+			}
+			.mui-slider-handle span{
+				font-size:14px;
+				color: #333333;
+				
+			}
+			.mui-add-nuber{
+				margin-left: 15px;
+			}
+			.mui-slider-handle a{
+				float: right;
+				height: 13px;
+				line-height: 13px;
+				font-size: 12px;
+				color: #999999;
+			    margin-top: 15px;
+			    padding-left: 15px;
+			    border-left: 1px solid #999999;
+			}
+			.mui-table-add{width: 250px;float: left;}
+			.mui-table-adds{width: 250px;float: left;}
+			.mui-botto{
+				height: 49px;
+				width: 100%;
+				position: absolute;
+				bottom: 0px;
+			}
+			.mui-botto button{
+				height: 49px;
+				width: 100%;
+			}
+			#mui-icon{
+				color: #FF413A;
+				width: 17px;
+				height: 17px;
+			}
+			.mui-adddd{
+				font-size:14px;
+				color: #333333;
+			}
+			#OA_task_2{
+				margin-top: 0;
+			}
+			.mui-table-view-cell{border-bottom:1px solid #DDDDDD}
+			.mui-btn-yellow{background-color: #FF413A}
+		</style>
+	</head>
+	<body>
+	   <header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">地址管理</h1>
+		</header>
+<<<<<<< .mine
+	  <div class="mui-content" id="addresslist">
+=======
+	  <div id="app" class="mui-content">
+>>>>>>> .r328
+	   <ul id="OA_task_2" class="mui-table-view">
+<<<<<<< .mine
+			<li class="mui-table-view-cell" v-for="(item, index) in addresslist">
+				<div class="mui-slider-right mui-disabled">
+				   <a id="mui-btn" class="mui-btn mui-btn-yellow mui-icon" @click="deldizhi(item.id)">删除</a>
+				</div>
+				<div class="mui-slider-handle">
+					<div class="mui-table-add">
+						<span v-text="item.personName">李木子</span>
+						<span class="mui-add-nuber" v-text="item.personPhone">15888888888</span>
+					</div>
+				    <a @click="modifydizhi(item.id)" >编辑</a>
+					<div class="mui-table-adds">
+						<span v-text="item.personAddress">上海青浦区复兴路88弄4支弄125号</span>
+						<span v-text="item.houseNumber"></span>
+					</div>
+				</div>
+			</li>
+=======
+		<li v-for="(item, index) in address" class="mui-table-view-cell">
+		<div class="mui-slider-right mui-disabled">
+		<a id="mui-btn" class="mui-btn mui-btn-yellow mui-icon">删除</a>
+		</div>
+		<div class="mui-slider-handle">
+	
+		<div  class="mui-table-add">
+			<span>{{item.personName}}</span>
+			<span class="mui-add-nuber">{{item.personPhone}}</span>
+		</div>
+			<a href="Editaddress.html">编辑</a>
+		<div class="mui-table-adds">
+			<span>{{item.personAddress}}-{{item.houseNumber}}</span>
+		</div>
+			
+		</div>
+	
+		</li>
+>>>>>>> .r328
+		</ul> 
+<<<<<<< .mine
+	    <div class="mui-botto" id="info" @click="adddizhi">
+	        <button>
+=======
+	      	<div class="mui-botto" id="info">
+	      	<button id="button">
+>>>>>>> .r328
+	      		<span id="mui-icon" class="mui-icon mui-icon-plus"> </span>
+	      		<samp  class="mui-adddd">添加地址</samp>
+	      	</button>	
+<<<<<<< .mine
+	    </div>
+	    </div>
+=======
+	      	</div>
+	      </div>
+>>>>>>> .r328
+	</body>
+<<<<<<< .mine
+	<script src="../../../js/mui.min.js"></script>
+    <script src="../../../js/jquery.min.js"></script>
+    <script src="../../../js/vue.min.js"></script>
+	<script type="text/javascript" src="../../../js/config.js" ></script>
+	<script type="text/javascript" src="../../../js/app.js" ></script>
+	<script>
+=======
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/mui.js"></script>
+	    <script src="../../../js/jquery.min.js"></script>
+	    <script src="../../../js/vue.min.js"></script>
+    	<script type="text/javascript" src="../../../js/config.js" ></script>
+	    <script type="text/javascript" src="../../../js/app.js" ></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+          el: '#OA_task_2',
+          data: {
+            address: [], //搜索列表数据
+            pageIndex: 1,  //页码从1开始计算
+            pageSize: 10,  //每页显示总条数 默认10
+          },
+         
+        });
+>>>>>>> .r328
+	   mui.init({
+			pullRefresh : {
+                    container:"#app",
+                    down: {
+                    contentdown : "下拉刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+                    contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+                    contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+		              style:'circle',//必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+		              color:'#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+		              height:'50px',//可选,默认50px.下拉刷新控件的高度,
+		              range:'100px', //可选 默认100px,控件可下拉拖拽的范围
+		              offset:'0px', //可选 默认0px,下拉刷新控件的起始位置
+		              auto: true,//可选,默认false.首次加载自动上拉刷新一次
+                        auto: true,
+                        callback: pulltofresh
+                    },
+                    up: {
+                        contentdown : "加载中。。。",
+                       callback: pushtoloadmore
+                    }
+                }
+	
+		});
+<<<<<<< .mine
+		var vm = new Vue({
+	          el: '#addresslist',
+	          data: {
+	            addresslist:[],    //地址列表
+	          },
+			  mounted: function () {
+			        var _this = this;
+			      	this.$nextTick(function() {
+			      	mui.plusReady(function(){
+			            _this.InitMain();
+			            window.addEventListener('refresh', function(e){//执行刷新
+					      location.reload();
+					    });
+			         })
+			      }) 
+				},
+	          methods: {
+		         //删除地址
+		         deldizhi:function(id){
+		         	var _this = this;
+		         	var param = {
+				      token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+                      id:id,   //用户id
+					};
+					mui.ajax({
+						url: CONFIG.basePath+ '/api/pandorder/address_delete',
+						async: false,
+						data: param,
+						dataType: "json",
+						type: 'post',
+						beforeSend: function(){
+							plus.nativeUI.showWaiting();
+						},
+						complete: function(){
+							plus.nativeUI.closeWaiting();
+						},
+					    success: function(res){
+							console.log('删除地址'+res.message);
+							if(res.result==1){
+							   _this.InitMain();
+							}else{
+							   mui.toast(res.message);
+							}
+							
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+					});
+		         },
+		         //编辑地址
+		         modifydizhi:function(id){
+		         	mui.openWindow({
+						url: "Editaddress.html",
+						id: "Editaddress.html",
+						extras: {
+			                addressid: id,
+			            }
+					})
+		         },
+		         //新增地址
+		         adddizhi:function(){
+		         	mui.openWindow({
+						url: "Newaddress.html",
+						id: "Newaddress.html",
+					})
+		         },
+		         //初始化加载
+		          InitMain: function(){
+		          	var _this = this;
+		          	var param = {
+					      token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+                          pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+						};
+						mui.ajax({
+						url: CONFIG.basePath+ '/api/pandorder/address_list',
+						async: false,
+						data: param,
+						dataType: "json",
+						type: 'post',
+						beforeSend: function(){
+							plus.nativeUI.showWaiting();
+						},
+						complete: function(){
+							plus.nativeUI.closeWaiting();
+						},
+					    success: function(res){
+							console.log('地址列表'+JSON.stringify(res.data));
+							if(res.result==1){
+							   _this.addresslist = res.data;
+							}else{
+							   mui.toast(res.message);
+							}
+							
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+					});
+		          },
+	           }
+=======
+		
+		 //plusReady，用来定义加载dom后的操作
+            function pulltofresh() {
+            	vm.page = 1;
+            	var _this = this; 
+                var params = {
+						token: JSON.parse(localStorage.getItem('token')).accessToken, //用户token
+						pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+					   };
+                    mui.ajax({
+                	url:CONFIG.basePath+ '/api/pandorder/address_list',
+                	async: false,
+                    data: params,
+                    dataType: 'json', //服务器返回json格式数据
+                    type: 'POST', //HTTP请求类型
+                    success: function(res) { 
+                       console.log(JSON.stringify(res.data))
+                        _this.address=JSON.stringify(res.data);
+//                      console.log(_this.address)
+                    }, 
+                    error: function(xhr, type, errorThrown) {
+                        //异常处理；
+                        console.log(type+1111);
+                    } 
+                });
+                 mui('#app').pullRefresh().endPulldownToRefresh();
+            }
+             function pushtoloadmore() {
+            	vm.page++;
+            	var _this = this; 
+                var params = {
+						token: JSON.parse(localStorage.getItem('token')).accessToken, //用户token
+						pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+					   };
+                    mui.ajax({
+                	url:CONFIG.basePath+ '/api/pandorder/address_list',
+                	async: false,
+                    data: params,
+                    dataType: 'json', //服务器返回json格式数据
+                    type: 'POST', //HTTP请求类型
+                    success: function(res) { 
+                       console.log(JSON.stringify(res.data))
+                        _this.address=JSON.stringify(res.data);
+                      
+                    }, 
+                    error: function(xhr, type, errorThrown) {
+                        //异常处理；
+                        console.log(type+1111);
+                    } 
+                });
+                 mui('#app').pullRefresh().endPulldownToRefresh();
+		}
+		
+		document.getElementById('info').addEventListener('tap', function() {
+		mui.openWindow({
+			url: './Newaddress.html', //通过URL传参
+		})
+>>>>>>> .r328
+		});
+	</script>
+</html>

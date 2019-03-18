@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+ 
+    <head>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>搜索列表</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet">
+    </head>
+    <style type="text/css">
+         #search {
+				height: 50px;
+			}
+				.mui-icon-search{
+				padding-top: 7px;
+			}
+			.mui-search .mui-placeholder {
+				font-size: 13px;
+			}
+			#goSearch{
+				border-radius: 50px;
+				float: left;
+				background-color: #F7F7F7;
+			}
+			#mui-content{
+				background-color: #ffffff;
+			}
+			.search_left {
+				width: 85%;
+				float: left;
+				padding: 10px 0px 0px 15px;
+			}
+			.search_right {
+				width: 10%;
+				float: left;
+				text-align: left;
+				padding-left: 5px;
+				font-size: 13px; 
+				line-height: 56px;
+				/*border: 1px solid red;*/
+				color: #999
+			}
+			.mui-content{background: #fff;}
+			input[type=search] {
+				    font-size: 13px;
+				   background: #F7F7F7;
+				   border-radius: 18px;
+				}
+			.mui-search .mui-placeholder .mui-icon {
+			    font-size: 18px;
+			    color: #333;
+			}
+    </style>
+    <body>
+	     <header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">搜索</h1>
+		</header>
+        <div class="main_content">
+	      <div id="search">
+			<div class="search_left">
+				<div class="mui-input-row mui-search">
+					<input id="goSearch" type="search" class="mui-input-clear" placeholder="输入商品名称">
+				</div> 
+				</div>
+			<div class="search_right mui-action-back">取消</div>
+		 </div>
+        <!--下拉刷新容器-->
+            <div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+              <div class="mui-scroll">
+                <!--数据列表-->
+                <ul class="mui-table-view mui-table-view-chevron" id="newslist">
+                  <li class="mui-table-view-cell mui-media" v-for="(item, index) in newsList">
+                      <div class="newshead">
+                          <span style="font-size: .8rem;color: #999;">{{getDateDiff(item.pubTime)}}&nbsp;&nbsp;</span> 
+                          <span style="font-size: .8rem;color: #000;">{{item.identityName}}</span> 
+                          <span class="readstar">
+                              <img src="https://static.walian.cn/wap/1.1.2018061915/img/common_shoucang_clicked@3x.34cae9a.png" v-if="n<=item.star" v-for="n in 5"/>
+                              <img src="https://static.walian.cn/wap/1.1.2018061915/img/common_shoucang_unclicked@3x.1f1950c.png" v-else/>
+                          </span>
+                      </div>
+                      <div class="newstitle">
+                          {{item.title}}
+                      </div>
+                      <div class="newscontent">
+                          {{item.content}}
+                      </div>
+                      <div class="newsfoot">
+                          利好 {{item.voteGood}}&nbsp;&nbsp;&nbsp;&nbsp;利空{{item.voteNegative}}
+                      </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+    </body>
+	<script src="../../../js/vue.min.js"></script>
+	<script src="../../../js/mui.min.js"></script>
+	<script src="../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../js/app.js" ></script>
+	<script type="text/javascript" src="../../../js/config.js" ></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+          el: '#newslist',
+          data: {
+            newsList: [], //搜索列表数据
+            pageIndex: 1,  //页码从1开始计算
+            pageSize: 10,  //每页显示总条数 默认10
+            serviceTypeId:"", //技能id
+            contents:"",  //查询关键字
+          },
+          methods: {
+             
+          }
+        });
+        mui.init(
+            {
+                pullRefresh : {
+                    container:"#refreshContainer",
+                    down: {
+                    contentdown : "下拉刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+                    contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+                    contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+		              style:'circle',//必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+		              color:'#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+		              height:'50px',//可选,默认50px.下拉刷新控件的高度,
+		              range:'100px', //可选 默认100px,控件可下拉拖拽的范围
+		              offset:'0px', //可选 默认0px,下拉刷新控件的起始位置
+		              auto: true,//可选,默认false.首次加载自动上拉刷新一次
+                        auto: true,
+                        callback: pulltofresh
+                    },
+                    up: {
+                        contentdown : "加载中。。。",
+                        callback: pushtoloadmore
+                    }
+                }
+            }
+        )
+        function pulltofresh() {
+            vm.page = 1;
+            mui.ajax('https://xxx.xxxxxx.xxx/xxxx?rows=10&page=' + vm.page, {
+                type: 'get',
+                success: function(res){
+                    vm.newsList = res.data.list;
+                },
+                error: function(e) {
+                    
+                }
+            })
+            mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+        }
+        function pushtoloadmore() {
+            vm.page++;
+            mui.ajax('https://xxx.xxxxxx.xxx/xxxx?rows=10&page=' + vm.page, {
+                type: 'get',
+                success: function(res){
+                    vm.newsList = vm.newsList.concat(res.data.list);
+                },
+                error: function(e) {
+                    
+                }
+            })
+            mui('#refreshContainer').pullRefresh().endPullupToRefresh();
+        }
+    </script>
+</html>

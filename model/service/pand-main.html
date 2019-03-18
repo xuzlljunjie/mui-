@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>首页</title>
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<style type="text/css">
+			.headmps{
+				display: flex;
+				background: #fff;
+				padding: 0px 15px;
+				padding-top: 10px;
+			}
+			.mui-search{
+				flex: auto;
+			}
+			.mpstitle{
+				
+                max-width:200px;
+                display: flex;
+			}
+			.mpslocation{
+				line-height:36px;
+				font-size:14px;
+				color:#333333;
+				font-family:'PingFangSC';
+				overflow:hidden;
+				text-overflow:ellipsis;
+				white-space:nowrap;
+				padding-right:5px;
+				max-width:100px;
+			}
+			.mpsicon{
+				    flex: auto;
+				    line-height: 35px;
+				    margin-right: 25px;
+			}
+			#slider{
+				text-align: center;
+				background: #fff;
+			}
+			#slider img {
+				height: 90px;
+				width:95%;
+				
+			}
+			
+			#Gallery li {
+				width: 25%;
+			}
+			
+			#Gallery li img {
+				width: 45px;
+			}
+			
+			#Gallery li div {
+				font-size: 12px;
+				color: #333333;
+			}
+			
+			.mui-slider-indicator .mui-active.mui-indicator{
+				background-color: #F0F0F0;
+				width: 10px;
+			}
+			
+			.mui-slider-indicator .mui-indicator {
+				box-shadow: initial;
+			}
+			
+			#showBox {
+				background: white;
+			}
+			
+			.boxImg {
+				width: 100%;
+				height: 160px;
+			}
+			
+			.boxTitle {
+				margin-top: 5px;
+				font-size: 14px;
+				letter-spacing: 1px;
+				overflow: hidden;
+				height: 41px;
+				line-height: 20px;
+				margin-left: 10px;
+				background: white;
+			}
+			
+			.boxPrice {
+				/*border: 1px solid red;*/
+				height: 50px;
+				margin-left: 10px;
+				background: white;
+			}
+			
+			.boxPrice_cale {
+				color: #E02D26;
+				font-size: 16px;
+				font-weight: bold;
+				line-height: 50px;
+				float: left;
+			}
+			
+			.boxPrice_desc {
+				line-height: 50px;
+				float: left;
+				margin-left: 10px;
+				font-size: 12px;
+				color: #6D6D72;
+			}
+			
+			.boxPrice_goBuy {
+				float: right;
+				width: 100px;
+				height: 35px;
+				line-height: 25px;
+				/*margin: 10px;*/
+				margin-right: 10px;
+				background: #E02D26;
+				color: white;
+				border-radius: 5px;
+				border: 0px;
+			}
+			 
+			.showBoxItem {
+				border-top: 10px solid #efeff4;
+			}
+			
+			button:enabled:active,
+			input[type=button].mui-active:enabled,
+			input[type=button]:enabled:active {
+				background-color: red;
+			}
+			#Home_seach{
+				background:#F7F7F7;
+				font-size: 12px;
+				border-radius: 18px;
+				height:30px;
+				line-height: 30px;
+				    padding: 0px 15px;
+			}
+			#Home_seach span{color:#999999;font-size: 12px;}
+			.location-icon{height:35px;line-height: 35px;color: #FF413A;}
+			#map {
+				width: 100%;
+				position: fixed;
+				top: 325px;
+				bottom: 0px;
+				line-height: 200px;
+				text-align: center;
+				background: #FFFFFF;
+			}
+           .mui-slider-indicator{
+           	bottom:0px;
+           }
+		</style>
+	</head>
+ 
+	<body>
+		
+		<div id="app"  class="mui-content mui-scroll-wrapper">
+			<div class="headmps">
+				<div class="mpstitle" id="seachaddress">
+					<div class="location-icon">
+						<span class=" mui-icon mui-icon-location"></span>
+					</div>
+					
+					<div class="mpslocation">
+						正在获取地理位置
+					</div>
+					<div class="mpsicon">
+						<span class="mui-icon mui-icon-arrowdown"></span>
+					</div>
+				</div>
+			
+			    <div id="Home_seach" class="mui-input-row mui-search Home_seach">
+				   <span class=" mui-icon mui-icon-search"></span>
+				   <span>快速搜索商家,服务</span>
+				</div>
+				
+			</div>
+			<div class="mui-scroll" >
+				<div id="slider" class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">
+						<div v-for="(item, index) in movies"  :class="index == 0 ? 'mui-slider-item mui-slider-item-duplicate':'mui-slider-item'" >
+							<a :id="item.id" href="#"><img :src="item.imgUrl" /></a>
+						</div>
+						<div v-for="(item, index) in movies"  :class="index == movies.length ? 'mui-slider-item mui-slider-item-duplicate':'mui-slider-item'" >
+							<a :id="item.id" href="#"><img :src="item.imgUrl" /></a>
+						</div>
+					</div>
+					<div class="mui-slider-indicator">
+						<div v-for="(item, index) in movies" :class="index == 0 ? 'mui-indicator mui-active':'mui-indicator'" ></div>
+					</div>
+ 
+				</div>
+				<div id="Gallery" class="mui-slider">
+					<div class="mui-slider-group">
+						<div class="mui-slider-item">
+							<ul class="mui-table-view mui-grid-view">
+								<li v-for="(item, index) in categoryList0" class="mui-table-view-cell mui-media">
+									<a href="javascript:void(0)" @click="goseach(item.id)">
+										<img :src='item.iconUrl'>
+										<div class="mui-media-body" v-text="item.title">搬运工</div>
+									</a>
+								</li>	
+							</ul>
+						</div>
+						<div class="mui-slider-item">
+							<ul class="mui-table-view mui-grid-view">
+								<li v-for="(item, index) in categoryList1" class="mui-table-view-cell mui-media">
+									<a href="javascript:void(0)" @click="goseach(item.id)">
+										<img :src='item.iconUrl'>
+										<div class="mui-media-body" v-text="item.title">水电工</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="mui-slider-indicator" style="bottom:-3px;">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+				
+			</div>
+			<!--<div class="location">
+			  <img src="../../images/pand/location.png" />
+			</div>-->
+			<div id="map">地图加载中...</div>
+		</div>
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/config.js" ></script>
+	    <script type="text/javascript" src="../../js/app.js" ></script>
+		<script>
+			var vm=new Vue({
+		      el: "#app",
+		      data: {
+		        movies:[],//首页banner列表
+		        categoryList0:[],  //技能列表数组0
+		        categoryList1:[],  //技能列表数组1
+		        latitude:"",       //经度
+		        longitude:"",      //维度
+		      },
+		      updated:function(){
+                var slider = mui("#slider");
+					slider.slider({
+					interval: 500
+				});
+              },
+		      mounted: function () {
+		      	 var _this = this;
+		      	 this.$nextTick(function() {
+		            _this.InitMain();
+		      	}) 
+			   },
+		      methods: {
+		      	//初始化
+                InitMain: function() {
+                	var _this = this;
+                	//加载banner列表
+                	 mui.ajax({
+			            url: CONFIG.basePath+ '/api/system/banner_list',
+			             async: false,
+				         dataType: "json",
+				         type: 'post',
+			            success: function(res) {
+			              console.log(JSON.stringify(res.data))
+			              //alert(res.data.length)
+			              _this.movies=res.data;
+			            },
+			            error: function(xhr, type, errorThrown) {
+			            console.log("获取信息失败");
+			              
+			            }
+			          });
+			          //加载技能列表
+			          mui.ajax({
+			            url: CONFIG.basePath+ '/api/system/skills_list',
+			             async: false,
+				         dataType: "json",
+				         type: 'post',
+			            success: function(res) {
+			              console.log(JSON.stringify(res.data.dataArray.data0))
+			              console.log(JSON.stringify(res.data.dataArray.data1))
+			              _this.categoryList0=res.data.dataArray.data0;
+			              _this.categoryList1=res.data.dataArray.data1;
+			            },
+			            error: function(xhr, type, errorThrown) {
+			            console.log("获取信息失败");
+			              
+			            }
+			          })
+                },
+                //技能列表查询
+                goseach:function(e){
+                	localStorage.setItem('serviceTypeId',e);
+                	localStorage.setItem('seachword','');
+                	localStorage.setItem('seachtype','3368');
+                	mui.openWindow({
+					url: "seach/seachlist.html",
+					id: "seachlist.html",
+				   })
+                }
+		      }
+		    });  
+			var em=null,map=null;
+			var posi = null;
+			mui.init({
+			swipeBack:true 
+		   });
+		   
+		   /**
+		    * 下载图片 
+		    * @param {Object} imgUrl
+		    * @param {Object} shopId
+		    */
+		   function downImage(imgUrl,shopId){
+		   		var pngName = imgUrl.substring(imgUrl.lastIndexOf("/")+1);
+		   		var resource=plus.io.convertLocalFileSystemURL(pngName);
+		   		var path = resource.substring(0,resource.indexOf("apps/")+5);
+				path = path + "local/"+pngName;	
+				//根据path先删除
+//				removeLocalImg(path);
+				var downurl = imgUrl;
+				if(mui.os.android){//获取Android尺寸图片
+					downurl=imgUrl+"_120x120";
+				}else{//获取其他型号尺寸
+					downurl=imgUrl+"_120x120";
+				}
+		   		var dtask = plus.downloader.createDownload(downurl, 
+								{filename:path}, function(d, status){
+					// 下载完成
+					if(status == 200){ 
+						//此处放入本地缓存中即可
+						localStorage.setItem(shopId+"_png",path);
+						//alert("Download success: " + d.filename);
+					} else {
+						 //alert("Download failed: " + status); 
+					}  
+				});
+				dtask.start();
+		   }
+		   
+		   /**
+		    * 删除本地下的图片 
+		    * @param {Object} path
+		    */
+		   function removeLocalImg(path){
+		   		plus.io.resolveLocalFileSystemURL( path, function( entry ) {
+					// 可通过entry对象操作test.html文件 
+					entry.remove( function ( entry ) {
+						plus.console.log( "Remove succeeded" );
+					}, function ( e ) {
+						//alert( e.message );
+					} );
+				}, function ( e ) {
+					alert( "Resolve file URL failed: " + e.message );
+				} );
+		   }
+		   
+			mui.plusReady(function() {
+				posi = plus.geolocation.getCurrentPosition( function ( p ) {
+					console.log( "Geolocation\nLatitude:" + p.coords.latitude + "\nLongitude:" + p.coords.longitude + "\nAltitude:" + p.coords.altitude );
+//					console.log("street = " + p.address.street);
+//					console.log("poiName = " + p.address.poiName);
+//					console.log("coordsType = " + p.coordsType);
+//					console.log("timestamp = " + p.timestamp);
+//					console.log("addresses = " + p.addresses);
+                    vm.latitude=p.coords.latitude;
+                    vm.longitude=p.coords.longitude;
+                    localStorage.setItem('userLat',p.coords.latitude);
+                    localStorage.setItem('userLng',p.coords.longitude);
+                    if(localStorage.getItem("locationadress")){
+                    	$('.mpslocation').html(localStorage.getItem("locationadress"));
+                    }else{
+                    	$('.mpslocation').html(p.addresses);
+                    }
+					
+					var params = {
+						distance: 10, //周边距离 默认10公里，单位公里
+						lat:p.coords.latitude,   //	所在经度
+						lng:p.coords.longitude,  //所在纬度
+					};
+					mui.ajax({
+						url: CONFIG.basePath+ '/api/pandwork/home_map_list',
+						async: false,
+					    data: params,
+					    dataType: "json",
+					    type: 'post',
+					    beforeSend: function(){
+						    plus.nativeUI.showWaiting();
+					    },
+					    complete: function(){
+						    plus.nativeUI.closeWaiting();
+					    },
+						success: function(res){
+							console.log('店铺数据'+JSON.stringify(res.data));
+							for(var i=0;i<res.data.length;i++){
+								var icon = localStorage.getItem(res.data[i].id+"_png");
+								console.log("地图图标路径："+icon);
+								if(!icon){
+									downImage(res.data[i].roundImg,res.data[i].id);
+									icon = "../../images/pand/address.png";
+								}
+								var marker=new plus.maps.Marker(new plus.maps.Point(res.data[i].shopLng,res.data[i].shopLat));
+								marker.setIcon(icon);
+								marker.setLabel(res.data[i].shopName);
+				                marker.id=res.data[i].pandUserId;
+								map.addOverlay(marker);
+								marker.onclick = function(e){
+				                  mui.openWindow({
+										url: "../shop/shopfordetails.html",
+										id: "shopfordetails.html",
+										extras: {
+							                pandUserId: e.id,
+							              }
+								    })
+				                }
+							}
+						},
+						error: function(xhr, type, errorThrown){
+							mui.toast('服务器响应失败');
+						}
+					});
+				}, function ( e ) {
+					console.log( "Geolocation error: " + e.message );
+				},{enableHighAccuracy: true}); 
+			});
+			// H5 plus事件处理
+			function plusReady(){
+				// 确保DOM解析完成
+				if(!em||!window.plus||map){return};
+				map = new plus.maps.Map("map");
+				getUserLocation();     //定位用户位置
+				showUserLocation();    //显示用户位置
+				showZoomControls();    //缩放控件
+				//addMarker();       //添加覆盖物
+//				map.centerAndZoom( new plus.maps.Point(116.3977,39.906016), 12 );
+				//alert(plus.storage.getItem('userid'))
+			}
+			if(window.plus){
+				plusReady();
+			}else{
+				document.addEventListener("plusready",plusReady,false);
+			}
+			// DOMContentloaded事件处理
+			document.addEventListener("DOMContentLoaded",function(){
+				em=document.getElementById("map");
+				plusReady();
+			},false);
+			// 获取用户的当前位置信息
+			function getUserLocation(){
+				map.getUserLocation( function ( state, point ){
+					if( 0 == state ){
+//						alert( JSON.stringify(point) );
+						setCenter(point.longitude,point.latitude)
+					}else{
+						alert( "Failed!" );
+					}
+				} );
+			}
+			// 设置地图的中心点
+			function setCenter(lng,lat){
+				var center = new plus.maps.Point( lng, lat );
+				map.setCenter( center );
+			}
+			// 打开用户位置
+			function showUserLocation(){
+				map.showUserLocation( true );
+			}
+			// 打开用户位置
+			function showZoomControls(){
+				map.showZoomControls( true );
+			}
+			//进入选择地址
+			document.getElementById("seachaddress").addEventListener("tap", function() {
+				mui.openWindow({
+					url: "seach/seachaddress.html",
+					id: "seachaddress.html",
+					extras: {
+		                latitude: vm.latitude,
+		                longitude:vm.longitude,
+		            }
+				})
+			})
+			//进入查询页面
+			document.getElementById("Home_seach").addEventListener("tap", function() {
+				mui.openWindow({
+					url: "seach/seachmain.html",
+					id: "seachmain.html",
+				})
+			})
+			$('#map div.anchorBL').remove();
+		</script>
+	</body>
+ 
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户注册</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			/* 登录 */
+			#authCode{
+				float: left;
+				width: 65%;
+			}
+			.mui-input-group{
+				text-align: center;
+				padding: 15px;
+				padding-top: 120px;	
+			}
+			.mui-content-padded button{
+				width: 100%;
+				height: 40px;
+				color: #FFFFFF;
+				font-weight: bold;
+				border-radius: 21px;
+				border: 0px;
+				background: linear-gradient(to right,  #FF413A , #FF9849);
+				margin-top: 37px;
+			
+			}
+			 .mui-input-row input{
+				border: 0px;
+				width: 100%;
+				padding: 0;
+				font-size: 16px;
+				color: #333333;
+				margin-top: 15px;
+			   
+				}
+			.mui-input-row{
+				border-bottom: 1px solid #FF413A;
+				float: left;
+				width: 100%;
+				height: 5px;
+				padding-bottom:12px;
+				
+			}
+			.mui-verify{
+				height: 30px;
+				width: 30%;
+				float: right;
+			    margin-top: 17px;
+				border-radius: 15px;
+				border: 0px;
+				font-size: 14px;
+				color: #FF413A;
+				background-color: #F4F4F4;
+			}
+			.mui-content-padded{margin-top: 100px;}
+			.mui-content{background: #fff;;}
+			
+			.mui-btn-primary:enabled:active{
+				color: #fff;
+                border: 1px solid #FF413A; 
+                background-color: #FF413A; 
+			}
+			#testLogin{text-align: center;margin-top: 50px;}
+			#testLogin img{width:53px;height:53px;}
+			.wechat{font-size: 12px; color: #999999;}
+			.loginopcity{opacity: 0.5;}
+			.mui-checkbox input[type=checkbox]{
+	         	position: absolute;
+			    top: 0px;
+			    left: 10px;
+			    display: inline-block;
+			    width: 15px;
+			    height: 15px;
+			    border: 0;
+			    outline: 0!important;
+			    background-color: transparent;
+			    -webkit-appearance: none;
+	         }
+	        .mui-checkbox input[type=checkbox]:before{
+	        	font-size: 17px;
+	        }
+	        .mui-checkbox input[type=checkbox]:checked:before{
+	        	color: #FF413A;
+	        }
+	        .agreexieyi{color: #333333;font-size: 12px;padding-left: 30px;}
+	        .mui-input-group .mui-input-row:after{height:0px;}
+	        .mui-input-group:after{height:0px;}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">注册</h1>
+		</header>
+		<div class="mui-content" id="registerhtml">
+		 <div class="mui-input-group">
+		    <div class="mui-input-row">
+		    <input type="text" id="userPhone" @blur="animateWidth('userPhone','blur')" @focus="animateWidth('userPhone','focus')"  class="mui-input-clear" placeholder="手机号码">
+		    </div>
+		    <div class="mui-input-row">
+		        <input id="authCode"  @blur="animateWidth('authCode','blur')" @focus="animateWidth('authCode','focus')" type="text"  class="mui-input-password" placeholder="验证码">
+				<button @click="getMesCode()" class="mui-verify" v-text="getCode"></button>
+		    </div>
+		    
+		 </div>
+		 <div class="mui-content-padded">
+		     <button  id='login' @click="login()" class="mui-btn  mui-btn-primary">同意协议并注册</button>
+		</div>
+		<div class="mui-checked">
+			<div class="mui-checkbox">
+			   <input type="checkbox" class="checkbox" id="0" value="" />
+			</div>
+			<div class="agreexieyi" @click="agreehref()">
+				<span style="color: #999999;">已阅读并同意</span>
+				<i style="font-style: normal;">潘朵菈平台服务协议</i>
+			</div>
+		</div>
+	</div>
+	</body>
+	<script src="../../js/vue.min.js"></script>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+	<script src="../../js/tool.js"></script>
+	<script type="text/javascript" src="../../js/config.js" ></script>
+	<script type="text/javascript" src="../../js/app.js" ></script>
+	<script type="text/javascript">
+	   mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		var vm = new Vue({
+	        el: '#registerhtml',
+	        data: {
+//	          authCodetype:1,  //判断输入方式
+	          checked:false,   //是否勾选
+	          getCode: '获取验证码',  //获取验证码
+	        },
+			mounted: function () {
+			    var _this = this;
+			    this.$nextTick(function() {
+			       mui.plusReady(function(){
+			            _this.InitMain();
+			        })
+			    }) 
+		    },
+	        methods: {
+		        //获取验证码
+		        getMesCode:function(){
+		        	console.log(document.getElementById('userPhone').value)
+		        	 var param={
+		        	  	userPhone: document.getElementById('userPhone').value,
+		        	  	key:"a5b4c18cc837456092804e400b5019c9"
+		        	  }
+		        	 console.log(param)
+		        		mui.ajax({
+							url: CONFIG.basePath+ '/api/freeuser/panduser_send_authcode',
+							data: param,
+							dataType: "json",
+							type: 'post',
+							success: function(res){
+							console.log("发送成功")
+							console.log('注册状态'+res.message);
+								console.log('注册状态'+res.result);
+							}, 
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+		        	var _this = this;
+		        	_this.countDown();
+		        },
+		        //验证码计时器
+		        countDown: function () {
+				    var _this = this;
+				    var timer = null;
+				    var time = 30;
+				    timer = setInterval(function () {
+				    	_this.getCode=time;
+				      if (time >= 0) {
+				        time--;
+				      } else {
+				        _this.getCode="重新获取";
+				        clearInterval(timer);
+				      }
+				    }, 1000);
+				  },
+		        //去注册
+		        login:function(){
+		        	var _this = this;
+		        	if(!document.getElementById('userPhone').value){
+		        		mui.toast('请输入用户手机号');
+		        		return false;
+		        	}
+		        	if(!document.getElementById('authCode').value){
+		        		mui.toast('请输入验证码');
+		        		return false;
+		        	}
+		        	var params = {
+		        		regType:3,  //注册类型
+		                userPhone:document.getElementById('userPhone').value ,  //用户手机号
+						authCode:document.getElementById('authCode').value,  //手机验证码 
+					};
+		        	if(_this.checked){
+		        	
+		        		mui.ajax({
+							url: CONFIG.basePath+ '/api/freeuser/panduser_register',
+							async: false,
+							data: params,
+							dataType: "json",
+							type: 'post',
+							success: function(res){
+								console.log('查看id'+res.data)
+								console.log('注册状态'+res.message);
+								console.log('注册状态'+res.result);
+								if(res.result==1){
+								mui.openWindow({
+										url: "setpassord.html?",
+										id: "setpassord.html",
+										extras: {
+											userId:res.data
+							              
+								            }
+									})
+								}else{
+									mui.toast(res.message);
+								}
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+		        	}else{
+		        	  mui.toast('请勾选协议');
+		        	}
+		        },
+		        animateWidth:function(name,type){
+		        	var _this = this;
+		        	if (name == "authCode") {
+				        if (type == "blur"&&$("#authCode").val()!="") {
+//				          _this.authCodetype = 2;
+				        } else {
+//				          _this.authCodetype = 1;
+				          return;
+				        }
+				    }else if(name == "userPhone"){
+				    	if (type == "blur") {
+				    	  _this.fnJudgeTel($("#userPhone").val());
+				        }
+				    }
+		        },
+		         //正则判断手机号是否正确
+				  fnJudgeTel: function (tel) {
+				    var reg = /[1][3-8]+\d{9}/;
+				    if (reg.test(tel) == false) {
+				      mui.toast('请输入正确的手机号');
+				      return false
+				    }
+				  },
+		        //前去设置密码
+		        setpassord:function(){
+		        	
+		        },
+		        //查看服务协议
+		        agreehref:function(){
+			          mui.openWindow({
+						url: "/model/user/Verification/xieyi.html",
+						id: "xieyi.html",
+					 })
+		        },
+		        //初始化
+                InitMain: function() {
+                	 
+                },
+		    }
+	    });
+	    // 事件绑定
+		 mui('.mui-checkbox').on('change','input',function(){
+			console.log("id = " + this.id + " status = " + this.checked);
+			if (this.checked) { 
+				vm.checked=true;
+				console.log('勾选上了')
+			} else{
+				vm.checked=false;
+				console.log('取消勾选')
+			}
+			
+		 });
+	</script>
+</html>

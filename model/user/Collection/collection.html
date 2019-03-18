@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的收藏</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			
+				header img{
+				width: 9px;
+				height: 18px;
+				margin-top: 12px;
+			}
+			.collectimg{
+				width: 80px;
+				height: 70px;
+				float: left;
+			
+			}
+			.collectimg img{
+				width: 80px;
+				height: 70px;
+				
+			}
+			.collectr{
+				float: right;
+			}
+			.mui-test{
+				font-size: 14px;
+				color: #333333;
+				margin-left: 12px;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+				width: 200px;
+			}
+			.mui-xing{
+				margin-left: 12px;
+				width: 90px;
+				float: left;
+			}
+			.mui-xing span{
+			  width: 10px;
+			  height: 10px;
+			  margin-left: 2px;
+			}
+			.mui-icon-star-filled {
+				color: #FF413A;
+			}
+			.mui-xing-fen{
+				font-size: 10px;
+				color: #666666;
+				float: left;
+				margin-top: 3px;
+			}
+			.mui-time{
+				font-size: 10px;
+				color: #666666;
+				float: left;
+				margin-top: 3px;
+				margin-left: 12px;
+			}
+			.mui-km{
+				font-size: 10px;
+				color: #666666;
+				float: left;
+				margin-top: 3px;
+				margin-left: 12px;
+			}
+			.mui-collectb{
+				height: 20px;
+				margin-top: 30px;
+				margin-left: 12px;
+			}
+			.mui-qian{
+				font-size: 18px;
+				color: #FF413A;
+			}
+			.mui-qian-icon{
+				font-size: 10px;
+				color: #FF413A;
+			}
+			.mui-collectnuber{
+				font-size: 10px;
+				color: #999999;
+			}
+			#OA_task_2{
+				margin-top: 0;
+			}
+			#mui-btn{
+				font-size:14px ;
+			}
+			.mui-btn-yellow{background: #FF413A;}
+			.mui-table-view-cell{border-bottom:1px solid #DDDDDD;}
+			.noseach{background: #ffffff;padding: 100px 0px;}
+			.noimg{text-align: center;margin-bottom: 10px;}
+			.noimg img{width:175px;height:124px;}
+			.notext{text-align: center;color: #666666;font-size: 12px;}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">我的收藏</h1>
+		</header>
+		<div class="mui-content" id="collectlist">
+		<div id="OA_task_2" class="mui-table-view" v-show="!nocollectlist">
+			<div class="mui-table-view-cell" v-for="(item, index) in collectlist">
+				<div class="mui-slider-right mui-disabled">
+				<a id="mui-btn"  class="mui-btn mui-btn-yellow mui-icon" @click="godel(item.id)">删除</a>
+				</div>
+				<div class="mui-slider-handle">
+					<div class="mui-table-cell">
+						<div class="collectimg">
+						    <img :src="item.shoperInfo.shopImg" />
+						</div>
+						<div class="collectr">
+								<p class="mui-test" v-text="item.serviceTilte">马桶维修  水路管路安装改造更新工程我去饿我去欸ii</p>
+								<div class="mui-xing">
+									<span :class="item.serviceStar>=1 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></span>
+									<span :class="item.serviceStar>=2 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></span>
+									<span :class="item.serviceStar>=3 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></span>
+									<span :class="item.serviceStar>=4 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></span>
+									<span :class="item.serviceStar>=5 ? 'mui-icon mui-icon-star-filled':'mui-icon mui-icon-star'"></span>
+								</div>
+								<p class="mui-xing-fen" v-text="item.serviceStar">0.5</p>
+								<p class="mui-time"><i style="font-style: normal;" v-text="item.serviceTimeLength"></i>分钟</p>
+								<p class="mui-km"><i style="font-style: normal;" v-text="item.serviceDistance"></i>km</p>
+								<div class="mui-collectb">
+									<span class="mui-qian"><span class="mui-qian-icon">￥</span><i style="font-style: normal;" v-text="item.servicePrice"></i></span>
+									<span class="mui-collectnuber">1035人收藏</span>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="pullrefresh">
+                	
+            </div>
+		</div>
+		<!--收藏列表为空的时候判断-->
+       <div class="noseach" v-show="nocollectlist">
+       	   <div class="noimg">
+       	   	  <img src="../../../images/pand/noseach.png" />
+       	   </div>
+       	   <p class="notext">啊哦，暂时没有相关收藏哦~</p>
+       </div>
+	</div>
+	</body>
+	<script src="../../../js/mui.min.js"></script>
+    <script src="../../../js/jquery.min.js"></script>
+    <script src="../../../js/vue.min.js"></script>
+	<script type="text/javascript" src="../../../js/config.js" ></script>
+	<script type="text/javascript" src="../../../js/app.js" ></script>
+	<script type="text/javascript">
+	 mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				up: {
+					auto: false, //默认false.自动上拉加载一次
+					contentrefresh: '正在加载...',
+					callback: pullupRefresh
+				}
+			},
+			keyEventBind: {
+				backbutton: true //开启back按键监听  
+			}
+		});
+	 var vm = new Vue({
+          el: '#collectlist',
+          data: {
+            collectlist:[],    //收藏列表
+            page: 1,  //页码从1开始计算
+            pageSize: 10,  //每页显示总条数 默认10
+            loadflag:false, //代表没有更多数据加载
+            status: "",       //订单状态
+            nocollectlist:true,   //无结果显示
+          },
+		  mounted: function () {
+		        var _this = this;
+		      	this.$nextTick(function() {
+		      	mui.plusReady(function(){
+		            _this.InitMain();
+		            
+		         })
+		      }) 
+			},
+          methods: {
+	        //删除收藏
+	        godel:function(id){
+	        	var _this = this;
+	        	var param = {
+			      token:JSON.parse(localStorage.getItem('token')).accessToken ,  //用户token
+                  pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+                  serviceId: id,
+				};
+				mui.ajax({
+				    url: CONFIG.basePath+ '/api/panduser/collection_delete_manyOrder',
+					async: false,
+				    data: param,
+				    dataType: "json",
+				    type: 'post',
+					beforeSend: function(){
+						plus.nativeUI.showWaiting();
+					},
+					complete: function(){
+						plus.nativeUI.closeWaiting();
+					},
+					success: function(res){
+						console.log('删除收藏'+res.message)
+						if(res.result==1){
+							mui.toast('删除成功');
+							_this.InitMain();
+						}else{
+							mui.toast(res.message);
+						}
+						
+						
+					},
+					error: function(xhr, type, errorThrown){
+						mui.toast('服务器响应失败');
+					}
+				});
+	        },
+            //初始化
+            InitMain: function() {
+                var _this = this;
+                var param = {
+				      token:JSON.parse(localStorage.getItem('token')).accessToken ,  //用户token
+					  pageIndex:_this.page,
+                      pageSize:_this.pageSize,
+                      pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+					};
+				mui.ajax({
+				    url: CONFIG.basePath+ '/api/panduser/collection_list',
+					async: false,
+				    data: param,
+				    dataType: "json",
+				    type: 'post',
+					beforeSend: function(){
+						plus.nativeUI.showWaiting();
+					},
+					complete: function(){
+						plus.nativeUI.closeWaiting();
+					},
+					success: function(res){
+						console.log('收藏列表'+JSON.stringify(res.data))
+						console.log('收藏列表'+res.data.length)
+						if(res.result==1){
+							_this.collectlist=res.data;
+							if(res.data.length>=10){
+							  vm.loadflag=true;
+							}else{
+							  vm.loadflag=false;
+							}
+						}
+						if(res.data.length==0){
+							_this.nocollectlist=true;
+							
+						}else{
+							_this.nocollectlist=false;
+							
+						}
+						
+					},
+					error: function(xhr, type, errorThrown){
+						mui.toast('服务器响应失败');
+					}
+				});
+            },
+        }
+    });
+    //上拉加载更多
+	function pullupRefresh() {
+		setTimeout(function() {
+			console.log("上拉加载执行");
+			//这里面true为没有更多数据 false表示有更多数据，下次可以继续下拉。
+			if(vm.loadflag){
+			  addData();
+			  mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+			 
+			}else{
+			  mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+			}
+			
+		}, 1000);
+	}
+	//获取数据
+		function addData() {
+			vm.page++;
+			var param = {
+				token:JSON.parse(localStorage.getItem('token')).accessToken ,  //用户token
+				pageIndex:vm.page,
+	            pageSize:vm.pageSize,
+	            pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+			};
+			mui.ajax({
+			    url: CONFIG.basePath+ '/api/panduser/collection_list',
+				async: false,
+			    data: param,
+			    dataType: "json",
+			    type: 'post',
+				beforeSend: function(){
+					plus.nativeUI.showWaiting();
+				},
+				complete: function(){
+					plus.nativeUI.closeWaiting();
+				},
+				success: function(res){
+					console.log('收藏列表'+JSON.stringify(res.data))
+					console.log('收藏列表'+res.data.length)
+					if(res.result==1){
+						vm.collectlist = vm.collectlist.concat(res.data);
+						if(res.data.length>=10){
+						  vm.loadflag=true;
+						}else{
+						  vm.loadflag=false;
+						}
+					}
+					
+					
+				},
+				error: function(xhr, type, errorThrown){
+					mui.toast('服务器响应失败');
+				}
+			});
+		}
+		
+	</script>
+</html>

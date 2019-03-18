@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>确认订单</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../../css/mui.picker.min.css" rel="stylesheet" />
+		<title></title>
+		<style type="text/css">
+			.mui-content>.mui-table-view:first-child{
+				margin-top: 0px;
+				border-bottom:9px solid #F7F7F7;
+				
+			}
+			.mui-table-view-cell {
+				padding: 12px 15px
+			}
+			.right-info {
+				line-height: 1;
+				display: inline-block;
+				padding: 3px 6px;
+				position: absolute;
+				top: 50%;
+				right: 10px;
+				-webkit-transform: translateY(-50%);
+				transform: translateY(-50%);
+			}
+			.right-info-details {
+				color: #999999;
+				line-height: 1;
+				display: inline-block;
+				padding: 3px 6px;
+				position: absolute;
+				top: 50%;
+				right: 30px;
+				-webkit-transform: translateY(-50%);
+				transform: translateY(-50%);
+			}
+			.mui-bar a {
+				color: #E02D26;
+			}
+			
+			ul li a,
+			span {
+				font-size: 14px; 
+			}
+			.mui-table-view-cell:after {
+			    position: absolute;
+			    right: 0;
+			    bottom: 0;
+			    left: 0px;
+			    height: 1px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color: #c8c7cc;
+			}
+			.Box {
+				margin-bottom: 5px;
+				margin-top: 5px;
+			}
+			
+			.BoxTop {
+				height: 50px;
+				width: 100%;
+				background: white;
+			}
+			
+			.BoxTopImg {
+				width: 16px;
+			    height: 16px;
+			    float: left;
+			    margin: 16px 10px;
+			}
+			
+			.BoxTopShopName {
+				float: left;
+				line-height: 50px;
+				font-size: 13px;
+			}
+			
+			.BoxTopRightIcon {
+				line-height: 50px;
+				font-size: 16px;
+				color: black;
+				padding-left: 5px;
+			}
+			
+			.BoxTopRightStatus {
+				line-height: 50px;
+				font-size: 13px;
+				color: black;
+				padding-right: 10px;
+				color: #E02D26;
+			}
+			
+			.BoxTopRightStatus:hover {
+				color: #E02D26;
+			}
+			
+			.BoxDetails {
+				width: 100%;
+				background: #fff;
+				display: flex;
+				padding: 0px 10px;
+			}
+			
+			.BoxDetailsImg {
+				width:60px;
+				height:60px;
+				margin-top: 13px;
+                margin-right: 15px;
+			}
+			
+			.BoxDetailsCenter {
+				flex:auto;
+			}
+			
+			.BoxDetailsCenterName {
+				color: #333333;
+				font-size: 12px;
+				margin-top: 10px;
+				line-height: 20px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display:-webkit-box; 
+				-webkit-box-orient:vertical; 
+				-webkit-line-clamp:2; 
+
+			}
+			
+			.BoxDetailsCenterDesc {
+				font-size: 13px;
+				color: #A9A9A9;
+				margin-top: 3px;
+			}
+			
+			.BoxDetailsRight {
+				float: left;
+			}
+			
+			.BoxDetailsRightMoney {
+				font-size: 13px;
+				color: black;
+				text-align: right;
+				margin-right: 10px;
+				margin-top: 10px;
+			}
+			
+			.BoxDetailsRightCount {
+				font-size: 13px;
+				color: black;
+				text-align: right;
+				margin-right: 10px;
+				color: #A9A9A9;
+			}
+			.BoxDetailsprice{color: #FF413A; font-size: 12px;margin-top: 10px;}
+			.goPingdanNumDiv {
+				border-top: 1px solid #f5f5f5;
+				border-bottom: 1px solid #f5f5f5;
+				width: 100%;
+				float: left;
+				background: white;
+				height: 50px;
+				line-height: 50px;
+			}
+			.goPingdanNumFont {
+				font-size: 13px;
+				margin-left: 10px;
+				float: left;
+			}
+			
+			.goPingdanNumFontOperation {
+				float: right;
+				margin-right: 10px;
+			}
+			
+			.goPingdanNumDel {
+				float: left;
+				font-size: 13px;
+				width: 30px;
+				height: 20px;
+				text-align: center;
+				background: #f2f2f2;
+				line-height: 20px;
+				margin-top: 15px;
+			}
+			
+			.goPingdanNumContent {
+				float: left;
+				font-size: 13px;
+				width: 50px;
+				height: 20px;
+				text-align: center;
+				background: #ffffff;
+				line-height: 20px;
+				margin-top: 15px;
+			}
+			
+			.goPingdanNumAdd {
+				float: left;
+				font-size: 13px;
+				width: 30px;
+				height: 20px;
+				text-align: center;
+				background: #e0e0e0;
+				margin-top: 15px;
+				line-height: 20px;
+			}
+			.footer {
+				z-index: 10;
+				border-top: 1px solid #DDDDDD;
+				width: 100%;
+				height: 50px;
+				margin: 0 auto;
+				background: white;
+				position: fixed;
+				bottom: 0px;
+			}
+			
+			.footer-left {
+				width: 100%;
+				float: left;
+				height: 50px;
+				line-height: 50px;
+			}
+			
+			.footer-right {
+				width: 30%;
+				float: left;
+				height: 35px;
+				text-align: center;
+				line-height: 35px;
+				color: white;
+				background: linear-gradient(to right,  #FF413A , #FF9849);
+				border-radius: 18px;
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+			
+			.footer-left1 {
+				width: 65%;
+				float: left;
+			}
+			
+			.footer-left2 {
+				text-align: center;
+				width: 35%;
+				float: left;
+				background: #F2BAC7;
+			}
+			
+			.footer-left-icondiv {
+				float: right;
+				padding-right: 20px;
+				
+			}
+			.footer-left-font{color:#333333;font-size:12px;}
+			.footer-left-font span{color: #FF413A;font-size: 12px;vertical-align: -3px;}
+			.BoxEvaluateContent {
+				height: 120px;
+			}
+			
+			#txt_EvaluateContent {
+				height: 100%;
+				border: none;
+				font-size: 13px;
+				margin-bottom: 0px;
+				padding: 10px;
+			}
+			#sheet3 {
+				background: white;
+				z-index: 1000000000000;
+			}
+			#sheet4 {
+				background: white;
+				z-index: 1000000000000;
+			}
+			.goPingdanKuanshi{height:430px;}
+			.seradress{position:relative;height:40px;border-bottom:1px solid #DDDDDD;}
+			.cancel{position:absolute;font-size: 12px;text-align: center;line-height: 40px;left:15px;}
+			.myadress{flex:auto;font-size: 12px;text-align: center;line-height: 40px;}
+			
+			.mui-btn-yellow{background-color: #FF413A;font-size: 12px;}
+			.mui-table-add{width: 250px;float: left;}
+			.mui-table-adds{width: 250px;float: left;}
+			.mui-botto{
+				height: 49px;
+				width: 100%;
+				position: absolute;
+				bottom: 0px;
+			}
+			.mui-botto button{
+				height: 49px;
+				width: 100%;
+			}
+			#mui-icon{
+				color: #FF413A;
+				width: 17px;
+				height: 17px;
+			}
+			.mui-adddd{
+				font-size:14px;
+				color: #333333;
+			}
+			#OA_task_2{background: #ffffff;}
+			.mui-popover.mui-popover-action .mui-table-view{color:#333333;}
+			.mui-popover .mui-table-view{max-height:480px;overflow-y: auto;}
+			.mui-slider-handle a{
+				float: right;
+				height: 13px;
+				line-height: 13px;
+				font-size: 12px;
+				color: #999999;
+			    margin-top: 15px;
+			    padding-left: 15px;
+			    border-left: 1px solid #999999;
+			}
+			.mui-icon-checkmarkempty {
+				font-size: 13px;
+				color: #979797;
+				border-radius: 50%;
+				border: 1px solid #8f8f94;
+			}
+			
+			.mui-icon-checkmarkempty:hover {
+				color: #ffffff;
+			}
+			.chks {
+			    width: 13px;
+				height: 13px;
+				margin-left: 10px;
+				margin-top: 20px;
+				margin-right: 5px;
+				
+			}
+			.selectPrice {
+				font-size: 13px;
+				color: white;
+				background: #E02D26;
+				border-radius: 50%;
+				border: 1px solid white;
+			}
+			.servertime{display: flex;border-top:1px solid #999999;}
+			.servercancel{
+				flex:1;
+				text-align: center;
+				color: #333333;
+				font-size: 14px;
+				border-right:1px solid #DDDDDD;
+				line-height:50px;
+			}
+			.serversure{
+				flex:1;
+				text-align: center;
+				color: #FF413A;
+				font-size: 14px;
+				line-height:50px;
+			}
+			.timehover{padding: 10px 20px;}
+			.timehover span{
+				padding:5px 18px;
+				background: #F7F7F7;
+				margin-bottom: 5px;
+				display: inline-block;
+				margin-right: 10px;
+				color: #666666;
+				font-size: 12px;
+			}
+			.timehover span.click{
+				color:#FF413A;
+				font-size: 12px;
+				border:1px solid #FF413A;
+				background: #FF9849;
+			}
+			.timeweek{border-top:1px solid #DDDDDD;}
+			.weektitle{
+				padding: 5px 10px;
+				color: #333333;
+				font-size: 12px;
+				}
+			.mui-checkbox input[type=checkbox]{
+	         	position: absolute;
+			    top: 0px;
+			    left: 0px;
+			    display: inline-block;
+			    width: 15px;
+			    height: 15px;
+			    border: 0;
+			    outline: 0!important;
+			    background-color: transparent;
+			    -webkit-appearance: none;
+	         }
+	        .mui-checkbox input[type=checkbox]:before{
+	        	font-size: 17px;
+	        }
+	        .mui-checkbox input[type=checkbox]:checked:before{
+	        	color: #FF413A;
+	        }
+	        .timecheckbox{padding-left: 10px;}
+	        .checkboxweek{
+	        	position: relative;
+	        	width:50px;
+	        	margin-right: 15px;
+	        	float: left;
+	        	margin-bottom: 10px;
+	        }
+	        .checkboxweek span{padding-left: 20px;}
+		</style>
+	</head>
+ 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">确认订单</h1>
+		</header>
+		<div class="mui-content" id="buyorder">
+			<ul class="mui-table-view">
+				<li id="contactName" class="mui-table-view-cell" v-show="contactName">
+					<a class="mui-navigate-right">联系人</a>
+					<span id="contactaddress" class='right-info-details'>请选择联系人</span>
+				</li>
+				<li id="address" class="mui-table-view-cell">
+					<a class="mui-navigate-right">服务地址</a>
+					<span id="qianming_value" class='right-info-details'>请选择服务地址</span>
+				</li>
+				<li id="birthday" class="mui-table-view-cell">
+					<a class="mui-navigate-right">服务时间</a>
+					<span id="birthday_value" class='right-info-details'>选择服务时间</span>
+				</li>
+			</ul>
+			<div class="Box">
+				<div class="BoxTop">
+					<img class="BoxTopImg" src="../../../images/pand/shop.png">
+					<div class="BoxTopShopName" v-text="userNickname">旋光家居专营店 </div>
+				</div>
+				<div class="BoxDetails">
+					<img class="BoxDetailsImg" :src="userHeadpng">
+					<div class="BoxDetailsCenter">
+						<div class="BoxDetailsCenterName" v-text="orderlist.serviceTilte"></div>
+						<div class="BoxDetailsprice" >¥<em style="font-size: 18px;font-style: inherit;18px" class="servicePrice" v-text="orderlist.servicePrice">60</em></div>
+					</div>
+				</div>
+				<div class="goPingdanNumDiv">
+					<div class="goPingdanNumFont">购买数量</div>
+					<div class="goPingdanNumFontOperation">
+						<div id="goPingdanNumDel" class="goPingdanNumDel">-</div>
+						<div id="goPingdanNumContent" class="goPingdanNumContent">1</div>
+						<div id="goPingdanNumAdd" class="goPingdanNumAdd">+</div>
+					</div>
+			    </div>
+				<div class="BoxEvaluateContent">
+					<textarea id="txt_EvaluateContent" class="mui-input-clear" placeholder="亲,您对这个服务需要留言吗？~"></textarea>
+				</div>
+			</div>
+			<!--选择服务地址-->
+		    <div id="sheet3" class="mui-popover mui-popover-bottom mui-popover-action ">
+				<div class="goPingdanKuanshi ">
+					<div class="seradress">
+						<div class="cancel" id="cancel">取消</div>
+						<div class="myadress">我的地址</div>
+					</div>
+					<ul id="OA_task_2" class="mui-table-view">
+						<li class="mui-table-view-cell" :title="item.personName+item.personPhone" :addressser="item.personAddress+item.houseNumber" style="border-radius: 0px;" v-for="(item, index) in addresslist">
+							<div class="mui-slider-right mui-disabled">
+							   <a id="mui-btn" class="mui-btn mui-btn-yellow mui-icon" style="font-size: 12px;" @click="deldizhi(item.id)">删除</a>
+							</div>
+							<div class="mui-slider-handle">
+								<div class="mui-table-add">
+									<span v-text="item.personName">李木子</span>
+									<span class="mui-add-nuber" v-text="item.personPhone">15888888888</span>
+								</div>
+							    <a @click="modifydizhi(item.id)">编辑</a>
+								<div class="mui-table-adds">
+									<span v-text="item.personAddress">上海青浦区复兴路88弄4支弄125号</span>
+									<span v-text="item.houseNumber"></span>
+								</div>
+							</div>
+						</li>
+					</ul> 
+					<div class="mui-botto" id="info" @click="adddizhi">
+				        <button>
+				      		<span id="mui-icon" class="mui-icon mui-icon-plus"> </span>
+				      		<samp  class="mui-adddd">添加地址</samp>
+				      	</button>	
+				    </div>
+				</div>
+		    </div>
+		    <!--选择服务时间-->
+		    <div id="sheet4" class="mui-popover mui-popover-bottom mui-popover-action ">
+				<div class="goPingdanKuanshi ">
+					<div class="seradress">
+						<div class="myadress">选择服务时间</div>
+					</div>
+					<div class="timecontent">
+						<div class="timehover">
+							<span class="timedian" title="00:00">00:00</span>
+							<span class="timedian" title="01:00">01:00</span>
+							<span class="timedian" title="02:00">02:00</span>
+							<span class="timedian" title="03:00">03:00</span>
+							<span class="timedian" title="04:00">04:00</span>
+							<span class="timedian" title="05:00">05:00</span>
+							<span class="timedian" title="06:00">06:00</span>
+							<span class="timedian" title="07:00">07:00</span>
+							<span class="timedian" title="08:00">08:00</span>
+							<span class="timedian" title="09:00">09:00</span>
+							<span class="timedian" title="10:00">10:00</span>
+							<span class="timedian" title="11:00">11:00</span>
+							<span class="timedian" title="12:00">12:00</span>
+							<span class="timedian" title="13:00">13:00</span>
+							<span class="timedian" title="14:00">14:00</span>
+							<span class="timedian" title="15:00">15:00</span>
+							<span class="timedian" title="16:00">16:00</span>
+							<span class="timedian" title="17:00">17:00</span>
+							<span class="timedian" title="18:00">18:00</span>
+							<span class="timedian" title="19:00">19:00</span>
+							<span class="timedian" title="20:00">20:00</span>
+							<span class="timedian" title="21:00">21:00</span>
+							<span class="timedian" title="22:00">22:00</span>
+							<span class="timedian" title="23:00">23:00</span>
+						</div>
+						<div class="timeweek">
+							<div class="weektitle">工作日</div>
+						    <div class="timecheckbox">
+						    	<div class="checkboxweek">
+						    		<div class="mui-checkbox">
+										<input type="checkbox" class="checkbox" id="" value="周一" />
+								   </div>
+								   <span>周一</span>
+						    	</div>
+						    	<div class="checkboxweek">
+						    		<div class="mui-checkbox">
+										<input type="checkbox" class="checkbox" id="" value="周二" />
+								   </div>
+								   <span>周二</span>
+						    	</div>
+						    	<div class="checkboxweek">
+						    		<div class="mui-checkbox">
+										<input type="checkbox" class="checkbox" id="" value="周三" />
+								   </div>
+								   <span>周三</span>
+						    	</div>
+						    	<div class="checkboxweek">
+						    		<div class="mui-checkbox">
+										<input type="checkbox" class="checkbox" id="" value="周四" />
+								   </div>
+								   <span>周四</span>
+						    	</div>
+						    	<div class="checkboxweek">
+						    		<div class="mui-checkbox">
+										<input type="checkbox" class="checkbox" id="" value="周五" />
+								   </div>
+								   <span>周五</span>
+						    	</div>
+						    	<div class="checkboxweek">
+						    		<div class="mui-checkbox">
+										<input type="checkbox" class="checkbox" id="" value="周六" />
+								   </div>
+								   <span>周六</span>
+						    	</div>
+						    	<div class="checkboxweek">
+						    		<div class="mui-checkbox">
+										<input type="checkbox" class="checkbox" id="" value="周日" />
+								   </div>
+								   <span>周日</span>
+						    	</div>
+						    </div>
+						</div>
+					</div>
+					<div class="mui-botto servertime">
+				        <div class="servercancel">取消</div>	
+				        <div class="serversure">确定</div>
+				    </div>
+				</div>
+		    </div>
+			<div class="footer">
+				<div class="footer-left">
+					<div class="footer-left1 order-item mui-bar-tab">
+						<div class="footer-left-icondiv" id="btn_Tab_gotoHome">
+							<div class="footer-left-font">应付合计:<span  >¥<em style="font-size: 18px;font-style: normal;" class="pricenum"v-text="orderlist.servicePrice"></em></span></div>
+						</div>
+				</div>
+				<div id="btn_Tab_GoPingdan" class="footer-right">
+					<div class="footer-left-font2">提交订单</div>
+				</div>
+		    </div>
+		    
+		</div>
+		<script type="text/javascript" src="../../../js/vue.min.js"></script>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../js/mui.picker.min.js"></script>
+		<script type="text/javascript" src="../../../js/mui.poppicker.js"></script>
+		<script type="text/javascript" src="../../../js/city.data.js"></script>
+		 <script type="text/javascript" src="../../../js/app.js" ></script>
+	    <script type="text/javascript" src="../../../js/config.js" ></script>
+		<script>
+			mui.init();
+			var vm = new Vue({
+		        el: '#buyorder',
+		        data: {
+		          orderlist:[],   //订单数据
+		          serverid:"",    //服务id
+		          userHeadpng:"",  //店铺头像
+		          userNickname:"",  //店铺名称
+		          contactName:"",  //联系表单是否出现
+		          addresslist:[],    //地址列表
+		          timetile:"",   //时间选择
+		          weektitle:"",   //星期选择
+		        },
+				mounted: function () {
+				    var _this = this;
+				    this.$nextTick(function() {
+				       mui.plusReady(function(){
+				            _this.InitMain();
+				            _this.address();
+				            window.addEventListener('refresh', function(e){//执行刷新
+						      location.reload();
+						    });
+				        })
+				    }) 
+			    },
+		        methods: {
+			        //删除地址
+			         deldizhi:function(id){
+			         	var _this = this;
+			         	var param = {
+					      token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+	                      id:id,   //用户id
+						};
+						mui.ajax({
+							url: CONFIG.basePath+ '/api/pandorder/address_delete',
+							async: false,
+							data: param,
+							dataType: "json",
+							type: 'post',
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+						    success: function(res){
+								console.log('删除地址'+res.message);
+								if(res.result==1){
+								   _this.address();
+								}else{
+								   mui.toast(res.message);
+								}
+								
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+			         },
+			         //编辑地址
+			         modifydizhi:function(id){
+			         	mui.openWindow({
+							url: "/model/user/Address/Editaddress.html",
+							id: "Editaddress.html",
+							extras: {
+				                addressid: id,
+				            }
+						})
+			         },
+			         //新增地址
+			         adddizhi:function(){
+			         	mui.openWindow({
+							url: "/model/user/Address/Newaddress.html",
+							id: "Newaddress.html",
+						})
+			         },
+			        //初始化
+                    InitMain: function() {
+                    	var _this = this;
+                        var sData = plus.webview.currentWebview();
+                       	  _this.serverid=sData.serverid;
+                       	var params = {
+							  id:_this.serverid,  //服务id 
+						    };
+						mui.ajax({
+							url: CONFIG.basePath+ '/api/pandwork/service_detail',
+						    async: false,
+							data: params,
+							dataType: "json",
+							type: 'post',
+						    success: function(res){
+							    console.log('服务详情列表'+JSON.stringify(res.data))
+								_this.orderlist=res.data;
+								_this.userHeadpng=res.data.issuser.userHeadpng;
+								_this.userNickname=res.data.issuser.userNickname;
+						    },
+						    error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+					    });
+							
+                    },
+                    //加载地址列表
+                   address:function(){
+                   	var _this = this;
+                   	  var params = {
+						      token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+	                          pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,   //用户id
+							};
+							mui.ajax({
+							url: CONFIG.basePath+ '/api/pandorder/address_list',
+							async: false,
+							data: params,
+							dataType: "json",
+							type: 'post',
+							beforeSend: function(){
+								plus.nativeUI.showWaiting();
+							},
+							complete: function(){
+								plus.nativeUI.closeWaiting();
+							},
+						    success: function(res){
+								console.log('地址列表'+JSON.stringify(res.data));
+								if(res.result==1){
+								   _this.addresslist = res.data;
+								}else{
+								   mui.toast(res.message);
+								}
+								
+							},
+							error: function(xhr, type, errorThrown){
+								mui.toast('服务器响应失败');
+							}
+						});
+                   },
+		        }
+		    });
+		    //确定选择服务时间
+		    mui('.servertime').on('tap','.serversure',function(){
+		    	if(!vm.timetile||!vm.weektitle){
+		    		mui.toast("请选择时间段")
+		    	}else{
+		    		var servertime=vm.weektitle+' '+vm.timetile
+		    		$('#birthday_value').text(servertime);
+		    	    mui('#sheet4').popover('toggle');
+		    	}
+			});
+		    //取消选择服务时间
+		    mui('.servertime').on('tap','.servercancel',function(){
+		    	mui('#sheet4').popover('toggle');
+			});
+		    //时间选择
+		    mui('.timehover').on('tap','.timedian',function(){
+		    	$(this).addClass('click').siblings().removeClass('click');
+		    	console.log("title = " + $(this).attr('title'));
+		    	vm.timetile=$(this).attr('title');
+			});
+		    // 事件绑定
+			 mui('.mui-checkbox').on('change','input',function(){
+				console.log("id = " + this.value + " status = " + this.checked);
+				if (this.checked) { 
+					console.log('勾选上了')
+					vm.weektitle=this.value;
+				} else{
+					console.log('取消勾选')
+				}
+				
+			 });
+		    //选择联系人和服务地址
+			mui("#OA_task_2").on("tap", ".mui-table-view-cell", function() {
+				$('#contactaddress').text($(this).attr("title"));
+				$('#qianming_value').text($(this).attr("addressser"));
+				vm.contactName=$('#contactaddress').text();
+				mui('#sheet3').popover('toggle');
+			})
+			//选择服务时间
+			document.getElementById("birthday").addEventListener("tap", function() {
+				mui('#sheet4').popover('toggle');
+			});
+			
+			
+			//数量+1
+			document.getElementById("goPingdanNumAdd").addEventListener("tap", function() {
+				if(parseInt($("#goPingdanNumContent").html().trim()) + 1 == 2)
+					$("#goPingdanNumDel").css("background", "#e0e0e0");
+				$("#goPingdanNumContent").html(parseInt($("#goPingdanNumContent").html().trim()) + 1);
+				$(".pricenum").html($("#goPingdanNumContent").text()*$('.servicePrice').text())
+			})
+			//数量-1
+			document.getElementById("goPingdanNumDel").addEventListener("tap", function() {
+				if($("#goPingdanNumContent").html().trim() == "1") {
+					mui.toast("已经不能再减少啦~")
+					return;
+				}
+				if(parseInt($("#goPingdanNumContent").html().trim()) - 1 == 1)
+					$("#goPingdanNumDel").css("background", "#f2f2f2");
+				$("#goPingdanNumContent").html(parseInt($("#goPingdanNumContent").html().trim()) - 1);
+				$(".pricenum").html($("#goPingdanNumContent").text()*$('.servicePrice').text())
+			})
+			//选择服务地址
+			document.getElementById("address").addEventListener("tap", function() {
+				mui('#sheet3').popover('toggle');
+			});
+			//取消服务地址
+			document.getElementById("cancel").addEventListener("tap", function() {
+				mui('#sheet3').popover('toggle');
+			});
+			//点击提交订单
+			mui("#btn_Tab_GoPingdan").on("tap", ".footer-left-font2", function() {
+				if(!vm.contactName||$('#qianming_value').text()=="请选择服务地址"){
+					mui.toast('请选择服务地址');
+					return false;
+				}
+				var params = {
+				    token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+				    pandUserId:JSON.parse(localStorage.getItem('userinfo')).id,  //用户id
+				    serviceId:vm.serverid,   //发布服务的id
+				    address:$('#qianming_value').text(),  //需要服务的地址
+				    timePeriod:$('#birthday_value').text(), //需要服务的时间段
+				    serviceCount:$('#goPingdanNumContent').text(), //服务的数量
+				    serviceMoney:$('.servicePrice').text(),  //服务的价格
+				    message:$('#txt_EvaluateContent').val(), //服务留言
+			        contactName: $('#contactaddress').text(),         //联系人
+				};
+				mui.ajax({
+					url: CONFIG.basePath+ '/api/pandorder/to_buy',
+					async: false,
+					data: params,
+					dataType: "json",
+					type: 'post',
+					beforeSend: function(){
+						plus.nativeUI.showWaiting();
+					},
+					complete: function(){
+						plus.nativeUI.closeWaiting();
+					},
+					success: function(res){
+						console.log('下单成功'+JSON.stringify(res.data));
+						mui.openWindow({
+							url: "orderover.html",
+							id: "orderover.html",
+							extras: {
+				                orderid: res.data.id,
+				            }
+						})
+					},
+					error: function(xhr, type, errorThrown){
+						mui.toast('服务器响应失败');
+					}
+				});
+				
+			})
+		</script>
+	</body>
+ 
+</html>

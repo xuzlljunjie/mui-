@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+				<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style>
+		.mui-content{background: #ffffff;padding: 0px 20px;}
+			#addres {
+				width:100%;
+				text-align: center;
+			}
+			#addres button{
+				width:80%;
+				height: 40px;
+				text-align: center;
+				margin-top: 20px;
+				background: linear-gradient(to left,#FF9849 ,#FF413A );
+				border-radius: 50px; 
+				color: #ffffff;
+				border: 0;
+			}
+			.uploadface{
+				width:335px;
+				height: 185px;
+				background-size: cover;
+				margin: auto;
+				position: relative;
+				margin-top: 30px;
+			}
+			.uploadtitle{
+				text-align: center;
+				padding: 20px 0px;
+				font-size: 15px;
+			}
+			#faceimg{
+				width: 180px;
+			    height: 180px;
+			    border-radius: 50%;
+			    position: absolute;
+			    left: 70px;
+			    top: 15px;
+			    border:2px solid #FF413A;
+			}
+			.Identification{
+				text-align: center;
+				margin-top: 50px;
+				font-size: 28px;
+				color: #333333;
+			}
+	</style>
+	<body>
+			<header class="mui-bar mui-bar-nav">
+				<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			</header>
+		   <div class="mui-content" id="facelist">
+		   	   <div class="uploadface">
+		   	   	<img id="faceimg" :src="pathimgurl" />
+		   	   </div>
+		   	   <div class="Identification">识别中，请稍后…</div>
+		   </div>
+	</body>
+	<script src="../../js/mui.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/vue.min.js"></script>
+	<script type="text/javascript" src="../../js/config.js" ></script>
+	<script type="text/javascript" src="../../js/app.js" ></script>
+	<script type="text/javascript">
+		mui.init({
+	        swipeBack:true //启用右滑关闭功能
+	    });
+	    var vm = new Vue({
+	          el: '#facelist',
+	          data: {
+		        pathimgurl:"",  //拍照人脸
+		        orderid:"",  //订单id
+	          },
+			  mounted: function () {
+			        var _this = this;
+			      	this.$nextTick(function() {
+			      	mui.plusReady(function(){
+			            _this.InitMain();
+			         })
+			      }) 
+				},
+	          methods: {
+		        //初始化
+	            InitMain: function() {
+	            	var _this = this;
+	            	var sData = plus.webview.currentWebview();
+                    _this.pathimgurl=sData.pathimgurl;
+                    _this.orderid=sData.orderid;
+			        uploadren(_this.pathimgurl)
+	            },
+	          } 
+	        }); 
+	         //服务端接口路径
+            var servers = CONFIG.basePath+ '/api/pand_image_upload/face_compare';
+            // 上传文件
+            function uploadren(imgurl){
+                console.log(imgurl);
+               var task=plus.uploader.createUpload(servers,
+                    {method:"POST"},
+                    function(t,status){ //上传完成
+                    	console.log(status)
+                        if(status==200){
+                        	console.log(JSON.parse(t.responseText).data)
+                        	if(JSON.parse(t.responseText).result==1){
+                        		if(JSON.parse(t.responseText).data.similarValue>60){
+                        			$('.Identification').text('人脸对比成功');
+                        			var param = {
+								      token: JSON.parse(localStorage.getItem('token')).accessToken,  //用户token
+			                          orderId:vm.orderid,   //订单id
+			                          status: 3,   //订单状态
+									};
+									mui.ajax({
+									    url: CONFIG.basePath+ '/api/pandorder/order_update',
+										async: false,
+									    data: param,
+									    dataType: "json",
+									    type: 'post',
+										beforeSend: function(){
+											plus.nativeUI.showWaiting();
+										},
+										complete: function(){
+											plus.nativeUI.closeWaiting();
+										},
+										success: function(res){
+											console.log('去服务'+res.message)
+											if(res.result==1){
+												
+												mui.openWindow({
+													url: "sellorder.html",
+													id: "sellorder.html",
+													extras: {
+										                type:2,
+										            }
+												})
+											}else{
+												mui.toast(res.message);
+											}
+										},
+										error: function(xhr, type, errorThrown){
+											mui.toast('服务器响应失败');
+										}
+									});
+                        		}else{
+                        			$('.Identification').text('人脸对比失败')
+                        		}
+                        	}else{
+                        		mui.toast(JSON.parse(t.responseText).message);
+                        	}
+                        }else{
+                            alert("上传失败："+status);
+                            //wt.close();//关闭等待提示按钮
+                        }
+                    }
+                );
+                //添加其他参数
+                console.log(JSON.parse(localStorage.getItem('token')).accessToken)
+                console.log(JSON.parse(localStorage.getItem('userinfo')).id)
+                console.log(JSON.parse(localStorage.getItem('userinfo')).userNickname)
+                task.addData("token",JSON.parse(localStorage.getItem('token')).accessToken);
+                task.addData("userId", JSON.parse(localStorage.getItem('userinfo')).id);
+                task.addData("imgModel", "4");
+                task.addFile(imgurl,{key:"file"});
+                task.start();
+          }
+	</script>
+</html>

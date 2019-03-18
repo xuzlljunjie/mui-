@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>聊天</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			
+	
+		</style>
+	</head>
+ 
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+		<h1 class="mui-title">消息</h1>
+		</header>
+		
+			
+			
+			
+			
+			
+			
+			
+		</div>
+	   
+		
+	</body>
+	<script src="../../../js/vue.min.js"></script>
+		 <script src="../../../js/mui.min.js"></script>
+		 <script src="../../../js/jquery.min.js"></script>
+		 <script type="text/javascript" src="../../../js/app.js" ></script>
+		 <script type="text/javascript" src="../../../js/config.js" ></script>
+		 <script type="text/javascript">
+		
+
+		 </script>
+</html>

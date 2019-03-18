@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的足迹</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="icon" href="images/pand/pand.icon" type="image/x-icon" />
+		<!--标准mui.css-->
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		
+	</head>
+	<style>
+		div{
+			background-color: #ffffff;
+		}
+		.myfootprinto{
+			float: left;
+			width: 100%;
+			padding: 0px 15px 5px 15px;
+			border-bottom: 1px solid #DDDDDD;
+		}
+		 .myfootprintt{
+		 	margin-top: 12px;
+		 	width: 23.5%;
+		 	float: left;
+		 }
+		 .myfootprintts{
+		 	
+		 	width: 23.5%;
+		 	float: left;
+		 	margin: 12px 6px 0px 6px;
+		 }
+		  .myfootprintts img{
+		 	width: 80px;
+		 	height: 70px;
+		 }
+		 .myfootprinttx{
+		 	
+		 	width: 23.5%;
+		 	float: left;
+		 	margin: 12px 7px 0px 0px;
+		 }
+		  .myfootprinttx img{
+		 	width: 80px;
+		 	height: 70px;
+		 }
+		
+		 .myfootprintspan{
+		 	margin-top: 5px;
+		 	width: 100%;
+		 	float: left;
+		 	font-size: 14px;
+		 	color:#666666;
+		 }
+		 .myfootprintt img{
+		 	width: 80px;
+		 	height: 70px;
+		 }
+		 .myfootprinta{
+		 	font-size: 10px;
+		 	color: #FF413A;
+		 	margin-left: 25px;
+		 }
+		 .myfootprintb{
+		 	font-size: 18px;
+		 	color: #FF413A;
+		 	margin-right: 0px;
+		 }
+		
+	</style>
+	<body>
+		 <header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">我的足迹</h1>
+		</header>
+		<div class="mui-content">
+			<div class="myfootprinto">
+				<span class="myfootprintspan">今天</span>
+				<div class="myfootprintt">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				<div class="myfootprintts">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				<div class="myfootprinttx">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				<div class="myfootprintt">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+			</div>
+			
+			<div class="myfootprinto">
+				<span class="myfootprintspan">12月17号</span>
+				<div class="myfootprintt">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				<div class="myfootprintts">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				<div class="myfootprinttx">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				<div class="myfootprintt">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				
+				<div class="myfootprinttx">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				
+				<div class="myfootprinttx">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				
+				<div class="myfootprinttx">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+			</div>
+			
+			
+			<div class="myfootprinto">
+				<span class="myfootprintspan">12月16号</span>
+				<div class="myfootprintt">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				<div class="myfootprintts">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				<div class="myfootprinttx">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				<div class="myfootprintt">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				
+				<div class="myfootprinttx">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				
+				<div class="myfootprinttx">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+						<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+				
+				<div class="myfootprinttx">
+					<img src="../../../images/pand/tou.png" />
+					<span>
+				 		<span class="myfootprintb"><span class="myfootprinta">￥</span>60</span>
+					</span>
+				</div>
+			</div>
+			
+		</div>
+		 
+	</body>
+		<script src="../../../js/mui.js"></script>
+    <script src="../../../js/jquery.min.js"></script>
+</html>
